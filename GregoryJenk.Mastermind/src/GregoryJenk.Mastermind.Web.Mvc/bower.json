@@ -1,7 +1,7 @@
 {
-	"name": "Bower",
+	"name": "GregoryJenk.Mastermind.Web.Mvc",
 	"private": true,
   "dependencies": {
-
+    
   }
 }
