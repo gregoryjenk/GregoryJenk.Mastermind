@@ -21,7 +21,7 @@ gulp.task("clean", function () {
 });
 
 gulp.task("lib", function () {
-    gulp.src(paths.lib).pipe(gulp.dest("./wwwroot/lib/"))
+    gulp.src(paths.lib).pipe(gulp.dest("./wwwroot/lib/"));
 });
 
 gulp.task("minify", function () {
@@ -37,5 +37,5 @@ gulp.task("minify", function () {
                 "-min.js"
             ]
         }))
-        .pipe(gulp.dest("./wwwroot/app/js/"))
+        .pipe(gulp.dest("./wwwroot/app/js/"));
 });
