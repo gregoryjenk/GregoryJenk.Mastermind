@@ -14,6 +14,7 @@
   },
   "files": [
     "./TypeScripts/app.ts",
-    "./TypeScripts/Typings/index.d.ts"
+    "./TypeScripts/games/game.ts",
+    "./TypeScripts/typings/index.d.ts"
   ]
 }

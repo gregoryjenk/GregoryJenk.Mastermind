@@ -2,12 +2,26 @@
 
 var del = require("del");
 var gulp = require("gulp");
-var minify = require('gulp-minify');
+var minify = require("gulp-minify");
+
+var paths = {
+    lib: [
+        "./node_modules/angular2/bundles/angular2.js",
+        "./node_modules/angular2/bundles/angular2-polyfills.js",
+        "./node_modules/systemjs/dist/system.src.js",
+        "./node_modules/rxjs/bundles/Rx.js" //TODO: This files seems to be missing.
+    ]
+};
 
 gulp.task("clean", function () {
     return del([
-        "./wwwroot/app/js/**/*"
+        "./wwwroot/app/js/**/*",
+        "./wwwroot/lib/**/*"
     ]);
+});
+
+gulp.task("lib", function () {
+    gulp.src(paths.lib).pipe(gulp.dest("./wwwroot/lib/"))
 });
 
 gulp.task("minify", function () {
