@@ -1,4 +1,4 @@
-﻿/// <binding Clean="clean" />
+﻿/// <binding AfterBuild="lib" Clean="clean" />
 
 var del = require("del");
 var gulp = require("gulp");
@@ -9,7 +9,7 @@ var paths = {
         "./node_modules/angular2/bundles/angular2.js",
         "./node_modules/angular2/bundles/angular2-polyfills.js",
         "./node_modules/systemjs/dist/system.src.js",
-        "./node_modules/rxjs/bundles/Rx.js" //TODO: This files seems to be missing.
+        "./node_modules/rxjs/bundles/Rx.js"
     ]
 };
 

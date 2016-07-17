@@ -2,11 +2,14 @@
   "name": "gregoryjenk.mastermind.web.mvc.npm",
   "version": "1.0.0",
   "private": true,
-  "devDependencies": {
+  "dependencies": {
     "angular2": "2.0.0-beta.17",
+    "rxjs": "5.0.0-beta.10",
+    "systemjs": "0.19.31"
+  },
+  "devDependencies": {
     "del": "2.2.0",
     "gulp": "3.9.0",
-    "gulp-minify": "0.0.12",
-    "systemjs": "0.19.31"
+    "gulp-minify": "0.0.12"
   }
 }
