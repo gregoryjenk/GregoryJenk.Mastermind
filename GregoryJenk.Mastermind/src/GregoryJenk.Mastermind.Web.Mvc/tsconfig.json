@@ -13,6 +13,7 @@
     "target": "es5"
   },
   "files": [
-    "./TypeScripts/app.ts"
+    "./TypeScripts/app.ts",
+    "./TypeScripts/Typings/index.d.ts"
   ]
 }
