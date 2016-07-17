@@ -4,16 +4,15 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "module": "commonjs",
-    "noEmitOnError": true,
+    "noEmitOnError": false,
     "noImplicitAny": true,
-    "outDir": "/wwwroot/app/",
+    "outDir": "./wwwroot/app/js/",
     "removeComments": false,
     "sourceMap": false,
-    "sourceRoot": "/",
     "suppressImplicitAnyIndexErrors": false,
     "target": "es5"
   },
   "files": [
-    "/TypeScript/app.ts"
+    "./TypeScripts/app.ts"
   ]
 }

@@ -13,6 +13,6 @@ class Greeter {
     }
 
     greet():string {
-        return "<h1>" + this.greeting + "</h1>";
+        return this.greeting;
     }
 };
