@@ -1,22 +1,24 @@
-﻿/// <binding AfterBuild="default" Clean="clean" />
+﻿/// <binding Clean="clean" />
 
-var gulp = require("gulp");
 var del = require("del");
-
-var paths = {
-    scripts: [
-        "wwwroot/**/*.js",
-        "wwwroot/**/*.ts",
-        "wwwroot/**/*.map"
-    ]
-};
+var gulp = require("gulp");
+var minify = require('gulp-minify');
 
 gulp.task("clean", function () {
     return del([
-        "wwwroot/app/js/**/*"
+        "./wwwroot/app/js/**/*"
     ]);
 });
 
-gulp.task("default", function () {
-    gulp.src(paths.scripts).pipe(gulp.dest("wwwroot/app/js/"));
+gulp.task("minify", function () {
+    gulp.src("./wwwroot/app/js/*.js")
+      .pipe(minify({
+          ext: {
+              src: ".js",
+              min: ".min.js"
+          },
+          exclude: ["tasks"],
+          ignoreFiles: [".combo.js", "-min.js"]
+      }))
+      .pipe(gulp.dest("./wwwroot/app/js/"))
 });
