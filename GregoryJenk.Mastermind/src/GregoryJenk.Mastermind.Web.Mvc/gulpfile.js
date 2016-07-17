@@ -12,13 +12,16 @@ gulp.task("clean", function () {
 
 gulp.task("minify", function () {
     gulp.src("./wwwroot/app/js/*.js")
-      .pipe(minify({
-          ext: {
-              src: ".js",
-              min: ".min.js"
-          },
-          exclude: ["tasks"],
-          ignoreFiles: [".combo.js", "-min.js"]
-      }))
-      .pipe(gulp.dest("./wwwroot/app/js/"))
+        .pipe(minify({
+            ext: {
+                src: ".js",
+                min: ".min.js"
+            },
+            exclude: [ "tasks" ],
+            ignoreFiles: [
+                ".combo.js",
+                "-min.js"
+            ]
+        }))
+        .pipe(gulp.dest("./wwwroot/app/js/"))
 });
