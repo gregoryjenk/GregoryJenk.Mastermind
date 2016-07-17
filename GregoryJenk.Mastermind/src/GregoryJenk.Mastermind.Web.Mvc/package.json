@@ -1,8 +1,9 @@
 {
-  "name": "gregoryjenk.mastermind.web.mvc",
+  "name": "gregoryjenk.mastermind.web.mvc.npm",
   "version": "1.0.0",
   "private": true,
   "devDependencies": {
-
+    "del": "2.2.0",
+    "gulp": "3.9.0"
   }
 }

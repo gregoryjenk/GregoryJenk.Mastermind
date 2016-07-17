@@ -1,13 +1,19 @@
 {
+  "compileOnSave": false,
   "compilerOptions": {
-    "noImplicitAny": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "module": "commonjs",
     "noEmitOnError": true,
+    "noImplicitAny": true,
+    "outDir": "/wwwroot/app/",
     "removeComments": false,
-    "sourceMap": true,
+    "sourceMap": false,
+    "sourceRoot": "/",
+    "suppressImplicitAnyIndexErrors": false,
     "target": "es5"
   },
-  "exclude": [
-    "node_modules",
-    "wwwroot"
+  "files": [
+    "/TypeScript/app.ts"
   ]
 }
