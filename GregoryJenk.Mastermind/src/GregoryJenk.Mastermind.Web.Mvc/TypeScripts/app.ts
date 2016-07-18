@@ -6,6 +6,6 @@ import {Game} from "./games/game.ts";
     template: `<h1>Mastermind</h1>`
 })
 
-class MastermindApp {
+export class MastermindApp {
     game = new Game();
 }

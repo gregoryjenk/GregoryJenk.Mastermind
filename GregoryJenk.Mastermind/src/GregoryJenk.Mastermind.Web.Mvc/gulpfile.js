@@ -25,7 +25,7 @@ gulp.task("lib", function () {
 });
 
 gulp.task("minify", function () {
-    gulp.src("./wwwroot/app/js/*.js")
+    gulp.src("./wwwroot/app/js/**/*.js")
         .pipe(minify({
             ext: {
                 src: ".js",
