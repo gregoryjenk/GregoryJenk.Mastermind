@@ -1,29 +1,24 @@
-//{
-//  "compileOnSave": false,
-//  "compilerOptions": {
-//    "emitDecoratorMetadata": true,
-//    "experimentalDecorators": true,
-//    "inlineSources": true,
-//    "module": "system",
-//    "moduleResolution": "node",
-//    "noEmitOnError": false,
-//    "noImplicitAny": false,
-//    "outDir": "./wwwroot/app/js/",
-//    "removeComments": false,
-//    "sourceMap": true,
-//    //"sourceRoot": "TypeScripts",
-//    "suppressImplicitAnyIndexErrors": false,
-//    "target": "es5"
-//  },
-//  //Either the exclude or files can be used, files takes priority.
-//  "exclude": [
-//    "node_modules",
-//    "wwwroot"
-//  ]
-//  //"files": [
-//  //  "./TypeScripts/app.ts",
-//  //  //"./TypeScripts/games/game.ts",
-//  //  "./TypeScripts/main.ts",
-//  //  "./TypeScripts/typings/index.d.ts"
-//  //]
-//}
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "noEmitOnError": true,
+    "noImplicitAny": true,
+    "outDir": "./wwwroot/app/js/",
+    "removeComments": false,
+    "sourceMap": true,
+    "target": "es5"
+  },
+  //Either the exclude or files properties can be used, but not both, files takes priority.
+  //"exclude": [
+  //  "node_modules",
+  //  "wwwroot"
+  //]
+  "files": [
+    "./TypeScripts/app.ts",
+    "./TypeScripts/games/game.ts",
+    "./TypeScripts/main.ts"
+    //"./TypeScripts/typings/index.d.ts"
+  ]
+}
