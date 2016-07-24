@@ -1,5 +1,5 @@
 ﻿import {Component} from "angular2/core";
-import {Game} from "./games/game.ts";
+import {Game} from "./games/game";
 
 @Component({
     selector: `mastermind-app`,
