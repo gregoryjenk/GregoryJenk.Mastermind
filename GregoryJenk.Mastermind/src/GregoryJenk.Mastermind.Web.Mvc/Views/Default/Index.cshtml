@@ -1,1 +1,22 @@
-﻿Index
+﻿@section body_scripts {
+    <script src="~/lib/angular2-polyfills.js"></script>
+    <script src="~/lib/system.src.js"></script>
+    <script src="~/lib/Rx.js"></script>
+    <script src="~/lib/angular2.js"></script>
+    <script>
+        System.config({
+            packages: {
+                "app": {
+                    defaultExtension: "js",
+                    format: "cjs"
+                }
+            }
+        });
+
+        System.import("app/js/main").then(null, console.error.bind(console));
+    </script>
+}
+
+<mastermind-app>
+    Loading...
+</mastermind-app>
