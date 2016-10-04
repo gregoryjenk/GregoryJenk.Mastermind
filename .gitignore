@@ -250,3 +250,6 @@ paket-files/
 # JetBrains Rider
 .idea/
 *.sln.iml
+
+/GregoryJenk.Mastermind/src/GregoryJenk.Mastermind.Web.Mvc/wwwroot/app/js/*
+/GregoryJenk.Mastermind/src/GregoryJenk.Mastermind.Web.Mvc/wwwroot/lib/*
