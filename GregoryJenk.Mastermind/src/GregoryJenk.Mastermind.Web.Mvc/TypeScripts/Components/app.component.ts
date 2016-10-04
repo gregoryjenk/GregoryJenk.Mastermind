@@ -1,15 +1,15 @@
 ﻿//Import statements to tell Angular what modules to use.
-import {Component} from "angular2/core";
-//import {Game} from "./games/game";
+import { Component } from "@angular/core";
+//import { Game } from "../Models/Games/game.model";
 
 //The component decorator describes the template/view with metadata.
 @Component({
-    selector: ".mastermind-app-component",
+    selector: ".app-component",
     template: "<h1>Mastermind</h1>"
 })
+export class AppComponent {
+    //The component class controls behaviour for the template/view.
 
-//The component class controls behaviour for the template/view.
-export class MastermindAppComponent {
     //game = new Game("Greg");
 
     //let colours = new string[ "", "", "", "", "", "" ];

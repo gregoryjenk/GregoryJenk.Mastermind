@@ -12,14 +12,8 @@
     "target": "es5"
   },
   //Either the exclude or files properties can be used, but not both, files takes priority.
-  //"exclude": [
-  //  "node_modules",
-  //  "wwwroot"
-  //]
-  "files": [
-    "./TypeScripts/app.ts",
-    "./TypeScripts/games/game.ts",
-    "./TypeScripts/main.ts",
-    "./TypeScripts/typings/index.d.ts"
+  "exclude": [
+    "node_modules",
+    "wwwroot"
   ]
 }
