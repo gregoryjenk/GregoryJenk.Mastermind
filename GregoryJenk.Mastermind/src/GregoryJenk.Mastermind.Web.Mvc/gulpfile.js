@@ -21,6 +21,7 @@ gulp.task("clean", function () {
 });
 
 gulp.task("lib", function () {
+    //TODO: Place files in folders according to packages.
     gulp.src(paths.lib).pipe(gulp.dest("./wwwroot/lib/"));
 });
 

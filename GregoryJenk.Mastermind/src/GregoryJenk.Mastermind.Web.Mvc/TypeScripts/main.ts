@@ -1,4 +1,4 @@
 ﻿import {bootstrap} from "angular2/platform/browser";
-import {MastermindApp} from "./app";
+import {MastermindAppComponent} from "./app.component";
 
-bootstrap(MastermindApp);
+bootstrap(MastermindAppComponent);
