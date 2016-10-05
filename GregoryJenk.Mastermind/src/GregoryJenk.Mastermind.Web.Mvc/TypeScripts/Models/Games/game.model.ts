@@ -1,20 +1,17 @@
-﻿//export class Game {
-//    private _guesses: Guess[];
-//    private _answer: string[];
+﻿import { Guess } from "./Guess.model";
 
-//    //The use of public on arguments to the constructor is a shorthand
-//    //that allows it to automatically create properties with that name.
-//    constructor(public name: string) {
-//        //this.message = "Hello " + name;
-//    }
-//}
+export class Game {
+    //TODO: Implement answer so it is not accessible on the client-side.
+    private _answer: Colour[];
 
-//export class Guess {
-//    private _guess: string[];
-//    private _rightColourWrongPlace: number;
-//    private _rightColourRightPlace: number;
+    public guesses: Guess[];
 
-//    constructor() {
+    constructor() {
 
-//    }
-//}
+    }
+
+    public AddGuess(guess: Guess): void {
+        //TODO: Check answer.
+        this.guesses.push(guess);
+    }
+}
