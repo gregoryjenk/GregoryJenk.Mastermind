@@ -5,7 +5,7 @@ import { Component } from "@angular/core";
 //The component decorator describes the template/view with metadata.
 @Component({
     selector: ".app-component",
-    template: "<h1>Mastermind</h1>"
+    templateUrl: "/app/templates/app.component.html"
 })
 export class AppComponent {
     //The component class controls behaviour for the template/view.
@@ -17,8 +17,6 @@ export class AppComponent {
     //TODO: Function to start a game.
 
     //TODO: Property for active game.
-
-    //angular
 }
 
 //TODO: Guess feedback rule where duplicates colours and wrong places.

@@ -1,22 +1,44 @@
 ﻿@section body_scripts {
-    <script src="~/lib/angular2-polyfills.js"></script>
-    <script src="~/lib/system.src.js"></script>
-    <script src="~/lib/Rx.js"></script>
-    <script src="~/lib/angular2.js"></script>
+    <script src="~/lib/core-js/client/shim.min.js"></script>
+    <script src="~/lib/zone.js/dist/zone.js"></script>
+    <script src="~/lib/reflect-metadata/Reflect.js"></script>
+    <script src="~/lib/systemjs/dist/system.src.js"></script>
     <script>
+        //Loading from the CDN may be more performant than loading local versions but less reliable.
+        var map = {
+            "@@angular/common": "https://unpkg.com/@@angular/common@@2.0.0",
+            "@@angular/compiler": "https://unpkg.com/@@angular/compiler@@2.0.0",
+            "@@angular/core": "https://unpkg.com/@@angular/core@@2.0.0",
+            "@@angular/forms": "https://unpkg.com/@@angular/forms@@2.0.0",
+            "@@angular/http": "https://unpkg.com/@@angular/http@@2.0.0",
+            "@@angular/platform-browser": "https://unpkg.com/@@angular/platform-browser@@2.0.0",
+            "@@angular/platform-browser-dynamic": "https://unpkg.com/@@angular/platform-browser-dynamic@@2.0.0",
+            "@@angular/router": "https://unpkg.com/@@angular/router@@3.0.0",
+            "rxjs": "https://unpkg.com/rxjs@@5.0.0-beta.12"
+        };
+
+        var packages = {
+            "@@angular/common": { defaultExtension: "js", main: "/bundles/common.umd.js" },
+            "@@angular/compiler": { defaultExtension: "js", main: "/bundles/compiler.umd.js" },
+            "@@angular/core": { defaultExtension: "js", main: "/bundles/core.umd.js" },
+            "@@angular/forms": { defaultExtension: "js", main: "/bundles/forms.umd.js" },
+            "@@angular/http": { defaultExtension: "js", main: "/bundles/http.umd.js" },
+            "@@angular/platform-browser": { defaultExtension: "js", main: "/bundles/platform-browser.umd.js" },
+            "@@angular/platform-browser-dynamic": { defaultExtension: "js", main: "/bundles/platform-browser-dynamic.umd.js" },
+            "@@angular/router": { defaultExtension: "js", main: "/bundles/router.umd.js" },
+            "app": { defaultExtension: "js" },
+            "rxjs": { defaultExtension: "js" }
+        };
+
         System.config({
-            packages: {
-                "app": {
-                    defaultExtension: "js",
-                    format: "cjs"
-                }
-            }
+            map: map,
+            packages: packages
         });
 
-        System.import("app/js/main").then(null, console.error.bind(console));
+        System.import("app/js/app.main").then(null, console.error.bind(console));
     </script>
 }
 
-@*<div class="mastermind-app-component">
-    Loading...
-</div>*@
+<div class="app-component">
+    Loading
+</div>
