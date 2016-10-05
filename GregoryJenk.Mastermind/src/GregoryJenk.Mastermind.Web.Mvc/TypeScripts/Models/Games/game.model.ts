@@ -7,10 +7,10 @@ export class Game {
     public guesses: Guess[];
 
     constructor() {
-
+        //TODO: Generate an answer.
     }
 
-    public AddGuess(guess: Guess): void {
+    public addGuess(guess: Guess): void {
         //TODO: Check answer.
         this.guesses.push(guess);
     }

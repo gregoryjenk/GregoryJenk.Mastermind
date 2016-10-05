@@ -1,24 +1,29 @@
-﻿//Import statements to tell Angular what modules to use.
-import { Component } from "@angular/core";
-//import { Game } from "../Models/Games/game.model";
+﻿import { Component } from "@angular/core";
+import { Game } from "../Models/Games/game.model";
 
-//The component decorator describes the template/view with metadata.
+//TODO: Guess feedback rule where duplicates colours and wrong places.
+//TODO: Point based scoring system.
+//TODO: Five guess algorithm.
+
 @Component({
     selector: ".app-component",
     templateUrl: "/app/templates/app.component.html"
 })
 export class AppComponent {
-    //The component class controls behaviour for the template/view.
+    private _colours: Colour[] = [];
+    private _currentGame: Game;
 
-    //game = new Game("Greg");
+    constructor() {
+        //Cannot loop through const enum, so have to list them out.
+        this._colours.push(Colour.Blue);
+        this._colours.push(Colour.Green);
+        this._colours.push(Colour.Orange);
+        this._colours.push(Colour.Purple);
+        this._colours.push(Colour.Red);
+        this._colours.push(Colour.Yellow);
+    }
 
-    //let colours = new string[ "", "", "", "", "", "" ];
-
-    //TODO: Function to start a game.
-
-    //TODO: Property for active game.
+    private startGame() {
+        this._currentGame = new Game();
+    }
 }
-
-//TODO: Guess feedback rule where duplicates colours and wrong places.
-//TODO: Point based scoring system.
-//TODO: Five guess algorithm.

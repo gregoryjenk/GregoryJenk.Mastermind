@@ -5,9 +5,18 @@
     <div class="col-lg-12">
         <div class="panel panel-default">
             <div class="panel-body">
-                <button class="btn btn-primary btn-lg" role="button">
-                    Start Game
+                <button class="btn btn-primary btn-lg" role="button" (click)="startGame()">
+                    Play
                 </button>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div *ngFor="let colour of _colours">
+                    {{colour}}
+                </div>
             </div>
         </div>
     </div>
