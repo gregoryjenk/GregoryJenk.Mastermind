@@ -1,11 +1,12 @@
 ﻿import { Component, Input } from "@angular/core";
+import { PegCode } from "../../Models/Pegs/peg-code.model";
 
 @Component({
     selector: "peg-code",
     templateUrl: "/app/templates/pegs/peg-code.component.html"
 })
 export class PegCodeComponent {
-    @Input() colour: Colour;
+    @Input() pegCode: PegCode;
 
     constructor() {
 
@@ -32,6 +33,9 @@ export class PegCodeComponent {
                 break;
             case Colour.Yellow:
                 colourClass = "peg-code__yellow";
+                break;
+            case Colour.Empty:
+                colourClass = "peg-code__empty";
                 break;
             default:
                 throw new TypeError("No matching colour found");

@@ -4,5 +4,6 @@
     Orange,
     Purple,
     Red,
-    Yellow
+    Yellow,
+    Empty
 }

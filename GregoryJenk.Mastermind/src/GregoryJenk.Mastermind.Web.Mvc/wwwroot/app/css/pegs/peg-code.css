@@ -30,3 +30,7 @@
 .peg-code__yellow {
     background-color: #FDFD96;
 }
+
+.peg-code__empty {
+    background-color: transparent;
+}
