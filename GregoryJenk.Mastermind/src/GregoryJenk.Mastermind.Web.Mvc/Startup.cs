@@ -1,11 +1,13 @@
-﻿using System;
-using System.IO;
-using System.Linq;
+﻿using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
+using System;
+using System.IO;
+using System.Linq;
 
 namespace GregoryJenk.Mastermind.Web.Mvc
 {
@@ -32,13 +34,31 @@ namespace GregoryJenk.Mastermind.Web.Mvc
 
         public void ConfigureServices(IServiceCollection serviceCollection)
         {
-            serviceCollection.AddMvc();
+            serviceCollection.AddAuthentication(configureOptions => configureOptions.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme);
+
+            serviceCollection.AddMvc()
+                .AddJsonOptions(mvcJsonOptions => mvcJsonOptions.SerializerSettings.NullValueHandling = NullValueHandling.Ignore);
         }
 
         public void Configure(IApplicationBuilder applicationBuilder, IHostingEnvironment hostingEnvironment, ILoggerFactory loggerFactory)
         {
             loggerFactory.AddConsole();
             loggerFactory.AddDebug();
+
+            applicationBuilder.UseCookieAuthentication(new CookieAuthenticationOptions
+            {
+                AuthenticationScheme = "Cookies",
+                AutomaticAuthenticate = true,
+                AutomaticChallenge = true,
+                ExpireTimeSpan = TimeSpan.FromDays(1),
+                LoginPath = "/login"
+            });
+
+            applicationBuilder.UseGoogleAuthentication(new GoogleOptions()
+            {
+                ClientId = _configuration["authentication:google:clientId"],
+                ClientSecret = _configuration["authentication:google:clientSecret"]
+            });
 
             if (hostingEnvironment.IsDevelopment())
             {
