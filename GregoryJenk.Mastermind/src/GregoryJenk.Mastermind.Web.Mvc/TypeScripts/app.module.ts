@@ -4,6 +4,7 @@ import { FormsModule } from "@angular/forms";
 import { HttpModule, JsonpModule } from "@angular/http";
 import { AppComponent } from "./Components/app.component";
 import { NavigationBarComponent } from "./Components/Navigations/navigation-bar.component";
+import { PegCodeComponent } from "./Components/Pegs/peg-code.component";
 
 //TODO: Notification and loading service.
 
@@ -11,7 +12,8 @@ import { NavigationBarComponent } from "./Components/Navigations/navigation-bar.
     bootstrap: [AppComponent],
     declarations: [
         AppComponent,
-        NavigationBarComponent
+        NavigationBarComponent,
+        PegCodeComponent
     ],
     imports: [
         BrowserModule,

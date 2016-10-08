@@ -2,7 +2,7 @@
 
 export class Game {
     //TODO: Implement answer so it is not accessible on the client-side.
-    private _answer: Colour[];
+    private _answer: Colour[] = [];
 
     public guesses: Guess[];
 
