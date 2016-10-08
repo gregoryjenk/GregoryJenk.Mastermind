@@ -7,7 +7,11 @@ export class Game {
     public guesses: Guess[];
 
     constructor() {
-        //TODO: Generate an answer.
+        //TODO: Generate a random answer.
+        this._answer.push(Colour.Orange);
+        this._answer.push(Colour.Purple);
+        this._answer.push(Colour.Orange);
+        this._answer.push(Colour.Blue);
     }
 
     public addGuess(guess: Guess): void {

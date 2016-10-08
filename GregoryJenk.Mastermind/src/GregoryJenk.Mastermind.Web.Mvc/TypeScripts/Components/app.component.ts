@@ -12,6 +12,7 @@ import { Game } from "../Models/Games/game.model";
 export class AppComponent {
     private _colours: Colour[] = [];
     private _currentGame: Game;
+    private _playedGames: Game[] = [];
 
     constructor() {
         //Cannot loop through const enum, so have to list them out.
