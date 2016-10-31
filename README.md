@@ -1,4 +1,7 @@
 Mastermind
 ==========
 
-To get started - firstly clone the respository.
+Geting Started
+----------
+
+1. Firstly clone the respository.
