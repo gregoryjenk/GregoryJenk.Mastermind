@@ -5,8 +5,8 @@
     <div class="col-lg-12">
         <div class="panel panel-default">
             <div class="panel-body">
-                <button class="btn btn-primary btn-lg" role="button" (click)="startGame()">
-                    Play
+                <button class="btn btn-primary btn-lg" role="button" (click)="createGame()">
+                    New Game
                 </button>
             </div>
         </div>
@@ -20,7 +20,7 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-12">
+    <!--<div class="col-lg-12">
         <div class="panel panel-default">
             <div class="panel-body text-center">
                 <peg-code [pegCode]="pegCode" *ngFor="let pegCode of _currentGame?._answer">
@@ -28,7 +28,7 @@
                 </peg-code>
             </div>
         </div>
-    </div>
+    </div>-->
     <div class="col-lg-12">
         <div class="panel panel-default" *ngFor="let guess of _currentGame?._guesses">
             <div class="panel-body text-center">

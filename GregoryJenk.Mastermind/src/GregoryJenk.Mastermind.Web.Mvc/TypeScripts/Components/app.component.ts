@@ -25,7 +25,7 @@ export class AppComponent {
         this._colours.push(new PegCode(Colour.Yellow));
     }
 
-    private startGame() {
+    private createGame() {
         this._currentGame = new Game();
     }
 }
