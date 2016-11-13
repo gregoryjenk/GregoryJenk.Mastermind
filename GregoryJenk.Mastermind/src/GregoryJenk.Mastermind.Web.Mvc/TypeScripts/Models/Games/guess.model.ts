@@ -7,7 +7,7 @@ export class Guess {
 
     constructor() {
         for (var i = 0; i < 4; i++) {
-            this._pegCodes.push(new PegCode(Colour.Empty));
+            this._pegCodes.push(new PegCode(PegCodeColour.Empty));
         }
     }
 }

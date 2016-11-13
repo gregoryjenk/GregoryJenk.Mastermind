@@ -1,4 +1,4 @@
-﻿const enum Colour {
+﻿const enum PegCodeColour {
     Blue,
     Green,
     Orange,

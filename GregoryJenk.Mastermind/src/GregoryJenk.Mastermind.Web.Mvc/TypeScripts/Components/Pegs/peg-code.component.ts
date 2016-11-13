@@ -12,29 +12,29 @@ export class PegCodeComponent {
 
     }
 
-    private readColourClass(colour: Colour): string {
+    private readColourClass(colour: PegCodeColour): string {
         let colourClass: string;
 
         switch (colour) {
-            case Colour.Blue:
+            case PegCodeColour.Blue:
                 colourClass = "peg-code__blue";
                 break;
-            case Colour.Green:
+            case PegCodeColour.Green:
                 colourClass = "peg-code__green";
                 break;
-            case Colour.Orange:
+            case PegCodeColour.Orange:
                 colourClass = "peg-code__orange";
                 break;
-            case Colour.Purple:
+            case PegCodeColour.Purple:
                 colourClass = "peg-code__purple";
                 break;
-            case Colour.Red:
+            case PegCodeColour.Red:
                 colourClass = "peg-code__red";
                 break;
-            case Colour.Yellow:
+            case PegCodeColour.Yellow:
                 colourClass = "peg-code__yellow";
                 break;
-            case Colour.Empty:
+            case PegCodeColour.Empty:
                 colourClass = "peg-code__empty";
                 break;
             default:

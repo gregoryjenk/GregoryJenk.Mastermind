@@ -8,10 +8,10 @@ export class Game {
 
     constructor() {
         //TODO: Generate a random answer.
-        this._answer.push(new PegCode(Colour.Orange));
-        this._answer.push(new PegCode(Colour.Purple));
-        this._answer.push(new PegCode(Colour.Orange));
-        this._answer.push(new PegCode(Colour.Blue));
+        this._answer.push(new PegCode(PegCodeColour.Orange));
+        this._answer.push(new PegCode(PegCodeColour.Purple));
+        this._answer.push(new PegCode(PegCodeColour.Orange));
+        this._answer.push(new PegCode(PegCodeColour.Blue));
 
         this.addGuess(new Guess());
     }

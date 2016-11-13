@@ -18,12 +18,12 @@ export class AppComponent {
 
     constructor() {
         //Cannot loop through const enum, so have to list them out.
-        this._colours.push(new PegCode(Colour.Blue));
-        this._colours.push(new PegCode(Colour.Green));
-        this._colours.push(new PegCode(Colour.Orange));
-        this._colours.push(new PegCode(Colour.Purple));
-        this._colours.push(new PegCode(Colour.Red));
-        this._colours.push(new PegCode(Colour.Yellow));
+        this._colours.push(new PegCode(PegCodeColour.Blue));
+        this._colours.push(new PegCode(PegCodeColour.Green));
+        this._colours.push(new PegCode(PegCodeColour.Orange));
+        this._colours.push(new PegCode(PegCodeColour.Purple));
+        this._colours.push(new PegCode(PegCodeColour.Red));
+        this._colours.push(new PegCode(PegCodeColour.Yellow));
     }
 
     private createGame() {
