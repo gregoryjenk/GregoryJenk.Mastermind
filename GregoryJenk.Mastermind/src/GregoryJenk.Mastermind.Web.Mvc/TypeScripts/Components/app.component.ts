@@ -17,13 +17,7 @@ export class AppComponent {
     private _playedGames: Game[] = [];
 
     constructor() {
-        //Cannot loop through const enum, so have to list them out.
-        this._colours.push(new PegCode(PegCodeColour.Blue));
-        this._colours.push(new PegCode(PegCodeColour.Green));
-        this._colours.push(new PegCode(PegCodeColour.Orange));
-        this._colours.push(new PegCode(PegCodeColour.Purple));
-        this._colours.push(new PegCode(PegCodeColour.Red));
-        this._colours.push(new PegCode(PegCodeColour.Yellow));
+        this.configureColours();
     }
 
     private createGame() {
@@ -32,6 +26,16 @@ export class AppComponent {
 
     private startGame() {
         //this._currentGame.start();
+    }
+
+    private configureColours() {
+        //Cannot loop through const enum, so have to list them out.
+        this._colours.push(new PegCode(PegCodeColour.Blue));
+        this._colours.push(new PegCode(PegCodeColour.Green));
+        this._colours.push(new PegCode(PegCodeColour.Orange));
+        this._colours.push(new PegCode(PegCodeColour.Purple));
+        this._colours.push(new PegCode(PegCodeColour.Red));
+        this._colours.push(new PegCode(PegCodeColour.Yellow));
     }
 
     //******************************************************************************
