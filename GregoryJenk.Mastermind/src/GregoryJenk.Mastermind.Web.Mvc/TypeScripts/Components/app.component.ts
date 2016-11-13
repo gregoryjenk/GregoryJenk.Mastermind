@@ -2,15 +2,16 @@
 import { Game } from "../Models/Games/game.model";
 import { PegCode } from "../Models/Pegs/peg-code.model";
 
-//TODO: Guess feedback rule where duplicates colours and wrong places.
-//TODO: Point based scoring system.
-//TODO: Five guess algorithm.
-
 @Component({
     selector: ".app-component",
     templateUrl: "/app/templates/app.component.html"
 })
 export class AppComponent {
+    //******************************************************************************
+    //TODO: Guess feedback rule where duplicates colours and wrong places.
+    //TODO: Point based scoring system.
+    //TODO: Five guess algorithm.
+
     private _colours: PegCode[] = [];
     private _currentGame: Game;
     private _playedGames: Game[] = [];
@@ -28,4 +29,10 @@ export class AppComponent {
     private createGame() {
         this._currentGame = new Game();
     }
+
+    private startGame() {
+        //this._currentGame.start();
+    }
+
+    //******************************************************************************
 }
