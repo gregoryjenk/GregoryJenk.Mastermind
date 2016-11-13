@@ -14,6 +14,10 @@ export class WizardComponent {
     private nextText: string = "Next";
     private steps: WizardStepComponent[] = [];
 
+    constructor() {
+
+    }
+
     public addStep(wizardStep: WizardStepComponent) {
         const addedStepNumber = this.steps.length + 1;
 
