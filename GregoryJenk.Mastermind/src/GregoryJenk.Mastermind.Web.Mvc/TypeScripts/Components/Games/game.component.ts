@@ -20,11 +20,8 @@ export class GameComponent {
         this.configureColours();
     }
 
-    private createGame() {
-        this._currentGame = new Game();
-    }
-
     private startGame() {
+        this._currentGame = new Game();
         //this._currentGame.start();
     }
 
