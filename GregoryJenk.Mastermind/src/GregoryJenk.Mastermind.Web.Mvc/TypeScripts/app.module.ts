@@ -4,6 +4,7 @@ import { FormsModule } from "@angular/forms";
 import { HttpModule, JsonpModule } from "@angular/http";
 import { routing, appRoutingProviders } from "./app.route";
 import { AppComponent } from "./Components/app.component";
+import { DashboardComponent } from "./Components/Dashboards/dashboard.component";
 import { GameComponent } from "./Components/Games/game.component";
 import { NavigationBarComponent } from "./Components/Navigations/navigation-bar.component";
 import { PegCodeComponent } from "./Components/Pegs/peg-code.component";
@@ -14,6 +15,7 @@ import { PegCodeComponent } from "./Components/Pegs/peg-code.component";
     bootstrap: [AppComponent],
     declarations: [
         AppComponent,
+        DashboardComponent,
         GameComponent,
         NavigationBarComponent,
         PegCodeComponent
