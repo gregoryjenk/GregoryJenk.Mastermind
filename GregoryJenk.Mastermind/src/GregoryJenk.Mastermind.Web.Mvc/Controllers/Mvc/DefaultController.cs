@@ -5,7 +5,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace GregoryJenk.Mastermind.Web.Mvc.Controllers
+namespace GregoryJenk.Mastermind.Web.Mvc.Controllers.Mvc
 {
     public class DefaultController : Controller
     {
