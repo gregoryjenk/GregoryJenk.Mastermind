@@ -1,6 +1,8 @@
 Mastermind
 ==========
 
+[![Build status](https://ci.appveyor.com/api/projects/status/7vpioj2jryfejmd5?svg=true)](https://ci.appveyor.com/project/gregoryjenk/gregoryjenk-mastermind)
+
 Getting Started
 ----------
 
