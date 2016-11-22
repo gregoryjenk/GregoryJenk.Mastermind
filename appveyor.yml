@@ -6,5 +6,7 @@ install:
     npm install -g npm
 
     npm install
+before_build:
+- cmd: nuget restore GregoryJenk.Mastermind\GregoryJenk.Mastermind.sln
 build:
   verbosity: normal
