@@ -1,0 +1,10 @@
+version: 1.0.{build}
+install:
+- cmd: >-
+    cd GregoryJenk.Mastermind\src\GregoryJenk.Mastermind.Web.Mvc
+
+    npm install -g npm
+
+    npm install
+build:
+  verbosity: normal
