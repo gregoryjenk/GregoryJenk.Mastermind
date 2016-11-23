@@ -1,8 +1,6 @@
 version: 1.0.{build}
 install:
 - cmd: >-
-    cd
-
     cd GregoryJenk.Mastermind\src\GregoryJenk.Mastermind.Web.Mvc
 
     npm install -g npm
@@ -12,8 +10,8 @@ before_build:
 - cmd: >-
     dotnet --version
 
-    cd
+    dotnet restore
 
-    nuget restore ..\..\GregoryJenk.Mastermind.sln
+    dotnet build
 build:
   verbosity: normal
