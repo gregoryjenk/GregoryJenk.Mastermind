@@ -26,7 +26,7 @@ namespace GregoryJenk.Mastermind.Web.Mvc.Controllers.Mvc
             return new ChallengeResult(authenticationScheme, authenticationProperties);
         }
 
-        [Authorize, Route("/")]
+        [Authorize, Route("/"), Route("{*url}")]
         public IActionResult Index()
         {
             return View();
