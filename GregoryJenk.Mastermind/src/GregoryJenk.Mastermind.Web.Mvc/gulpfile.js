@@ -51,6 +51,10 @@ var paths = {
             dest: "./wwwroot/lib/bootstrap/dist/js/"
         },
         {
+            src: "./node_modules/chart.js/dist/**/*.js",
+            dest: "./wwwroot/lib/chart.js/dist/"
+        },
+        {
             src: "./node_modules/core-js/client/shim.min.js",
             dest: "./wwwroot/lib/core-js/client/"
         },
@@ -65,6 +69,22 @@ var paths = {
         {
             src: "./node_modules/jquery/dist/jquery.min.js",
             dest: "./wwwroot/lib/jquery/dist/"
+        },
+        {
+            src: "./node_modules/ng2-charts/ng2-charts.js",
+            dest: "./wwwroot/lib/ng2-charts/"
+        },
+        {
+            src: "./node_modules/ng2-charts/components/charts/charts.js",
+            dest: "./wwwroot/lib/ng2-charts/components/charts/"
+        },
+        {
+            src: "./node_modules/ng2-dnd/**/*.js",
+            dest: "./wwwroot/lib/ng2-dnd/"
+        },
+        {
+            src: "./node_modules/ng2-slim-loading-bar/**/*.js",
+            dest: "./wwwroot/lib/ng2-slim-loading-bar/"
         },
         {
             src: "./node_modules/reflect-metadata/Reflect.js",
