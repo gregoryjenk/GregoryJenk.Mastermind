@@ -2,6 +2,7 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { FormsModule } from "@angular/forms";
 import { HttpModule, JsonpModule } from "@angular/http";
+import { ChartsModule } from "ng2-charts/ng2-charts";
 import { routing, appRoutingProviders } from "./app.route";
 import { AppComponent } from "./Components/app.component";
 import { AppErrorHandler } from "./app.error";
@@ -23,6 +24,7 @@ import { PegCodeComponent } from "./Components/Pegs/peg-code.component";
     ],
     imports: [
         BrowserModule,
+        ChartsModule,
         FormsModule,
         HttpModule,
         JsonpModule,
