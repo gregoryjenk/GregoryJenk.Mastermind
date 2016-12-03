@@ -79,14 +79,6 @@ var paths = {
             dest: "./wwwroot/lib/ng2-charts/components/charts/"
         },
         {
-            src: "./node_modules/ng2-dnd/**/*.js",
-            dest: "./wwwroot/lib/ng2-dnd/"
-        },
-        {
-            src: "./node_modules/ng2-slim-loading-bar/**/*.js",
-            dest: "./wwwroot/lib/ng2-slim-loading-bar/"
-        },
-        {
             src: "./node_modules/reflect-metadata/Reflect.js",
             dest: "./wwwroot/lib/reflect-metadata/"
         },
