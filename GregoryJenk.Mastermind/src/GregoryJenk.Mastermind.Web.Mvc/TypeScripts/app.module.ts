@@ -3,7 +3,7 @@ import { FormsModule } from "@angular/forms";
 import { HttpModule, JsonpModule } from "@angular/http";
 import { BrowserModule } from "@angular/platform-browser";
 import { ChartsModule } from "ng2-charts/ng2-charts";
-import { DragulaModule } from "ng2-dragula/ng2-dragula";
+import { DragulaModule, DragulaService } from "ng2-dragula/ng2-dragula";
 import { AppErrorHandler } from "./app.error";
 import { routing, appRoutingProviders } from "./app.route";
 import { AppComponent } from "./Components/app.component";
@@ -34,6 +34,7 @@ import { PegCodeComponent } from "./Components/Pegs/peg-code.component";
     ],
     providers: [
         appRoutingProviders,
+        DragulaService,
         //LoadingService,
         //NotificationService,
         {
