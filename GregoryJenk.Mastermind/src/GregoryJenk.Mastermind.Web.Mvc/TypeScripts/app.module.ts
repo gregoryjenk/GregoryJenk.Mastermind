@@ -10,9 +10,9 @@ import { AppComponent } from "./Components/app.component";
 import { DashboardComponent } from "./Components/Dashboards/dashboard.component";
 import { GameComponent } from "./Components/Games/game.component";
 import { NavigationBarComponent } from "./Components/Navigations/navigation-bar.component";
+import { NotificationBarComponent } from "./Components/Notifications/notification-bar.component";
+import { NotificationService } from "./Services/Notifications/notification.service";
 import { PegCodeComponent } from "./Components/Pegs/peg-code.component";
-
-//TODO: Notification and loading service.
 
 @NgModule({
     bootstrap: [AppComponent],
@@ -21,6 +21,7 @@ import { PegCodeComponent } from "./Components/Pegs/peg-code.component";
         DashboardComponent,
         GameComponent,
         NavigationBarComponent,
+        NotificationBarComponent,
         PegCodeComponent
     ],
     imports: [
@@ -35,8 +36,7 @@ import { PegCodeComponent } from "./Components/Pegs/peg-code.component";
     providers: [
         appRoutingProviders,
         DragulaService,
-        //LoadingService,
-        //NotificationService,
+        NotificationService,
         {
             provide: ErrorHandler,
             useClass: AppErrorHandler
