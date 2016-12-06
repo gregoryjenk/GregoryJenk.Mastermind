@@ -1,4 +1,5 @@
 ﻿import { Component } from "@angular/core";
+import { DragulaService } from "ng2-dragula/ng2-dragula";
 import { Game } from "../../Models/Games/game.model";
 import { PegCode } from "../../Models/Pegs/peg-code.model";
 
@@ -16,7 +17,7 @@ export class GameComponent {
     private _currentGame: Game;
     private _playedGames: Game[] = [];
 
-    constructor() {
+    constructor(private dragulaService: DragulaService) {
         this.configureColours();
     }
 
