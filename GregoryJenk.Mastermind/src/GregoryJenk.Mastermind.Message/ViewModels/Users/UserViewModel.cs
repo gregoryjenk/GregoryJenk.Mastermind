@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace GregoryJenk.Mastermind.Message.ViewModels.Users
 {
-    public class UserViewModel : ViewModelBase<string>
+    public class UserViewModel : BaseViewModel<string>
     {
         public string Name { get; set; }
         public string Email { get; set; }
