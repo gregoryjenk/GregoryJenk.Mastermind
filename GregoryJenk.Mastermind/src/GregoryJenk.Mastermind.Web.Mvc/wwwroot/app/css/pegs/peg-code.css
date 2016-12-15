@@ -7,30 +7,30 @@
     width: 50px;
 }
 
-.peg-code__blue {
+.peg-code.peg-code__blue {
     background-color: #AEC6CF;
 }
 
-.peg-code__green {
+.peg-code.peg-code__green {
     background-color: #77DD77;
 }
 
-.peg-code__orange {
+.peg-code.peg-code__orange {
     background-color: #FFB347;
 }
 
-.peg-code__purple {
+.peg-code.peg-code__purple {
     background-color: #B39EB5;
 }
 
-.peg-code__red {
+.peg-code.peg-code__red {
     background-color: #FF6961;
 }
 
-.peg-code__yellow {
+.peg-code.peg-code__yellow {
     background-color: #FDFD96;
 }
 
-.peg-code__empty {
+.peg-code.peg-code__empty {
     background-color: transparent;
 }

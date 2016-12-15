@@ -1,6 +1,6 @@
 ﻿import { Response } from "@angular/http";
 
-export class BaseService {
+export abstract class BaseService {
     constructor() {
 
     }
