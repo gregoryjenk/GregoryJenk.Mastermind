@@ -38,7 +38,11 @@ namespace GregoryJenk.Mastermind.Web.Mvc.ServiceClients
 
         public VM ReadById(VmId id)
         {
-            throw new NotImplementedException();
+            HttpResponseMessage httpResponseMessage = _httpClient.GetAsync(string.Format("{0}/{1}", _resource, id)).Result;
+
+            httpResponseMessage.EnsureSuccessStatusCode();
+
+            return httpResponseMessage.Content.ReadAsAsync<VM>().Result;
         }
 
         public IList<VM> ReadAll()
