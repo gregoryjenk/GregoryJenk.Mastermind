@@ -33,7 +33,9 @@ namespace GregoryJenk.Mastermind.Web.Mvc.ServiceClients
 
         public void Delete(VmId id)
         {
-            throw new NotImplementedException();
+            HttpResponseMessage httpResponseMessage = _httpClient.DeleteAsync(string.Format("{0}/{1}", _resource, id)).Result;
+
+            httpResponseMessage.EnsureSuccessStatusCode();
         }
 
         public VM ReadById(VmId id)
@@ -47,7 +49,11 @@ namespace GregoryJenk.Mastermind.Web.Mvc.ServiceClients
 
         public IList<VM> ReadAll()
         {
-            throw new NotImplementedException();
+            HttpResponseMessage httpResponseMessage = _httpClient.GetAsync(_resource).Result;
+
+            httpResponseMessage.EnsureSuccessStatusCode();
+
+            return httpResponseMessage.Content.ReadAsAsync<IList<VM>>().Result;
         }
 
         public IList<VM> ReadAll(int index, int count)
