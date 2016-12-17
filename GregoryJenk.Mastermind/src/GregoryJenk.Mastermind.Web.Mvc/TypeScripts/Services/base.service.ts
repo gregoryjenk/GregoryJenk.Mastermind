@@ -5,6 +5,11 @@ export abstract class BaseService {
 
     }
 
+    protected convertResponseToObject(response: Response) {
+        let body = response.json();
+        return body || {};
+    }
+
     private convertResponseToArray(response: Response) {
         let body = response.json();
         return body || [];

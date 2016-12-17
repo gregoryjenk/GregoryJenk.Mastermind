@@ -14,6 +14,9 @@ import { NotificationBarComponent } from "./Components/Notifications/notificatio
 import { NotificationService } from "./Services/Notifications/notification.service";
 import { PegCodeComponent } from "./Components/Pegs/peg-code.component";
 
+//Adding extension like function to map objects from service requests.
+import "rxjs/add/operator/map";
+
 @NgModule({
     bootstrap: [AppComponent],
     declarations: [
