@@ -3,9 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Formatting;
 
 namespace GregoryJenk.Mastermind.Web.Mvc.ServiceClients
 {
+    //TODO: Consider using the async return values.
     public abstract class BaseServiceClient<VM, VmId> where VM : BaseViewModel<VmId>
     {
         protected readonly HttpClient _httpClient;
@@ -23,12 +25,20 @@ namespace GregoryJenk.Mastermind.Web.Mvc.ServiceClients
 
         public VmId Create(VM viewModel)
         {
-            throw new NotImplementedException();
+            HttpResponseMessage httpResponseMessage = _httpClient.PostAsync(_resource,
+                new ObjectContent<VM>(viewModel, new JsonMediaTypeFormatter())).Result;
+
+            httpResponseMessage.EnsureSuccessStatusCode();
+
+            return (VmId)(object)httpResponseMessage.Headers.Location.Segments.Last();
         }
 
         public void Update(VmId id, VM viewModel)
         {
-            throw new NotImplementedException();
+            HttpResponseMessage httpResponseMessage = _httpClient.PutAsync(string.Format("{0}/{1}", _resource, id),
+                new ObjectContent<VM>(viewModel, new JsonMediaTypeFormatter())).Result;
+
+            httpResponseMessage.EnsureSuccessStatusCode();
         }
 
         public void Delete(VmId id)
