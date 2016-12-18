@@ -1,0 +1,16 @@
+﻿@{
+    Layout = "_Layout";
+}
+
+@section head_styles {
+    <link href="~/app/css/secure.css" rel="stylesheet" />
+    @RenderSection("head_styles", false)
+}
+
+@RenderBody()
+
+@Html.Partial("_Footer")
+
+@section body_scripts {
+    @RenderSection("body_scripts", false)
+}
