@@ -1,10 +1,10 @@
 ﻿export class Notification {
-    private id: string;
-    private title: string;
-    private message: string;
-    private description: string;
-    private type: NotificationType;
-    private hidden: boolean = false;
+    public id: string;
+    public title: string;
+    public message: string;
+    public description: string;
+    public type: NotificationType;
+    public hidden: boolean = false;
 
     constructor() {
 

@@ -11,7 +11,7 @@
     <div class="col-lg-12">
         <div class="panel panel-default">
             <div class="panel-body text-center">
-                <peg-code [pegCode]="pegCode" *ngFor="let pegCode of _colours">
+                <peg-code [peg-code-draggable]="pegCode" [pegCode]="pegCode" *ngFor="let pegCode of colours">
 
                 </peg-code>
             </div>
@@ -20,16 +20,16 @@
     <!--<div class="col-lg-12">
         <div class="panel panel-default">
             <div class="panel-body text-center">
-                <peg-code [pegCode]="pegCode" *ngFor="let pegCode of _currentGame?._answer">
+                <peg-code [pegCode]="pegCode" *ngFor="let pegCode of currentGame?.answer">
                     
                 </peg-code>
             </div>
         </div>
     </div>-->
     <div class="col-lg-12">
-        <div class="panel panel-default" *ngFor="let guess of _currentGame?._guesses">
+        <div class="panel panel-default" *ngFor="let guess of currentGame?.guesses">
             <div class="panel-body text-center">
-                <peg-code [pegCode]="pegCode" *ngFor="let pegCode of guess._pegCodes">
+                <peg-code peg-code-droppable [pegCode]="pegCode" *ngFor="let pegCode of guess.pegCodes" (pegCodeDropped)="onPegCodeDropped($event, pegCode)">
 
                 </peg-code>
             </div>

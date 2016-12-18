@@ -1,5 +1,5 @@
 ﻿export class PegCode {
-    private colour: PegCodeColour;
+    public colour: PegCodeColour;
 
     constructor(colour: PegCodeColour) {
         this.colour = colour;

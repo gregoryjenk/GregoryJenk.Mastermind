@@ -13,27 +13,33 @@ export class GameComponent {
     //TODO: Point based scoring system.
     //TODO: Five guess algorithm.
 
-    private _colours: PegCode[] = [];
-    private _currentGame: Game;
-    private _playedGames: Game[] = [];
+    private colours: PegCode[] = [];
+    private currentGame: Game;
+    private playedGames: Game[] = [];
 
     constructor(private dragulaService: DragulaService) {
         this.configureColours();
     }
 
+    private onPegCodeDropped(pegCodeSource: PegCode, pegCodeTarget: PegCode) {
+        var index = this.currentGame.guesses[0].pegCodes.indexOf(pegCodeTarget);
+
+        console.log("Dropped " + pegCodeSource.colour + " onto index " + index);
+    }
+
     private startGame() {
-        this._currentGame = new Game();
+        this.currentGame = new Game();
         //this._currentGame.start();
     }
 
     private configureColours() {
         //Cannot loop through const enum, so have to list them out.
-        this._colours.push(new PegCode(PegCodeColour.Blue));
-        this._colours.push(new PegCode(PegCodeColour.Green));
-        this._colours.push(new PegCode(PegCodeColour.Orange));
-        this._colours.push(new PegCode(PegCodeColour.Purple));
-        this._colours.push(new PegCode(PegCodeColour.Red));
-        this._colours.push(new PegCode(PegCodeColour.Yellow));
+        this.colours.push(new PegCode(PegCodeColour.Blue));
+        this.colours.push(new PegCode(PegCodeColour.Green));
+        this.colours.push(new PegCode(PegCodeColour.Orange));
+        this.colours.push(new PegCode(PegCodeColour.Purple));
+        this.colours.push(new PegCode(PegCodeColour.Red));
+        this.colours.push(new PegCode(PegCodeColour.Yellow));
     }
 
     //******************************************************************************

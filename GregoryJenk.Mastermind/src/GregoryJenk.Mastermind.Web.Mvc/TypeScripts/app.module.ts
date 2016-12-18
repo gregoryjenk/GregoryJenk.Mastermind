@@ -13,6 +13,8 @@ import { NavigationBarComponent } from "./Components/Navigations/navigation-bar.
 import { NotificationBarComponent } from "./Components/Notifications/notification-bar.component";
 import { NotificationService } from "./Services/Notifications/notification.service";
 import { PegCodeComponent } from "./Components/Pegs/peg-code.component";
+import { PegCodeDraggableDirective } from "./Directives/Pegs/peg-code-draggable.directive";
+import { PegCodeDroppableDirective } from "./Directives/Pegs/peg-code-droppable.directive";
 
 //Adding extension like function to map objects from service requests.
 import "rxjs/add/operator/map";
@@ -25,7 +27,9 @@ import "rxjs/add/operator/map";
         GameComponent,
         NavigationBarComponent,
         NotificationBarComponent,
-        PegCodeComponent
+        PegCodeComponent,
+        PegCodeDraggableDirective,
+        PegCodeDroppableDirective
     ],
     imports: [
         BrowserModule,

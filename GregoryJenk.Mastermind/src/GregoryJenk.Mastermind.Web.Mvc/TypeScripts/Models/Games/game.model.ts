@@ -3,8 +3,8 @@ import { PegCode } from "../Pegs/peg-code.model";
 
 export class Game {
     //TODO: Implement answer so it is not accessible on the client-side.
-    private answer: PegCode[] = [];
-    private guesses: Guess[] = [];
+    public answer: PegCode[] = [];
+    public guesses: Guess[] = [];
 
     constructor() {
         //TODO: Generate a random answer.
