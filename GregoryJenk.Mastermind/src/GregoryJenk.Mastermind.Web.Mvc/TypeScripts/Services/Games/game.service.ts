@@ -12,7 +12,7 @@ export class GameService extends BaseService {
         super();
     }
 
-    private create(game: Game) {
+    private create(game: Game): Observable<Game> {
         let headers = new Headers({ "Content-Type": "application/json" });
         let requestOptions = new RequestOptions({ headers: headers });
 
