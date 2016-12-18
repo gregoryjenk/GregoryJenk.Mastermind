@@ -3,19 +3,15 @@ import { Notification } from "../../Models/Notifications/notification.model";
 
 @Injectable()
 export class NotificationService {
-    public notifications: Notification[] = [];
+    private notifications: Notification[] = [];
 
     private create(notification: Notification): void {
         this.notifications.push(notification);
 
         setTimeout(() => {
-            this.hide(notification);
+            notification.hide();
         },
         4000);
-    }
-
-    private hide(notification: Notification): void {
-        notification.hide = true;
     }
 
     private delete(notification: Notification): void {

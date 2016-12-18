@@ -3,21 +3,21 @@ import { PegCode } from "../Pegs/peg-code.model";
 
 export class Game {
     //TODO: Implement answer so it is not accessible on the client-side.
-    private _answer: PegCode[] = [];
-    private _guesses: Guess[] = [];
+    private answer: PegCode[] = [];
+    private guesses: Guess[] = [];
 
     constructor() {
         //TODO: Generate a random answer.
-        this._answer.push(new PegCode(PegCodeColour.Orange));
-        this._answer.push(new PegCode(PegCodeColour.Purple));
-        this._answer.push(new PegCode(PegCodeColour.Orange));
-        this._answer.push(new PegCode(PegCodeColour.Blue));
+        this.answer.push(new PegCode(PegCodeColour.Orange));
+        this.answer.push(new PegCode(PegCodeColour.Purple));
+        this.answer.push(new PegCode(PegCodeColour.Orange));
+        this.answer.push(new PegCode(PegCodeColour.Blue));
 
         this.addGuess(new Guess());
     }
 
     public addGuess(guess: Guess): void {
         //TODO: Check answer.
-        this._guesses.push(guess);
+        this.guesses.push(guess);
     }
 }
