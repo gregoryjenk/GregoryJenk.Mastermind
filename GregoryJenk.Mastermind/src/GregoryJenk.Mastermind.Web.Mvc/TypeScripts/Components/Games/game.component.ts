@@ -1,6 +1,6 @@
 ﻿import { Component } from "@angular/core";
-import { DragulaService } from "ng2-dragula/ng2-dragula";
 import { Game } from "../../Models/Games/game.model";
+import { GameService } from "../../Services/Games/game.service";
 import { PegCode } from "../../Models/Pegs/peg-code.model";
 
 @Component({
@@ -8,7 +8,6 @@ import { PegCode } from "../../Models/Pegs/peg-code.model";
     templateUrl: "/app/templates/games/game.component.html"
 })
 export class GameComponent {
-    //******************************************************************************
     //TODO: Guess feedback rule where duplicates colours and wrong places.
     //TODO: Point based scoring system.
     //TODO: Five guess algorithm.
@@ -17,7 +16,7 @@ export class GameComponent {
     private currentGame: Game;
     private playedGames: Game[] = [];
 
-    constructor(private dragulaService: DragulaService) {
+    constructor(private gameService: GameService) {
         this.configureColours();
     }
 
@@ -41,6 +40,4 @@ export class GameComponent {
         this.colours.push(new PegCode(PegCodeColour.Red));
         this.colours.push(new PegCode(PegCodeColour.Yellow));
     }
-
-    //******************************************************************************
 }
