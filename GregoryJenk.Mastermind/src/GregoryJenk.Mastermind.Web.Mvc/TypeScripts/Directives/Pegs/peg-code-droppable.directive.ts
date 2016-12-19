@@ -6,19 +6,19 @@
 export class PegCodeDroppableDirective implements OnInit {
     @Output() pegCodeDropped = new EventEmitter();
 
-    constructor(private _elementRef: ElementRef) {
+    constructor(private elementRef: ElementRef) {
 
     }
 
     public ngOnInit() {
-        let el = this._elementRef.nativeElement;
+        let el = this.elementRef.nativeElement;
 
         el.addEventListener("dragenter", (e: any) => {
-            el.classList.add("over");
+            el.classList.add("peg-code__targeting");
         });
 
         el.addEventListener("dragleave", (e: any) => {
-            el.classList.remove("over");
+            el.classList.remove("peg-code__targeting");
         });
 
         el.addEventListener("dragover", (e: any) => {
@@ -36,7 +36,7 @@ export class PegCodeDroppableDirective implements OnInit {
                 e.stopPropagation();
             }
 
-            el.classList.remove("over");
+            el.classList.remove("peg-code__targeting");
 
             let data = JSON.parse(e.dataTransfer.getData("value"));
 

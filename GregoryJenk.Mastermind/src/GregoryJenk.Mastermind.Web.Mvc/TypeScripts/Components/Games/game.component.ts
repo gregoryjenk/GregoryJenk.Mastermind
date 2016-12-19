@@ -21,9 +21,10 @@ export class GameComponent {
     }
 
     private onPegCodeDropped(pegCodeSource: PegCode, pegCodeTarget: PegCode) {
-        var index = this.currentGame.guesses[0].pegCodes.indexOf(pegCodeTarget);
+        let guess = this.currentGame.guesses.length - 1;
+        let index = this.currentGame.guesses[guess].pegCodes.indexOf(pegCodeTarget);
 
-        console.log("Dropped " + pegCodeSource.colour + " onto index " + index);
+        this.currentGame.guesses[length].pegCodes[index] = pegCodeSource;
     }
 
     private startGame() {
