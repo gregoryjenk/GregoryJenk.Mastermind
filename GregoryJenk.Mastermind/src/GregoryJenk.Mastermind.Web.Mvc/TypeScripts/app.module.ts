@@ -8,6 +8,7 @@ import { routing, appRoutingProviders } from "./app.route";
 import { AppComponent } from "./Components/app.component";
 import { DashboardComponent } from "./Components/Dashboards/dashboard.component";
 import { GameComponent } from "./Components/Games/game.component";
+import { GameService } from "./Services/Games/game.service";
 import { NavigationBarComponent } from "./Components/Navigations/navigation-bar.component";
 import { NotificationBarComponent } from "./Components/Notifications/notification-bar.component";
 import { NotificationService } from "./Services/Notifications/notification.service";
@@ -40,6 +41,7 @@ import "rxjs/add/operator/map";
     ],
     providers: [
         appRoutingProviders,
+        GameService,
         NotificationService,
         {
             provide: ErrorHandler,
