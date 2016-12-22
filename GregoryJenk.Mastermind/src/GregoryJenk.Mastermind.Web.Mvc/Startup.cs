@@ -27,6 +27,7 @@ namespace GregoryJenk.Mastermind.Web.Mvc
             if (hostingEnvironment.IsDevelopment())
             {
                 //Add development environment settings here.
+                configurationBuilder.AddUserSecrets();
             }
 
             configurationBuilder.AddEnvironmentVariables();
