@@ -12,10 +12,12 @@ namespace GregoryJenk.Mastermind.Web.Mvc.Extensions.Users
         /// </summary>
         /// <param name="userViewModel"></param>
         /// <param name="claimsPrincipal"></param>
-        public static void Convert(this UserViewModel userViewModel, ClaimsPrincipal claimsPrincipal)
+        public static void ConvertPrincipal(this UserViewModel userViewModel, ClaimsPrincipal claimsPrincipal)
         {
-            userViewModel.Name = claimsPrincipal.Claims.Single(c => c.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name").Value;
-            userViewModel.Email = claimsPrincipal.Claims.Single(c => c.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress").Value;
+            userViewModel.Name = claimsPrincipal.Identity.Name;
+            userViewModel.Email = claimsPrincipal.Claims.Single(c => c.Type == ClaimTypes.Email).Value;
+            userViewModel.Scheme = claimsPrincipal.Identity.AuthenticationType;
+            userViewModel.ExternalId = claimsPrincipal.Claims.Single(c => c.Type == ClaimTypes.NameIdentifier).Value;
         }
     }
 }
