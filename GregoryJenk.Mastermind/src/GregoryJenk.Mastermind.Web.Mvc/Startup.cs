@@ -1,4 +1,6 @@
-﻿using GregoryJenk.Mastermind.Web.Mvc.Options.Services.Games;
+﻿using GregoryJenk.Mastermind.Web.Mvc.Factories.Users;
+using GregoryJenk.Mastermind.Web.Mvc.Options.Services.Games;
+using GregoryJenk.Mastermind.Web.Mvc.Options.Services.Google;
 using GregoryJenk.Mastermind.Web.Mvc.ServiceClients.Games;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
@@ -41,6 +43,7 @@ namespace GregoryJenk.Mastermind.Web.Mvc
             serviceCollection.AddOptions();
 
             serviceCollection.Configure<GameServiceOption>(options => _configuration.GetSection("services:game").Bind(options));
+            serviceCollection.Configure<GoogleServiceOption>(options => _configuration.GetSection("services:google").Bind(options));
 
             serviceCollection.AddAuthentication(configureOptions => configureOptions.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme);
 
@@ -48,6 +51,7 @@ namespace GregoryJenk.Mastermind.Web.Mvc
                 .AddJsonOptions(mvcJsonOptions => mvcJsonOptions.SerializerSettings.NullValueHandling = NullValueHandling.Ignore);
 
             //Register implementations for Depedency Injection here.
+            serviceCollection.AddSingleton<ExternalUserServiceClientFactory>();
             serviceCollection.AddTransient<IGameServiceClient, GameServiceClient>();
         }
 
