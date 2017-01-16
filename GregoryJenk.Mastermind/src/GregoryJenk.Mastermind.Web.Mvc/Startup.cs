@@ -75,6 +75,12 @@ namespace GregoryJenk.Mastermind.Web.Mvc
                 ClientSecret = _configuration["authentication:google:clientSecret"]
             });
 
+            applicationBuilder.UseTwitterAuthentication(new TwitterOptions()
+            {
+                ConsumerKey = _configuration["authentication:twitter:consumerKey"],
+                ConsumerSecret = _configuration["authentication:twitter:consumerSecret"]
+            });
+
             if (hostingEnvironment.IsDevelopment())
             {
                 applicationBuilder.UseDeveloperExceptionPage();
