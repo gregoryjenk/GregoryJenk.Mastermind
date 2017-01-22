@@ -9,6 +9,9 @@ namespace GregoryJenk.Mastermind.Message.ViewModels.Users
     {
         public string Name { get; set; }
         public string Email { get; set; }
+        public string Scheme { get; set; }
+        public string ExternalId { get; set; }
+        public string Image { get; set; }
         public IList<GameViewModel> Games { get; set; }
     }
 }

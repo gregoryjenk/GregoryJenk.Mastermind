@@ -9,7 +9,7 @@ namespace GregoryJenk.Mastermind.Web.Mvc.Controllers.Mvc
 {
     public class DefaultController : Controller
     {
-        [Route("/error")]
+        [HttpGet, Route("/error")]
         public IActionResult Error()
         {
             return View();
@@ -23,10 +23,12 @@ namespace GregoryJenk.Mastermind.Web.Mvc.Controllers.Mvc
                 RedirectUri = "/"
             };
 
+            //TODO: Check that the user has been saved.
+
             return new ChallengeResult(authenticationScheme, authenticationProperties);
         }
 
-        [Authorize, Route("/"), Route("{*url}")]
+        [Authorize, HttpGet, Route("/"), Route("{*url}")]
         public IActionResult Index()
         {
             return View();

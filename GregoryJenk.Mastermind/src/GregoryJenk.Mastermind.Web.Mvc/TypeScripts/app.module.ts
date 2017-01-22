@@ -15,6 +15,7 @@ import { NotificationService } from "./Services/Notifications/notification.servi
 import { PegCodeComponent } from "./Components/Pegs/peg-code.component";
 import { PegCodeDraggableDirective } from "./Directives/Pegs/peg-code-draggable.directive";
 import { PegCodeDroppableDirective } from "./Directives/Pegs/peg-code-droppable.directive";
+import { UserService } from "./Services/Users/user.service";
 
 //Adding extension like function to map objects from service requests.
 import "rxjs/add/operator/map";
@@ -46,7 +47,8 @@ import "rxjs/add/operator/map";
         {
             provide: ErrorHandler,
             useClass: AppErrorHandler
-        }
+        },
+        UserService
     ]
 })
 export class AppModule {

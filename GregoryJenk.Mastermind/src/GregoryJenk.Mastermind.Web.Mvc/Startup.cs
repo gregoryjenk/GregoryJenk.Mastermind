@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Authentication.Cookies;
+﻿using GregoryJenk.Mastermind.Web.Mvc.Factories.Users;
+using GregoryJenk.Mastermind.Web.Mvc.Options.Services.Games;
+using GregoryJenk.Mastermind.Web.Mvc.Options.Services.Google;
+using GregoryJenk.Mastermind.Web.Mvc.ServiceClients.Games;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -25,6 +29,7 @@ namespace GregoryJenk.Mastermind.Web.Mvc
             if (hostingEnvironment.IsDevelopment())
             {
                 //Add development environment settings here.
+                configurationBuilder.AddUserSecrets();
             }
 
             configurationBuilder.AddEnvironmentVariables();
@@ -34,10 +39,20 @@ namespace GregoryJenk.Mastermind.Web.Mvc
 
         public void ConfigureServices(IServiceCollection serviceCollection)
         {
+            //Binding configuration option objects to sections in the configurations.
+            serviceCollection.AddOptions();
+
+            serviceCollection.Configure<GameServiceOption>(options => _configuration.GetSection("services:game").Bind(options));
+            serviceCollection.Configure<GoogleServiceOption>(options => _configuration.GetSection("services:google").Bind(options));
+
             serviceCollection.AddAuthentication(configureOptions => configureOptions.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme);
 
             serviceCollection.AddMvc()
                 .AddJsonOptions(mvcJsonOptions => mvcJsonOptions.SerializerSettings.NullValueHandling = NullValueHandling.Ignore);
+
+            //Register implementations for Depedency Injection here.
+            serviceCollection.AddSingleton<ExternalUserServiceClientFactory>();
+            serviceCollection.AddTransient<IGameServiceClient, GameServiceClient>();
         }
 
         public void Configure(IApplicationBuilder applicationBuilder, IHostingEnvironment hostingEnvironment, ILoggerFactory loggerFactory)
@@ -58,6 +73,12 @@ namespace GregoryJenk.Mastermind.Web.Mvc
             {
                 ClientId = _configuration["authentication:google:clientId"],
                 ClientSecret = _configuration["authentication:google:clientSecret"]
+            });
+
+            applicationBuilder.UseTwitterAuthentication(new TwitterOptions()
+            {
+                ConsumerKey = _configuration["authentication:twitter:consumerKey"],
+                ConsumerSecret = _configuration["authentication:twitter:consumerSecret"]
             });
 
             if (hostingEnvironment.IsDevelopment())

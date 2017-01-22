@@ -8,7 +8,7 @@
     "noImplicitAny": true,
     "outDir": "./wwwroot/app/js/",
     "removeComments": false,
-    "sourceMap": true,
+    "sourceMap": false,
     "target": "es5"
   },
   //Either the exclude or files properties can be used, but not both, files takes priority.

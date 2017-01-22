@@ -24,7 +24,7 @@ namespace GregoryJenk.Mastermind.Web.Mvc.Controllers.Api.Games
         {
             UserViewModel user = new UserViewModel();
 
-            user.Convert(User);
+            user.ConvertPrincipal(User);
 
             //TODO: Create game.
 
