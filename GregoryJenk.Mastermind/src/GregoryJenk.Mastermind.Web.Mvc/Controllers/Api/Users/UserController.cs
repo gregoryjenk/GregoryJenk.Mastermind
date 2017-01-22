@@ -27,7 +27,10 @@ namespace GregoryJenk.Mastermind.Web.Mvc.Controllers.Api.Users
 
             IExternalUserServiceClient externalUserServiceClient = _externalUserServiceClientFactory.Create(user.Scheme);
 
+            //TODO: This should really only be done on login and saved.
             ExternalUserViewModel externalUser = externalUserServiceClient.ReadById(user.ExternalId);
+
+            user.Image = externalUser.Image;
 
             return Ok(user);
         }

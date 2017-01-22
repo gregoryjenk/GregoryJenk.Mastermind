@@ -1,10 +1,22 @@
 ﻿<nav class="navbar navbar-default navbar-fixed-top animated slideInDown">
     <div class="container">
-        <a class="btn btn-lg btn-primary" routerLink="play" role="button">
-            Play
-        </a>
-        <a href="/logout">
-            Logout
-        </a>
+        <div class="row">
+            <div class="col-lg-6">
+                <a class="btn btn-lg btn-primary" routerLink="play" role="button">
+                    Play
+                </a>
+                <a href="/logout">
+                    Logout
+                </a>
+            </div>
+            <div class="col-lg-6 text-right">
+                <span>
+                    {{parent.user?.name}}
+                    <br />
+                    {{parent.user?.email}}
+                </span>
+                <img src="{{parent.user?.image}}" />
+            </div>
+        </div>
     </div>
 </nav>

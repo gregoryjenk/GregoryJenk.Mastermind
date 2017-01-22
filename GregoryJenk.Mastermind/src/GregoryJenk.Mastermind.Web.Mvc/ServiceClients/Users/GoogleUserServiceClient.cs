@@ -43,7 +43,10 @@ namespace GregoryJenk.Mastermind.Web.Mvc.ServiceClients.Users
                 {
                     dynamic json = JObject.Parse(httpResponseMessage.Content.ReadAsStringAsync().Result);
 
-                    externalUserViewModel.Image = json.image.url;
+                    if (!string.IsNullOrEmpty(Convert.ToString(json.image.url)))
+                    {
+                        externalUserViewModel.Image = ReadImage(Convert.ToString(json.image.url));
+                    }
                 }
             }
 
@@ -58,6 +61,15 @@ namespace GregoryJenk.Mastermind.Web.Mvc.ServiceClients.Users
         public IList<ExternalUserViewModel> ReadAll(int index, int count)
         {
             throw new NotImplementedException();
+        }
+
+        private string ReadImage(string path)
+        {
+            //byte[] imageArray = System.IO.File.ReadAllBytes(path.Replace("?sz=50", ""));
+
+            //string base64ImageRepresentation = Convert.ToBase64String(imageArray);
+
+            return path;
         }
     }
 }
