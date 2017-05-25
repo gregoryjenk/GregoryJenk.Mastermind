@@ -10,7 +10,7 @@ export abstract class BaseService {
         return body || {};
     }
 
-    private convertResponseToArray(response: Response) {
+    protected convertResponseToArray(response: Response) {
         let body = response.json();
         return body || [];
     }
