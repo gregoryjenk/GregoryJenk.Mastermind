@@ -5,12 +5,12 @@ export abstract class BaseService {
 
     }
 
-    protected convertResponseToObject(response: Response) {
+    protected convertResponseToObject(response: Response): any {
         let body = response.json();
         return body || {};
     }
 
-    protected convertResponseToArray(response: Response) {
+    protected convertResponseToArray(response: Response): any {
         let body = response.json();
         return body || [];
     }

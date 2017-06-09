@@ -3,6 +3,8 @@
   "compilerOptions": {
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "inlineSourceMap": false,
+    "inlineSources": false,
     "module": "commonjs",
     "noEmitOnError": true,
     "noImplicitAny": true,
