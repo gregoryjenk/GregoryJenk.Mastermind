@@ -10262,6 +10262,7 @@
       "Microsoft.AspNetCore.Authentication.Google >= 1.1.0",
       "Microsoft.AspNetCore.Authentication.Twitter >= 1.1.0",
       "Microsoft.AspNetCore.Diagnostics >= 1.1.0",
+      "Microsoft.AspNetCore.Hosting >= 1.1.0",
       "Microsoft.AspNetCore.Mvc >= 1.1.0",
       "Microsoft.AspNetCore.Mvc.WebApiCompatShim >= 1.1.0",
       "Microsoft.AspNetCore.Server.IISIntegration >= 1.1.0",
