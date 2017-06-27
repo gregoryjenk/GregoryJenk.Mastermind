@@ -1,8 +1,4 @@
-﻿html, body {
-    height: 100%;
-}
-
-.container-login {
+﻿.container-login {
     left: 50%;
     position: absolute;
     top: 30%;
