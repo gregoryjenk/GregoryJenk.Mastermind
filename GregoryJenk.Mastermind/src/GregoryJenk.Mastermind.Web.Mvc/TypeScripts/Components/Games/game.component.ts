@@ -5,7 +5,7 @@ import { PegCode } from "../../Models/Pegs/peg-code.model";
 
 @Component({
     selector: ".game-component",
-    templateUrl: "/app/templates/games/game.component.html"
+    templateUrl: "/app/templates/components/games/game.component.html"
 })
 export class GameComponent {
     //TODO: Guess feedback rule where duplicates colours and wrong places.

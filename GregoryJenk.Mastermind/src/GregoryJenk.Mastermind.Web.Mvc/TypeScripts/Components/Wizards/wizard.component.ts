@@ -3,7 +3,7 @@ import { WizardStepComponent } from "./wizard-step.component";
 
 @Component({
     selector: "wizard",
-    templateUrl: "/app/templates/wizards/wizard.component.html",
+    templateUrl: "/app/templates/components/wizards/wizard.component.html",
 })
 export class WizardComponent {
     @Input() completeText: string = "Done";

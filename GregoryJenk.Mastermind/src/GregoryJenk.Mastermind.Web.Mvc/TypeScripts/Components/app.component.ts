@@ -5,7 +5,7 @@ import { UserService } from "../Services/Users/user.service";
 
 @Component({
     selector: ".app-component",
-    templateUrl: "/app/templates/app.component.html"
+    templateUrl: "/app/templates/components/app.component.html"
 })
 export class AppComponent {
     public user: User = new User();

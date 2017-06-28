@@ -6,7 +6,7 @@ import { WizardComponent } from "./wizard.component";
     host: {
         "[style.display]": "current ? 'block' : 'none'",
     },
-    templateUrl: "/app/templates/wizards/wizard-step.component.html",
+    templateUrl: "/app/templates/components/wizards/wizard-step.component.html",
 })
 export class WizardStepComponent {
     @Input() name: string = "";

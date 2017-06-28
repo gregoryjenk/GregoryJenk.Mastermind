@@ -2,7 +2,7 @@
 
 @Component({
     selector: ".dashboard-component",
-    templateUrl: "/app/templates/dashboards/dashboard.component.html"
+    templateUrl: "/app/templates/components/dashboards/dashboard.component.html"
 })
 export class DashboardComponent {
     constructor() {

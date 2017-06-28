@@ -3,7 +3,7 @@ import { PegCode } from "../../Models/Pegs/peg-code.model";
 
 @Component({
     selector: "peg-code",
-    templateUrl: "/app/templates/pegs/peg-code.component.html"
+    templateUrl: "/app/templates/components/pegs/peg-code.component.html"
 })
 export class PegCodeComponent {
     @Input() pegCode: PegCode;
