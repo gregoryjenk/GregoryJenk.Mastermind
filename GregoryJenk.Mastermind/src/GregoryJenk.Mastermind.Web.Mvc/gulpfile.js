@@ -3,6 +3,8 @@
 var del = require("del");
 var gulp = require("gulp");
 var minify = require("gulp-minify");
+var typeScript = require("gulp-typescript");
+var typeScriptProject = typeScript.createProject("tsconfig.json");
 
 var paths = {
     lib: [
@@ -124,4 +126,10 @@ gulp.task("minify", function () {
             ]
         }))
         .pipe(gulp.dest("./wwwroot/app/js/"));
+});
+
+gulp.task("typescript", function () {
+    return typeScriptProject.src()
+        .pipe(typeScriptProject())
+        .js.pipe(gulp.dest(typeScriptProject.config.compilerOptions.outDir));
 });
