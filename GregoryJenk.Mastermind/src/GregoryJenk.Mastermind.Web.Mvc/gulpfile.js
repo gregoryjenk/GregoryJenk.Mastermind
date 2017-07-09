@@ -1,4 +1,4 @@
-﻿/// <binding BeforeBuild="webpack" Clean="clean" />
+﻿/// <binding BeforeBuild="lib, webpack" Clean="clean" />
 
 var del = require("del");
 var gulp = require("gulp");
@@ -73,6 +73,10 @@ var paths = {
         {
             src: "./node_modules/jquery/dist/jquery.min.js",
             dest: "./wwwroot/lib/jquery/dist/"
+        },
+        {
+            src: "./node_modules/moment/moment.js",
+            dest: "./wwwroot/lib/moment/"
         },
         {
             src: "./node_modules/ng2-charts/ng2-charts.js",
