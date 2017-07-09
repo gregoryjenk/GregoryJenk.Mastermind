@@ -1,5 +1,4 @@
 ﻿var path = require("path");
-var webpack = require("webpack");
 
 module.exports = {
     entry: {
@@ -42,13 +41,6 @@ module.exports = {
         filename: "[name].js",
         path: path.resolve(__dirname, "wwwroot/app/js")
     },
-    plugins: [
-        new webpack.ContextReplacementPlugin(
-            /angular(\\|\/)core(\\|\/)@angular/,
-            path.resolve(__dirname, '../src'),
-            {}
-        )
-    ],
     resolve: {
         extensions: [".js", ".ts"]
     }

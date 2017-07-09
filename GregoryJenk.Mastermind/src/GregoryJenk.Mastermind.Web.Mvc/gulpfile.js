@@ -1,10 +1,12 @@
-﻿/// <binding BeforeBuild="lib" Clean="clean" />
+﻿/// <binding BeforeBuild="webpack" Clean="clean" />
 
 var del = require("del");
 var gulp = require("gulp");
 var minify = require("gulp-minify");
 var typeScript = require("gulp-typescript");
 var typeScriptProject = typeScript.createProject("tsconfig.json");
+var webpack = require("webpack");
+var webpackConfig = require("./webpack.config.js");
 
 var paths = {
     lib: [
@@ -132,4 +134,12 @@ gulp.task("typescript", function () {
     return typeScriptProject.src()
         .pipe(typeScriptProject())
         .js.pipe(gulp.dest(typeScriptProject.config.compilerOptions.outDir));
+});
+
+gulp.task("webpack", function () {
+    return webpack(webpackConfig).run(function (done) {
+        if (done) {
+            done();
+        }
+    });
 });
