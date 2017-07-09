@@ -16,7 +16,7 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "GregoryJenk.Mastermind.Mess
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{95E21D6F-78D0-4E81-A4AD-F77272ED191B}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "GregoryJenk.Mastermind.Message.Test", "GregoryJenk.Mastermind.Message.Test\GregoryJenk.Mastermind.Message.Test.xproj", "{F2D2E716-E1A5-4249-BE38-643090630386}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "GregoryJenk.Mastermind.Message.Test", "test\GregoryJenk.Mastermind.Message.Test\GregoryJenk.Mastermind.Message.Test.xproj", "{F2D2E716-E1A5-4249-BE38-643090630386}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

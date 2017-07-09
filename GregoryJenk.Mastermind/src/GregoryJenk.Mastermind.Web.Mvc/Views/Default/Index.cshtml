@@ -11,26 +11,28 @@
     <script src="~/lib/core-js/client/shim.min.js"></script>
     <script src="~/lib/zone.js/dist/zone.js"></script>
     <script src="~/lib/reflect-metadata/Reflect.js"></script>
-    <script src="~/lib/systemjs/dist/system.src.js"></script>
+    <script src="~/app/js/app.js"></script>
+    @*<script src="~/lib/systemjs/dist/system.src.js"></script>
     <script>
         //Loading from the CDN may be more performant than loading local versions but less reliable.
+        //For example: https://unpkg.com/@@angular/common@@<version>.
         var map = {
-            "@@angular/common": "https://unpkg.com/@@angular/common@@2.2.3",
-            "@@angular/compiler": "https://unpkg.com/@@angular/compiler@@2.2.3",
-            "@@angular/core": "https://unpkg.com/@@angular/core@@2.2.3",
-            "@@angular/forms": "https://unpkg.com/@@angular/forms@@2.2.3",
-            "@@angular/http": "https://unpkg.com/@@angular/http@@2.2.3",
-            "@@angular/platform-browser": "https://unpkg.com/@@angular/platform-browser@@2.2.3",
-            "@@angular/platform-browser-dynamic": "https://unpkg.com/@@angular/platform-browser-dynamic@@2.2.3",
-            "@@angular/router": "https://unpkg.com/@@angular/router@@3.2.3",
-            "atoa": "https://unpkg.com/atoa@@1.0.0",
-            "contra": "https://unpkg.com/contra@@1.9.4",
-            "crossvent": "https://unpkg.com/crossvent@@1.5.4",
-            "dragula": "https://unpkg.com/dragula@@3.7.2",
-            "ng2-charts": "https://unpkg.com/ng2-charts@@1.4.1",
-            "ng2-dragula": "https://unpkg.com/ng2-dragula@@1.2.1",
-            "rxjs": "https://unpkg.com/rxjs@@5.0.0-rc.4",
-            "ticky": "https://unpkg.com/ticky@@1.0.1"
+            "@@angular/common": "./lib/@@angular/common",
+            "@@angular/compiler": "./lib/@@angular/compiler",
+            "@@angular/core": "./lib/@@angular/core",
+            "@@angular/forms": "./lib/@@angular/forms",
+            "@@angular/http": "./lib/@@angular/http",
+            "@@angular/platform-browser": "./lib/@@angular/platform-browser",
+            "@@angular/platform-browser-dynamic": "./lib/@@angular/platform-browser-dynamic",
+            "@@angular/router": "./lib/@@angular/router",
+            "atoa": "./lib/atoa",
+            "contra": "./lib/contra",
+            "crossvent": "./lib/crossvent",
+            "dragula": "./lib/dragula",
+            "ng2-charts": "./lib/ng2-charts",
+            "ng2-dragula": "./lib/ng2-dragula",
+            "rxjs": "./lib/rxjs",
+            "ticky": "./lib/ticky"
         };
 
         var packages = {
@@ -52,14 +54,14 @@
             "rxjs": { defaultExtension: "js" },
             "ticky": { defaultExtension: "js", main: "ticky.js" }
         };
-        
+
         System.config({
             map: map,
             packages: packages
         });
 
         System.import("app/js/app.main").then(null, console.error.bind(console));
-    </script>
+    </script>*@
 }
 
 <div class="app-container container">
