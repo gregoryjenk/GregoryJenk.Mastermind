@@ -2,6 +2,14 @@
   "name": "gregoryjenk.mastermind.web.mvc.npm",
   "version": "1.0.0",
   "private": true,
+  "author": {
+    "email": "gregoryjenk@gmail.com",
+    "name": "Gregory Jenkins",
+    "url": "http://www.gregoryjenk.com"
+  }
+  "bugs": {
+    "url": "https://github.com/gregoryjenk/GregoryJenk.Mastermind/issues"
+  },
   "dependencies": {
     "@angular/common": "2.2.3",
     "@angular/compiler": "2.2.3",
@@ -33,5 +41,11 @@
     "ts-loader": "2.2.2",
     "typescript": "2.4.1",
     "webpack": "3.1.0"
+  },
+  "homepage": "https://github.com/gregoryjenk/GregoryJenk.Mastermind",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gregoryjenk/GregoryJenk.Mastermind.git"
   }
 }
