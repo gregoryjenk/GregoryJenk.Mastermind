@@ -3757,7 +3757,7 @@
         "type": "project",
         "framework": ".NETStandard,Version=v1.6",
         "dependencies": {
-          "NETStandard.Library": "1.6.0"
+          "NETStandard.Library": "1.6.1"
         },
         "compile": {
           "netstandard1.6/GregoryJenk.Mastermind.Message.dll": {}
