@@ -6,8 +6,10 @@
     public type: NotificationType;
     public hidden: boolean = false;
 
-    constructor() {
-
+    constructor(title: string = "", message: string = "", type: NotificationType = NotificationType.Information) {
+        this.title = title;
+        this.message = message;
+        this.type = type;
     }
 
     public hide(hidden: boolean = true) {

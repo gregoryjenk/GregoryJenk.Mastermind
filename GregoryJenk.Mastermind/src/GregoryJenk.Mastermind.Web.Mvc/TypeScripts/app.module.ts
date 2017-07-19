@@ -4,6 +4,7 @@ import { HttpModule, JsonpModule } from "@angular/http";
 import { BrowserModule } from "@angular/platform-browser";
 import { ChartsModule } from "ng2-charts/ng2-charts";
 import { MomentModule } from "angular2-moment";
+import { SlimLoadingBarModule } from "ng2-slim-loading-bar";
 import { AppErrorHandler } from "./app.error";
 import { routing, appRoutingProviders } from "./app.route";
 import { AppComponent } from "./Components/app.component";
@@ -40,6 +41,7 @@ import "rxjs/add/operator/map";
         HttpModule,
         JsonpModule,
         MomentModule,
+        SlimLoadingBarModule,
         routing
     ],
     providers: [

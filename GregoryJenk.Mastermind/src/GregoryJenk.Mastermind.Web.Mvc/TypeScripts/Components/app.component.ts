@@ -1,4 +1,5 @@
 ﻿import { Component } from "@angular/core";
+import { Notification } from "../Models/Notifications/notification.model";
 import { NotificationService } from "../Services/Notifications/notification.service";
 import { User } from "../Models/Users/user.model";
 import { UserService } from "../Services/Users/user.service";
@@ -15,20 +16,20 @@ export class AppComponent {
     }
 
     private readUser() {
-        //TODO: this.notificationService.start();
+        this.notificationService.start();
 
         this.userService.read()
             .subscribe(
-            response => {
+                response => {
+                    this.user = response;
 
-                this.user = response;
+                    this.notificationService.complete();
+                },
+                error => {
+                    this.notificationService.create(new Notification("Uh oh!", "Could not read user", NotificationType.Danger));
 
-                //this.notificationService.complete();
-            },
-            error => {
-                //this.notificationService.create("Uh oh!", "Could not read user", error);
-
-                //this.notificationService.complete();
-            });
+                    this.notificationService.complete();
+                }
+            );
     }
 }
