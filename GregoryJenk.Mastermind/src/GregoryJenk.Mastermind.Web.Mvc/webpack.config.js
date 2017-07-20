@@ -6,6 +6,8 @@ module.exports = {
         sec: "./TypeScripts/sec.main.ts"
     },
     module: {
+        //TODO: Look at why there is a context critical warning.
+        exprContextCritical: false,
         loaders: [
             {
                 include: [/TypeScripts/],
