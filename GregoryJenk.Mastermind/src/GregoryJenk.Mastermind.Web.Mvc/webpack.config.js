@@ -1,4 +1,5 @@
 ﻿var path = require("path");
+var webpack = require("webpack");
 
 module.exports = {
     entry: {
@@ -6,8 +7,7 @@ module.exports = {
         sec: "./TypeScripts/sec.main.ts"
     },
     module: {
-        //TODO: Look at why there is a context critical warning.
-        exprContextCritical: false,
+        exprContextCritical: true,
         loaders: [
             {
                 include: [/TypeScripts/],
@@ -43,6 +43,12 @@ module.exports = {
         filename: "[name].js",
         path: path.resolve(__dirname, "wwwroot/app/js")
     },
+    plugins: [
+        new webpack.ContextReplacementPlugin(
+            /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
+            __dirname
+        )
+    ],
     resolve: {
         extensions: [".js", ".ts"]
     }
