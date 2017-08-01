@@ -1,6 +1,33 @@
-﻿.container-login {
+﻿body {
+    background-color: #EEEEEE;
+}
+
+.container-login {
     left: 50%;
     position: absolute;
-    top: 30%;
+    top: 40%;
     transform: translate(-50%, -50%);
+    width: 500px;
+}
+
+    .container-login .lead {
+        color: #777777;
+    }
+
+.sec-component {
+    margin-top: 75px;
+}
+
+.sec-container {
+    /*background-color: #FFFFFF;
+    border-left: solid 1px #CCCCCC;
+    border-right: solid 1px #CCCCCC;
+    height: 100%;*/
+    min-height: 80%;
+}
+
+.sec-loading {
+    margin-top: 200px;
+    text-align: center;
+    text-transform: uppercase;
 }

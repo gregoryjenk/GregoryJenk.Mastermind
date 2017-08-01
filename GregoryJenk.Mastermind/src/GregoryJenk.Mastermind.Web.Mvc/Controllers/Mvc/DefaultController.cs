@@ -47,5 +47,11 @@ namespace GregoryJenk.Mastermind.Web.Mvc.Controllers.Mvc
 
             return Redirect("/login");
         }
+
+        [HttpGet, Route("/privacy-policy")]
+        public IActionResult PrivacyPolicy()
+        {
+            return View();
+        }
     }
 }

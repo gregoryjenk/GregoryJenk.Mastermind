@@ -1,7 +1,7 @@
-﻿<nav class="navbar navbar-default navbar-fixed-top animated slideInDown">
+﻿<nav class="navbar navbar-default navbar-fixed-top animated fadeIn">
     <div class="container">
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-6 col-md-6 col-sm-6">
                 <a class="btn btn-lg btn-primary" routerLink="play" role="button">
                     Play
                 </a>
@@ -9,13 +9,19 @@
                     Logout
                 </a>
             </div>
-            <div class="col-lg-6 text-right">
-                <span>
-                    {{parent.user?.name}}
-                    <br />
-                    {{parent.user?.email}}
-                </span>
-                <img src="{{parent.user?.image}}" />
+            <div class="col-lg-6 col-md-6 col-sm-6 text-right">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <b>
+                            {{parent.user?.name}}
+                        </b>
+                        <br />
+                        {{parent.user?.email}}
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <img src="{{parent.user?.image}}" />
+                    </div>
+                </div>
             </div>
         </div>
     </div>
