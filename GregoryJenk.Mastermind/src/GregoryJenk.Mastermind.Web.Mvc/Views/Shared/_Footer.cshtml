@@ -1,6 +1,11 @@
 ﻿<div class="container">
-    <footer>
-        <p class="text-center text-muted">
+    <footer class="text-center">
+        <p>
+            @Html.ActionLink("Privacy Policy", "PrivacyPolicy")
+            .
+            @Html.ActionLink("Terms and Conditions", "TermsAndConditions")
+        </p>
+        <p>
             &copy; 2016 - @DateTime.Now.Year Gregory Jenkins. All rights reserved.
         </p>
     </footer>

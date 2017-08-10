@@ -32,7 +32,6 @@ a:hover {
     text-decoration: none;
     transition: all .4s ease-in-out;
     -webkit-transition: all .4s ease-in-out;
-    transition: ;
 }
 
     a .fa-stack-1x {
@@ -55,6 +54,10 @@ a:hover {
     a:hover .fa-stack-2x {
         opacity: 1;
     }
+
+footer {
+    color: #777777;
+}
 
 .animated {
     -moz-animation-duration: 3s;

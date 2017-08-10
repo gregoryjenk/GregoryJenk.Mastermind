@@ -4,10 +4,10 @@
 
 .container-login {
     left: 50%;
+    max-width: 500px;
     position: absolute;
     top: 40%;
     transform: translate(-50%, -50%);
-    width: 500px;
 }
 
     .container-login .lead {

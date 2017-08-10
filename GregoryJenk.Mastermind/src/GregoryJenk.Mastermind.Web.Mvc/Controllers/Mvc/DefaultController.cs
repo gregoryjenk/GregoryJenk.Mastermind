@@ -48,8 +48,20 @@ namespace GregoryJenk.Mastermind.Web.Mvc.Controllers.Mvc
             return Redirect("/login");
         }
 
+        //[HttpGet, Route("/not-found")]
+        //TODO: public IActionResult NotFound()
+        //{
+        //    return View();
+        //}
+
         [HttpGet, Route("/privacy-policy")]
         public IActionResult PrivacyPolicy()
+        {
+            return View();
+        }
+
+        [HttpGet, Route("/terms-and-conditions")]
+        public IActionResult TermsAndConditions()
         {
             return View();
         }
