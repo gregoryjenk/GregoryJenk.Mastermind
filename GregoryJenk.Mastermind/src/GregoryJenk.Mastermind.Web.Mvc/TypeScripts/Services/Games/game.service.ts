@@ -24,4 +24,9 @@ export class GameService extends BaseService {
         return this.http.get(this.gameUrl + "/" + id)
             .map(this.convertResponseToObject);
     }
+
+    public readAll(): Observable<Game[]> {
+        return this.http.get(this.gameUrl)
+            .map(this.convertResponseToArray);
+    }
 }

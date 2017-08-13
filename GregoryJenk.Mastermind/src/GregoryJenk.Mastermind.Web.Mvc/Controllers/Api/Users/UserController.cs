@@ -21,18 +21,18 @@ namespace GregoryJenk.Mastermind.Web.Mvc.Controllers.Api.Users
         [HttpGet, Route("")]
         public IActionResult Read()
         {
-            UserViewModel user = new UserViewModel();
+            UserViewModel userViewModel = new UserViewModel();
 
-            user.ConvertPrincipal(User);
+            userViewModel.ConvertPrincipal(User);
 
-            IExternalUserServiceClient externalUserServiceClient = _externalUserServiceClientFactory.Create(user.Scheme);
+            IExternalUserServiceClient externalUserServiceClient = _externalUserServiceClientFactory.Create(userViewModel.Scheme);
 
             //TODO: This should really only be done on login and saved.
-            ExternalUserViewModel externalUser = externalUserServiceClient.ReadById(user.ExternalId);
+            ExternalUserViewModel externalUser = externalUserServiceClient.ReadById(userViewModel.ExternalId);
 
-            user.Image = externalUser.Image;
+            userViewModel.Image = externalUser.Image;
 
-            return Ok(user);
+            return Ok(userViewModel);
         }
     }
 }

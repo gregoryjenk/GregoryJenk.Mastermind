@@ -1,6 +1,8 @@
 ﻿import { Component } from "@angular/core";
 import { Game } from "../../Models/Games/game.model";
 import { GameService } from "../../Services/Games/game.service";
+import { Notification } from "../../Models/Notifications/notification.model";
+import { NotificationService } from "../../Services/Notifications/notification.service";
 import { PegCode } from "../../Models/Pegs/peg-code.model";
 
 @Component({
@@ -16,7 +18,7 @@ export class GameComponent {
     private currentGame: Game;
     private playedGames: Game[] = [];
 
-    constructor(private gameService: GameService) {
+    constructor(private gameService: GameService, private notificationService: NotificationService) {
         this.configureColours();
     }
 
@@ -28,8 +30,21 @@ export class GameComponent {
     }
 
     private startGame() {
-        this.currentGame = new Game();
-        //this._currentGame.start();
+        this.notificationService.start();
+
+        this.gameService.create(new Game())
+            .subscribe(
+                response => {
+                    this.currentGame = response;
+
+                    this.notificationService.complete();
+                },
+                error => {
+                    this.notificationService.create(new Notification("Uh oh!", "Could not create game", NotificationType.Danger));
+
+                    this.notificationService.complete();
+                }
+            );
     }
 
     private configureColours() {

@@ -5,6 +5,7 @@ using GregoryJenk.Mastermind.Web.Mvc.ServiceClients.Games;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace GregoryJenk.Mastermind.Web.Mvc.Controllers.Api.Games
@@ -20,15 +21,24 @@ namespace GregoryJenk.Mastermind.Web.Mvc.Controllers.Api.Games
         }
 
         [HttpPost, Route("")]
-        public IActionResult Create([FromBody] GameViewModel game)
+        public IActionResult Create([FromBody] GameViewModel gameViewModel)
         {
-            UserViewModel user = new UserViewModel();
+            UserViewModel userViewModel = new UserViewModel();
 
-            user.ConvertPrincipal(User);
+            userViewModel.ConvertPrincipal(User);
 
-            //TODO: Create game.
+            //TODO: Create game and return the values.
+            _gameServiceClient.Create(gameViewModel);
 
-            return Created(string.Format("api/game/{0}", game.Id), game);
+            return Created(string.Format("api/game/{0}", gameViewModel.Id), gameViewModel);
+        }
+
+        [HttpGet, Route("")]
+        public IActionResult ReadAll()
+        {
+            IList<GameViewModel> gameViewModels = _gameServiceClient.ReadAll();
+
+            return Ok(gameViewModels);
         }
     }
 }
