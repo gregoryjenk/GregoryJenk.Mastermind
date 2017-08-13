@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace GregoryJenk.Mastermind.Message.ViewModels.Games
 {
-    public class GameViewModel : BaseViewModel<string>
+    public class GameViewModel : BaseViewModel<Guid>
     {
         public IList<GuessViewModel> Guesses { get; set; }
     }

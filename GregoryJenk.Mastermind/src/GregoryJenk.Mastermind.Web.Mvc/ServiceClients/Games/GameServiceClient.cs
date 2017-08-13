@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace GregoryJenk.Mastermind.Web.Mvc.ServiceClients.Games
 {
-    public class GameServiceClient : BaseServiceClient<GameViewModel, string>, IGameServiceClient
+    public class GameServiceClient : BaseServiceClient<GameViewModel, Guid>, IGameServiceClient
     {
         public GameServiceClient(IOptions<GameServiceOption> gameServiceOption)
             : base(gameServiceOption.Value.BaseUrl, "game")

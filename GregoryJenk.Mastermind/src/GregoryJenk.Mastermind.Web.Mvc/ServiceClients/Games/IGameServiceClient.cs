@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace GregoryJenk.Mastermind.Web.Mvc.ServiceClients.Games
 {
-    public interface IGameServiceClient : IServiceClient<GameViewModel, string>
+    public interface IGameServiceClient : IServiceClient<GameViewModel, Guid>
     {
 
     }
