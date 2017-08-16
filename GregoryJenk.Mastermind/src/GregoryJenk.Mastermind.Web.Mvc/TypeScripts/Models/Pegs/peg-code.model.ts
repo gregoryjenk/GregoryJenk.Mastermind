@@ -1,7 +1,7 @@
 ﻿export class PegCode {
-    public colour: PegCodeColour;
+    public colour: CodePegColour;
 
-    constructor(colour: PegCodeColour) {
+    constructor(colour: CodePegColour) {
         this.colour = colour;
     }
 }
