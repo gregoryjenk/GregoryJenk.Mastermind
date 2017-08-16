@@ -15,6 +15,10 @@
         
     }
 
+    .peg-code.peg-code__locked {
+        background-color: transparent;
+    }
+
     .peg-code.peg-code__blue {
         background-color: #AEC6CF;
     }

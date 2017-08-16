@@ -16,6 +16,9 @@ export class PegCodeComponent {
         let colourClass: string;
 
         switch (colour) {
+            case CodePegColour.Locked:
+                colourClass = "peg-code__locked";
+                break;
             case CodePegColour.Blue:
                 colourClass = "peg-code__blue";
                 break;
