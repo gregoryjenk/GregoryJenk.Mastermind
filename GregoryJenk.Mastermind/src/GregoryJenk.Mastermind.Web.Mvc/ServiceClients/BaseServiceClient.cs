@@ -8,7 +8,7 @@ using System.Net.Http.Formatting;
 namespace GregoryJenk.Mastermind.Web.Mvc.ServiceClients
 {
     //TODO: Consider using the async return values.
-    public abstract class BaseServiceClient<VM, VmId> where VM : BaseViewModel<VmId>
+    public abstract class BaseServiceClient<VM, VmId> where VM : BaseEntityViewModel<VmId>
     {
         protected readonly HttpClient _httpClient;
         protected readonly string _resource;
