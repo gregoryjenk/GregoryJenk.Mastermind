@@ -1,4 +1,5 @@
 ﻿const enum PegCodeColour {
+    Locked,
     Blue,
     Green,
     Orange,
