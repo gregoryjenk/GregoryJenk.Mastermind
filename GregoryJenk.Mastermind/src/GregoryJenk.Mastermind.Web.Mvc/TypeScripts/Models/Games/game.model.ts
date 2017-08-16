@@ -2,8 +2,8 @@
 import { PegCode } from "../Pegs/peg-code.model";
 
 export class Game {
-    public answer: PegCode[] = [];
     public guesses: Guess[] = [];
+    public answerCodePegs: PegCode[] = [];
 
     constructor() {
         this.addGuess(new Guess());
