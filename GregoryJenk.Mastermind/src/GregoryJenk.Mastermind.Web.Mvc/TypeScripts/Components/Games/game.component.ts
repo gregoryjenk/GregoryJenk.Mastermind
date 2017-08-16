@@ -1,9 +1,9 @@
 ﻿import { Component } from "@angular/core";
+import { CodePeg } from "../../Models/Pegs/code-peg.model";
 import { Game } from "../../Models/Games/game.model";
 import { GameService } from "../../Services/Games/game.service";
 import { Notification } from "../../Models/Notifications/notification.model";
 import { NotificationService } from "../../Services/Notifications/notification.service";
-import { PegCode } from "../../Models/Pegs/peg-code.model";
 
 @Component({
     selector: ".game-component",
@@ -14,7 +14,7 @@ export class GameComponent {
     //TODO: Point based scoring system.
     //TODO: Five guess algorithm.
 
-    private colours: PegCode[] = [];
+    private colours: CodePeg[] = [];
     private currentGame: Game;
     private playedGames: Game[] = [];
 
@@ -22,11 +22,11 @@ export class GameComponent {
         this.configureColours();
     }
 
-    private onPegCodeDropped(pegCodeSource: PegCode, pegCodeTarget: PegCode) {
+    private onPegCodeDropped(pegCodeSource: CodePeg, pegCodeTarget: CodePeg) {
         let guess = this.currentGame.guesses.length - 1;
-        let index = this.currentGame.guesses[guess].pegCodes.indexOf(pegCodeTarget);
+        let index = this.currentGame.guesses[guess].guessCodePegs.indexOf(pegCodeTarget);
 
-        this.currentGame.guesses[length].pegCodes[index] = pegCodeSource;
+        this.currentGame.guesses[length].guessCodePegs[index] = pegCodeSource;
     }
 
     private startGame() {
@@ -49,11 +49,11 @@ export class GameComponent {
 
     private configureColours() {
         //Cannot loop through const enum, so have to list them out.
-        this.colours.push(new PegCode(PegCodeColour.Blue));
-        this.colours.push(new PegCode(PegCodeColour.Green));
-        this.colours.push(new PegCode(PegCodeColour.Orange));
-        this.colours.push(new PegCode(PegCodeColour.Purple));
-        this.colours.push(new PegCode(PegCodeColour.Red));
-        this.colours.push(new PegCode(PegCodeColour.Yellow));
+        this.colours.push(new CodePeg(CodePegColour.Blue));
+        this.colours.push(new CodePeg(CodePegColour.Green));
+        this.colours.push(new CodePeg(CodePegColour.Orange));
+        this.colours.push(new CodePeg(CodePegColour.Purple));
+        this.colours.push(new CodePeg(CodePegColour.Red));
+        this.colours.push(new CodePeg(CodePegColour.Yellow));
     }
 }

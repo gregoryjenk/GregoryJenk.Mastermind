@@ -1,9 +1,9 @@
-﻿import { Guess } from "./Guess.model";
-import { PegCode } from "../Pegs/peg-code.model";
+﻿import { CodePeg } from "../Pegs/code-peg.model";
+import { Guess } from "./Guess.model";
 
 export class Game {
     public guesses: Guess[] = [];
-    public answerCodePegs: PegCode[] = [];
+    public answerCodePegs: CodePeg[] = [];
 
     constructor() {
         this.addGuess(new Guess());

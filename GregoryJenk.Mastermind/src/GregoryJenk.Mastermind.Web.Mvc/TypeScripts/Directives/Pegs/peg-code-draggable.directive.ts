@@ -1,11 +1,11 @@
 ﻿import { Directive, ElementRef, Input, OnInit } from "@angular/core";
-import { PegCode } from "../../Models/Pegs/peg-code.model";
+import { CodePeg } from "../../Models/Pegs/code-peg.model";
 
 @Directive({
     selector: "[peg-code-draggable]"
 })
 export class PegCodeDraggableDirective implements OnInit {
-    @Input("peg-code-draggable") pegCode: PegCode;
+    @Input("peg-code-draggable") pegCode: CodePeg;
 
     constructor(private elementRef: ElementRef) {
 

@@ -1,11 +1,11 @@
-﻿import { PegCode } from "../Pegs/peg-code.model";
+﻿import { CodePeg } from "../Pegs/code-peg.model";
 
 export class Guess {
-    public guessCodePegs: PegCode[] = [];
+    public guessCodePegs: CodePeg[] = [];
 
     constructor() {
         for (var i = 0; i < 4; i++) {
-            this.guessCodePegs.push(new PegCode(CodePegColour.Empty));
+            this.guessCodePegs.push(new CodePeg(CodePegColour.Empty));
         }
     }
 }
