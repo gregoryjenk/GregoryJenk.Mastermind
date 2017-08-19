@@ -1,5 +1,5 @@
 ﻿const enum CodePegColour {
-    Locked,
+    Lock,
     Blue,
     Green,
     Orange,
