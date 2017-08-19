@@ -37,8 +37,10 @@
     "es6-promise": "4.1.1",
     "es6-shim": "0.35.3",
     "gulp": "3.9.1",
+    "gulp-less": "3.3.2",
     "gulp-minify": "1.0.0",
     "gulp-typescript": "3.1.7",
+    "less": "2.7.2",
     "ts-loader": "2.2.2",
     "typescript": "2.4.1",
     "webpack": "3.1.0"

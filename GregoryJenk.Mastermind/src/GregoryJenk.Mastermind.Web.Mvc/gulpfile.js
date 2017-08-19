@@ -1,7 +1,8 @@
-﻿/// <binding BeforeBuild="lib, webpack" Clean="clean" />
+﻿/// <binding BeforeBuild="less, lib, webpack" Clean="clean" />
 
 var del = require("del");
 var gulp = require("gulp");
+var less = require("gulp-less");
 var minify = require("gulp-minify");
 var typeScript = require("gulp-typescript");
 var typeScriptProject = typeScript.createProject("tsconfig.json");
@@ -107,9 +108,16 @@ var paths = {
 
 gulp.task("clean", function () {
     return del([
+        "./wwwroot/app/css/**/*",
         "./wwwroot/app/js/**/*",
         "./wwwroot/lib/**/*"
     ]);
+});
+
+gulp.task("less", function () {
+    return gulp.src("./wwwroot/app/less/**/*.less")
+        .pipe(less())
+        .pipe(gulp.dest("./wwwroot/app/css"));
 });
 
 gulp.task("lib", function () {
