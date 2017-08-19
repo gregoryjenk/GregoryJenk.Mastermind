@@ -1,1 +1,67 @@
-﻿
+﻿/*Latin Extended.*/
+@font-face {
+    font-family: "Telex";
+    font-style: normal;
+    font-weight: 400;
+    src: local("Telex Regular"), local("Telex-Regular"), url("../fonts/Telex/uzSqqRvnbwpG370DqxKD2Q.woff2") format("woff2"), url("../fonts/Telex/Telex-Regular.ttf") format("truetype");
+    unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/*Latin.*/
+@font-face {
+    font-family: "Telex";
+    font-style: normal;
+    font-weight: 400;
+    src: local("Telex Regular"), local("Telex-Regular"), url("../fonts/Telex/3Afern-3-ML_iIqkvoMOzA.woff2") format("woff2"), url("../fonts/Telex/Telex-Regular.ttf") format("truetype");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+
+html,
+body {
+    font-family: "Telex", sans-serif;
+    height: 100%;
+}
+
+h2,
+h3 {
+    color: #777777;
+}
+
+a,
+a:focus,
+a:hover {
+    color: #088;
+    text-decoration: none;
+    transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+}
+
+    a .fa-stack-1x {
+        opacity: .7;
+        transition: all .4s ease-in-out;
+        -webkit-transition: all .4s ease-in-out;
+    }
+
+    a:hover .fa-stack-1x {
+        opacity: 1;
+    }
+
+    a .fa-stack-2x {
+        color: #888;
+        opacity: .6;
+        transition: all .4s ease-in-out;
+        -webkit-transition: all .4s ease-in-out;
+    }
+
+    a:hover .fa-stack-2x {
+        opacity: 1;
+    }
+
+footer {
+    color: #777777;
+}
+
+.animated {
+    -moz-animation-duration: 3s;
+    animation-duration: 3s;
+}
