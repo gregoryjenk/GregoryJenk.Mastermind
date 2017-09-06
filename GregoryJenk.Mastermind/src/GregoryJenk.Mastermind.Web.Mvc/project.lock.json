@@ -3,6 +3,18 @@
   "version": 2,
   "targets": {
     ".NETCoreApp,Version=v1.1": {
+      "GregoryJenk.Mastermind.Message/1.8.0": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.1"
+        },
+        "compile": {
+          "lib/netstandard1.6/GregoryJenk.Mastermind.Message.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.6/GregoryJenk.Mastermind.Message.dll": {}
+        }
+      },
       "Libuv/1.9.1": {
         "type": "package",
         "dependencies": {
@@ -3752,23 +3764,20 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XPath.XDocument.dll": {}
         }
-      },
-      "GregoryJenk.Mastermind.Message/1.0.0": {
-        "type": "project",
-        "framework": ".NETStandard,Version=v1.6",
-        "dependencies": {
-          "NETStandard.Library": "1.6.1"
-        },
-        "compile": {
-          "netstandard1.6/GregoryJenk.Mastermind.Message.dll": {}
-        },
-        "runtime": {
-          "netstandard1.6/GregoryJenk.Mastermind.Message.dll": {}
-        }
       }
     }
   },
   "libraries": {
+    "GregoryJenk.Mastermind.Message/1.8.0": {
+      "sha512": "ujloQHMUulMcGqx7blCm8qaJB27OdBYz7Cvc8nfnlbwcDG4rhzpUQQ83fGDzoO2zrtwTfDO/jxTNijDAFChyWg==",
+      "type": "package",
+      "path": "GregoryJenk.Mastermind.Message/1.8.0",
+      "files": [
+        "GregoryJenk.Mastermind.Message.1.8.0.nupkg.sha512",
+        "GregoryJenk.Mastermind.Message.nuspec",
+        "lib/netstandard1.6/GregoryJenk.Mastermind.Message.dll"
+      ]
+    },
     "Libuv/1.9.1": {
       "sha512": "uqX2Frwf9PW8MaY7PRNY6HM5BpW1D8oj1EdqzrmbEFD5nH63Yat3aEjN/tws6Tw6Fk7LwmLBvtUh32tTeTaHiA==",
       "type": "package",
@@ -10248,16 +10257,11 @@
         "ref/xamarintvos10/_._",
         "ref/xamarinwatchos10/_._"
       ]
-    },
-    "GregoryJenk.Mastermind.Message/1.0.0": {
-      "type": "project",
-      "path": "../GregoryJenk.Mastermind.Message/project.json",
-      "msbuildProject": "../GregoryJenk.Mastermind.Message/GregoryJenk.Mastermind.Message.xproj"
     }
   },
   "projectFileDependencyGroups": {
     "": [
-      "GregoryJenk.Mastermind.Message >= 1.0.0",
+      "GregoryJenk.Mastermind.Message >= 1.8.0",
       "Microsoft.AspNetCore.Authentication.Cookies >= 1.1.0",
       "Microsoft.AspNetCore.Authentication.Google >= 1.1.0",
       "Microsoft.AspNetCore.Authentication.Twitter >= 1.1.0",
