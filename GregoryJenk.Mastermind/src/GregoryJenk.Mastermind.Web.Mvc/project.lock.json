@@ -3,7 +3,7 @@
   "version": 2,
   "targets": {
     ".NETCoreApp,Version=v1.1": {
-      "GregoryJenk.Mastermind.Message/1.8.0": {
+      "GregoryJenk.Mastermind.Message/1.9.0": {
         "type": "package",
         "dependencies": {
           "NETStandard.Library": "1.6.1"
@@ -3768,12 +3768,12 @@
     }
   },
   "libraries": {
-    "GregoryJenk.Mastermind.Message/1.8.0": {
-      "sha512": "ujloQHMUulMcGqx7blCm8qaJB27OdBYz7Cvc8nfnlbwcDG4rhzpUQQ83fGDzoO2zrtwTfDO/jxTNijDAFChyWg==",
+    "GregoryJenk.Mastermind.Message/1.9.0": {
+      "sha512": "ienipPJbfX+j5sc3uiEuWqsDHEir7mW/aKve0L5fYBAKMT6WmDH5B4IQTFx3DXZqnSSxzXvin+Pm9qOAuMA8hA==",
       "type": "package",
-      "path": "GregoryJenk.Mastermind.Message/1.8.0",
+      "path": "GregoryJenk.Mastermind.Message/1.9.0",
       "files": [
-        "GregoryJenk.Mastermind.Message.1.8.0.nupkg.sha512",
+        "GregoryJenk.Mastermind.Message.1.9.0.nupkg.sha512",
         "GregoryJenk.Mastermind.Message.nuspec",
         "lib/netstandard1.6/GregoryJenk.Mastermind.Message.dll"
       ]
@@ -10261,7 +10261,7 @@
   },
   "projectFileDependencyGroups": {
     "": [
-      "GregoryJenk.Mastermind.Message >= 1.8.0",
+      "GregoryJenk.Mastermind.Message >= 1.9.0",
       "Microsoft.AspNetCore.Authentication.Cookies >= 1.1.0",
       "Microsoft.AspNetCore.Authentication.Google >= 1.1.0",
       "Microsoft.AspNetCore.Authentication.Twitter >= 1.1.0",
