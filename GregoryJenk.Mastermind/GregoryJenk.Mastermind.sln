@@ -1,22 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.15
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{ABABC048-4E23-4A42-A7D7-4207A18603A8}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E3DA5298-EBA6-4D07-8DBD-132923D3EE61}"
-	ProjectSection(SolutionItems) = preProject
-		global.json = global.json
-	EndProjectSection
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "GregoryJenk.Mastermind.Web.Mvc", "src\GregoryJenk.Mastermind.Web.Mvc\GregoryJenk.Mastermind.Web.Mvc.xproj", "{99C01F92-F2DF-434E-8BBF-3E70E03A915F}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{95E21D6F-78D0-4E81-A4AD-F77272ED191B}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "GregoryJenk.Mastermind.Web.Mvc.Test", "test\GregoryJenk.Mastermind.Web.Mvc.Test\GregoryJenk.Mastermind.Web.Mvc.Test.xproj", "{841A094C-657F-46C5-97A3-8DC7AA084847}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GregoryJenk.Mastermind.Web.Mvc", "src\GregoryJenk.Mastermind.Web.Mvc\GregoryJenk.Mastermind.Web.Mvc.csproj", "{99C01F92-F2DF-434E-8BBF-3E70E03A915F}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "GregoryJenk.Mastermind.Cache.InMemory", "src\GregoryJenk.Mastermind.Cache.InMemory\GregoryJenk.Mastermind.Cache.InMemory.xproj", "{7DBB1046-A524-4F0B-935C-10373FA437A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GregoryJenk.Mastermind.Web.Mvc.Test", "test\GregoryJenk.Mastermind.Web.Mvc.Test\GregoryJenk.Mastermind.Web.Mvc.Test.csproj", "{841A094C-657F-46C5-97A3-8DC7AA084847}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GregoryJenk.Mastermind.Cache.InMemory", "src\GregoryJenk.Mastermind.Cache.InMemory\GregoryJenk.Mastermind.Cache.InMemory.csproj", "{7DBB1046-A524-4F0B-935C-10373FA437A6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,5 +39,8 @@ Global
 		{99C01F92-F2DF-434E-8BBF-3E70E03A915F} = {ABABC048-4E23-4A42-A7D7-4207A18603A8}
 		{841A094C-657F-46C5-97A3-8DC7AA084847} = {95E21D6F-78D0-4E81-A4AD-F77272ED191B}
 		{7DBB1046-A524-4F0B-935C-10373FA437A6} = {ABABC048-4E23-4A42-A7D7-4207A18603A8}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {266C35C1-0918-414E-AA32-EFFC7B1C523A}
 	EndGlobalSection
 EndGlobal
