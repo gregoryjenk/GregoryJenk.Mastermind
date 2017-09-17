@@ -4,6 +4,7 @@ import { Guess } from "./Guess.model";
 export class Game {
     public guesses: Guess[] = [];
     public answerCodePegs: CodePeg[] = [];
+    public state: GameState;
 
     constructor() {
         this.addGuess(new Guess());
