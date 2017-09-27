@@ -1,9 +1,11 @@
 ﻿using GregoryJenk.Mastermind.Message.ViewModels;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Net.Http;
-using System.Net.Http.Formatting;
+using System.Text;
 
 namespace GregoryJenk.Mastermind.Web.Mvc.ServiceClients
 {
@@ -25,18 +27,26 @@ namespace GregoryJenk.Mastermind.Web.Mvc.ServiceClients
 
         public VmId Create(VM viewModel)
         {
-            HttpResponseMessage httpResponseMessage = _httpClient.PostAsync(_resource,
-                new ObjectContent<VM>(viewModel, new JsonMediaTypeFormatter())).Result;
+            string json = JsonConvert.SerializeObject(viewModel);
+
+            StringContent jsonStringContent = new StringContent(json, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage httpResponseMessage = _httpClient.PostAsync(_resource, jsonStringContent).Result;
 
             httpResponseMessage.EnsureSuccessStatusCode();
 
-            return (VmId)(object)httpResponseMessage.Headers.Location.Segments.Last();
+            string id = httpResponseMessage.Headers.Location.Segments.Last();
+
+            return ConvertLocationIdToViewModelId(id);
         }
 
         public void Update(VmId id, VM viewModel)
         {
-            HttpResponseMessage httpResponseMessage = _httpClient.PutAsync(string.Format("{0}/{1}", _resource, id),
-                new ObjectContent<VM>(viewModel, new JsonMediaTypeFormatter())).Result;
+            string json = JsonConvert.SerializeObject(viewModel);
+
+            StringContent jsonStringContent = new StringContent(json, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage httpResponseMessage = _httpClient.PutAsync(string.Format("{0}/{1}", _resource, id), jsonStringContent).Result;
 
             httpResponseMessage.EnsureSuccessStatusCode();
         }
@@ -50,25 +60,41 @@ namespace GregoryJenk.Mastermind.Web.Mvc.ServiceClients
 
         public VM ReadById(VmId id)
         {
-            HttpResponseMessage httpResponseMessage = _httpClient.GetAsync(string.Format("{0}/{1}", _resource, id)).Result;
+            //HttpResponseMessage httpResponseMessage = _httpClient.GetAsync(string.Format("{0}/{1}", _resource, id)).Result;
+            //httpResponseMessage.EnsureSuccessStatusCode();
+            //return httpResponseMessage.Content.ReadAsAsync<VM>().Result;
 
-            httpResponseMessage.EnsureSuccessStatusCode();
+            string json = _httpClient.GetStringAsync(string.Format("{0}/{1}", _resource, id)).Result;
 
-            return httpResponseMessage.Content.ReadAsAsync<VM>().Result;
+            return JsonConvert.DeserializeObject<VM>(json);
         }
 
         public IList<VM> ReadAll()
         {
-            HttpResponseMessage httpResponseMessage = _httpClient.GetAsync(_resource).Result;
+            //TODO: Check the.NET Core implementation for deserialising objects - seems broken.
+            //HttpResponseMessage httpResponseMessage = _httpClient.GetAsync(_resource).Result;
+            //httpResponseMessage.EnsureSuccessStatusCode();
+            //return httpResponseMessage.Content.ReadAsAsync<IList<VM>>().Result;
 
-            httpResponseMessage.EnsureSuccessStatusCode();
+            //The recommended way has issues with deserialising the DateTimeOffset properties.
+            //System.Runtime.Serialization.Json.DataContractJsonSerializer dataContractJsonSerializer = new System.Runtime.Serialization.Json.DataContractJsonSerializer(typeof(IList<VM>));
+            //System.IO.Stream stream = _httpClient.GetStreamAsync(_resource).Result;
+            //return dataContractJsonSerializer.ReadObject(stream) as IList<VM>;
 
-            return httpResponseMessage.Content.ReadAsAsync<IList<VM>>().Result;
+            //Having to convert the response body to a string, then deserialise it to the object.
+            string json = _httpClient.GetStringAsync(_resource).Result;
+
+            return JsonConvert.DeserializeObject<IList<VM>>(json);
         }
 
         public IList<VM> ReadAll(int index, int count)
         {
             throw new NotImplementedException();
+        }
+
+        private VmId ConvertLocationIdToViewModelId(string id)
+        {
+            return (VmId)TypeDescriptor.GetConverter(typeof(VmId)).ConvertFromInvariantString(id);
         }
     }
 }
