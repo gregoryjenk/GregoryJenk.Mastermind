@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using System;
 using System.IO;
 using System.Linq;
@@ -29,7 +30,7 @@ namespace GregoryJenk.Mastermind.Web.Mvc
             if (hostingEnvironment.IsDevelopment())
             {
                 //Add development environment settings here.
-                configurationBuilder.AddUserSecrets();
+                configurationBuilder.AddUserSecrets<Startup>();
             }
 
             configurationBuilder.AddEnvironmentVariables();
@@ -45,10 +46,15 @@ namespace GregoryJenk.Mastermind.Web.Mvc
             serviceCollection.Configure<GameServiceOption>(options => _configuration.GetSection("services:game").Bind(options));
             serviceCollection.Configure<GoogleServiceOption>(options => _configuration.GetSection("services:google").Bind(options));
 
-            serviceCollection.AddAuthentication(configureOptions => configureOptions.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme);
-
             serviceCollection.AddMvc()
-                .AddJsonOptions(mvcJsonOptions => mvcJsonOptions.SerializerSettings.NullValueHandling = NullValueHandling.Ignore);
+                .AddJsonOptions(mvcJsonOptions => {
+                    mvcJsonOptions.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                    mvcJsonOptions.SerializerSettings.DateFormatHandling = DateFormatHandling.IsoDateFormat;
+                    //mvcJsonOptions.SerializerSettings.DateFormatString = "U";
+                    mvcJsonOptions.SerializerSettings.DateParseHandling = DateParseHandling.DateTimeOffset;
+                    mvcJsonOptions.SerializerSettings.DateTimeZoneHandling = DateTimeZoneHandling.Utc;
+                    mvcJsonOptions.SerializerSettings.NullValueHandling = NullValueHandling.Include;
+                });
 
             //Register implementations for Depedency Injection here.
             serviceCollection.AddSingleton<ExternalUserServiceClientFactory>();
@@ -59,27 +65,6 @@ namespace GregoryJenk.Mastermind.Web.Mvc
         {
             loggerFactory.AddConsole();
             loggerFactory.AddDebug();
-
-            applicationBuilder.UseCookieAuthentication(new CookieAuthenticationOptions
-            {
-                AuthenticationScheme = "Cookies",
-                AutomaticAuthenticate = true,
-                AutomaticChallenge = true,
-                ExpireTimeSpan = TimeSpan.FromDays(1),
-                LoginPath = "/login"
-            });
-
-            applicationBuilder.UseGoogleAuthentication(new GoogleOptions()
-            {
-                ClientId = _configuration["authentication:google:clientId"],
-                ClientSecret = _configuration["authentication:google:clientSecret"]
-            });
-
-            applicationBuilder.UseTwitterAuthentication(new TwitterOptions()
-            {
-                ConsumerKey = _configuration["authentication:twitter:consumerKey"],
-                ConsumerSecret = _configuration["authentication:twitter:consumerSecret"]
-            });
 
             if (hostingEnvironment.IsDevelopment())
             {
