@@ -148,6 +148,10 @@ gulp.task("typescript", function () {
         .js.pipe(gulp.dest(typeScriptProject.config.compilerOptions.outDir));
 });
 
+gulp.task("watch", function () {
+    return gulp.watch("./Typescripts/**/*", ["webpack"]);
+});
+
 gulp.task("webpack", function () {
     return webpack(webpackConfig).run(function (done) {
         if (done) {
