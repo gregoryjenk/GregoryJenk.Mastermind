@@ -11,4 +11,7 @@
     <PackageReference Include="MSTest.TestAdapter" Version="1.2.0" />
     <PackageReference Include="MSTest.TestFramework" Version="1.2.0" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\GregoryJenk.Mastermind.Web.Mvc\GregoryJenk.Mastermind.Web.Mvc.csproj" />
+  </ItemGroup>
 </Project>
