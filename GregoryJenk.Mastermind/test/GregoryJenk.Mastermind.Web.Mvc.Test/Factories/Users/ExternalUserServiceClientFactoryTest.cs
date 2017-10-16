@@ -9,7 +9,7 @@ namespace GregoryJenk.Mastermind.Web.Mvc.Test.Factories.Users
     [TestClass]
     public class ExternalUserServiceClientFactoryTest
     {
-        [TestMethod]
+        [TestMethod, TestCategory("Unit")]
         public void CreateWithGoogleWillReturnGoogleUserServiceClient()
         {
             //Arrange.
