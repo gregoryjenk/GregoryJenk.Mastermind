@@ -3,11 +3,23 @@
   "compilerOptions": {
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "inlineSourceMap": false,
+    "inlineSources": false,
     "module": "commonjs",
+    "moduleResolution": "node",
+    "noEmitOnError": true,
+    "noImplicitAny": false,
+    "removeComments": false,
     "sourceMap": false,
-    "target": "es6"
+    "target": "es6",
+    "types": [
+      "jasmine"
+    ],
+    "typeRoots": [
+      "./node_modules/@types/"
+    ]
   },
-  "exclude": [
-    "node_modules"
+  "files": [
+    "karma.conf.ts"
   ]
 }
