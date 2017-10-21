@@ -19,6 +19,7 @@
       "./node_modules/@types/"
     ]
   },
+  //Either the exclude or files properties can be used, but not both, files takes priority.
   "files": [
     "karma.conf.ts"
   ]

@@ -1,7 +1,7 @@
 ﻿import {} from "jasmine";
 
-describe("Game model", function () {
-    it("should have true equal to true.", function () {
+describe("Game model", () => {
+    it("should have true equal to true.", () => {
         expect(true).toEqual(true);
     });
 });
