@@ -22,6 +22,11 @@ namespace GregoryJenk.Mastermind.Web.Mvc.ServiceClients.Users
             throw new NotImplementedException();
         }
 
+        public Uri ReadAuthoriseUri()
+        {
+            throw new NotImplementedException();
+        }
+
         public ExternalUserViewModel ReadById(string id)
         {
             throw new NotImplementedException();

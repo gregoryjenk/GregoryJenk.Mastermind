@@ -1,5 +1,6 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Authentication;
+﻿using GregoryJenk.Mastermind.Web.Mvc.Factories.Users;
+using GregoryJenk.Mastermind.Web.Mvc.ServiceClients.Users;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
@@ -9,6 +10,13 @@ namespace GregoryJenk.Mastermind.Web.Mvc.Controllers.Mvc
 {
     public class DefaultController : Controller
     {
+        private readonly ExternalUserServiceClientFactory _externalUserServiceClientFactory;
+
+        public DefaultController(ExternalUserServiceClientFactory externalUserServiceClientFactory)
+        {
+            _externalUserServiceClientFactory = externalUserServiceClientFactory;
+        }
+
         [HttpGet, Route("/error")]
         public IActionResult Error()
         {
@@ -18,17 +26,14 @@ namespace GregoryJenk.Mastermind.Web.Mvc.Controllers.Mvc
         [HttpGet, Route("/external")]
         public IActionResult External(string authenticationScheme)
         {
-            var authenticationProperties = new AuthenticationProperties()
-            {
-                RedirectUri = "/"
-            };
+            IExternalUserServiceClient externalUserServiceClient = _externalUserServiceClientFactory.Create(authenticationScheme);
 
-            //TODO: Check that the user has been saved.
+            Uri authorisationUrl = externalUserServiceClient.ReadAuthoriseUri();
 
-            return new ChallengeResult(authenticationScheme, authenticationProperties);
+            return new RedirectResult(authorisationUrl.AbsoluteUri);
         }
 
-        [Authorize, HttpGet, Route("/"), Route("{*url}")]
+        [HttpGet, Route("/"), Route("{*url}")]
         public IActionResult Index()
         {
             return View();
@@ -37,6 +42,14 @@ namespace GregoryJenk.Mastermind.Web.Mvc.Controllers.Mvc
         [HttpGet, Route("/login")]
         public IActionResult Login()
         {
+            return View();
+        }
+
+        [HttpGet, Route("/login-google")]
+        public IActionResult LoginGoogle()
+        {
+            IExternalUserServiceClient externalUserServiceClient = _externalUserServiceClientFactory.Create("google");
+
             return View();
         }
 

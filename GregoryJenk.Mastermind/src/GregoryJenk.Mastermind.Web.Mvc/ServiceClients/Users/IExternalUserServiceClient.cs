@@ -6,6 +6,6 @@ namespace GregoryJenk.Mastermind.Web.Mvc.ServiceClients.Users
 {
     public interface IExternalUserServiceClient : IReadOnlyServiceClient<ExternalUserViewModel, string>
     {
-
+        Uri ReadAuthoriseUri();
     }
 }

@@ -1,4 +1,7 @@
-﻿using GregoryJenk.Mastermind.Message.ViewModels.Users;
+﻿using Google.Apis.Auth.OAuth2;
+using Google.Apis.Auth.OAuth2.Flows;
+using GregoryJenk.Mastermind.Message.ViewModels.Users;
+using GregoryJenk.Mastermind.Web.Mvc.Options.Authentication.Google;
 using GregoryJenk.Mastermind.Web.Mvc.Options.Services.Google;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json.Linq;
@@ -15,12 +18,15 @@ namespace GregoryJenk.Mastermind.Web.Mvc.ServiceClients.Users
     /// </summary>
     public class GoogleUserServiceClient : IExternalUserServiceClient
     {
+        private readonly IOptions<GoogleAuthenticationOption> _googleAuthenticationOption;
         private readonly HttpClient _httpClient;
         private readonly string _apiKey;
         private readonly string _resource;
 
-        public GoogleUserServiceClient(IOptions<GoogleServiceOption> googleServiceOption)
+        public GoogleUserServiceClient(IOptions<GoogleAuthenticationOption> googleAuthenticationOption, IOptions<GoogleServiceOption> googleServiceOption)
         {
+            _googleAuthenticationOption = googleAuthenticationOption;
+
             _httpClient = new HttpClient()
             {
                 BaseAddress = googleServiceOption.Value.BaseUrl
@@ -29,6 +35,27 @@ namespace GregoryJenk.Mastermind.Web.Mvc.ServiceClients.Users
             _apiKey = googleServiceOption.Value.ApiKey;
 
             _resource = "plus";
+        }
+
+        public Uri ReadAuthoriseUri()
+        {
+            IAuthorizationCodeFlow authorizationCodeFlow = new GoogleAuthorizationCodeFlow(new GoogleAuthorizationCodeFlow.Initializer()
+            {
+                ClientSecrets = new ClientSecrets()
+                {
+                    ClientId = _googleAuthenticationOption.Value.ClientId,
+                    ClientSecret = _googleAuthenticationOption.Value.ClientSecret
+                },
+                Scopes = new string[]
+                {
+                    "https://www.googleapis.com/auth/userinfo.email"
+                }
+            });
+
+            //TODO: Parameterise the redirect URI.
+            Uri authorizationCodeRequestUrl = authorizationCodeFlow.CreateAuthorizationCodeRequest("http://localhost:50793/login-google").Build();
+
+            return authorizationCodeRequestUrl;
         }
 
         public ExternalUserViewModel ReadById(string id)

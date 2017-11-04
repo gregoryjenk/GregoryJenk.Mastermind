@@ -1,8 +1,8 @@
 ﻿using GregoryJenk.Mastermind.Web.Mvc.Factories.Users;
+using GregoryJenk.Mastermind.Web.Mvc.Options.Authentication.Google;
 using GregoryJenk.Mastermind.Web.Mvc.Options.Services.Games;
 using GregoryJenk.Mastermind.Web.Mvc.Options.Services.Google;
 using GregoryJenk.Mastermind.Web.Mvc.ServiceClients.Games;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -44,6 +44,7 @@ namespace GregoryJenk.Mastermind.Web.Mvc
             serviceCollection.AddOptions();
 
             serviceCollection.Configure<GameServiceOption>(options => _configuration.GetSection("services:game").Bind(options));
+            serviceCollection.Configure<GoogleAuthenticationOption>(options => _configuration.GetSection("authentication:google").Bind(options));
             serviceCollection.Configure<GoogleServiceOption>(options => _configuration.GetSection("services:google").Bind(options));
 
             serviceCollection.AddMvc()
