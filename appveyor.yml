@@ -15,3 +15,4 @@ before_build:
     dotnet build
 build:
   verbosity: normal
+test: off
