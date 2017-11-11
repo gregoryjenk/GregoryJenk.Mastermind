@@ -3,7 +3,7 @@
 export class AppErrorHandler extends ErrorHandler {
     //TODO: Add proper constructor(rethrowError?: boolean) in error handling.
     constructor() {
-        super(false);
+        super();
     }
 
     handleError(error: any): void {
