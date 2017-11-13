@@ -1,4 +1,4 @@
-﻿import { Http } from "@angular/http";
+﻿import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs/Observable";
 import { BaseService } from "../base.service";
@@ -8,12 +8,12 @@ import { User } from "../../Models/Users/user.model";
 export class UserService extends BaseService {
     private userUrl = "api/user";
 
-    constructor(private http: Http) {
+    constructor(private httpClient: HttpClient) {
         super();
     }
 
     public read(): Observable<User> {
-        return this.http.get(this.userUrl)
+        return this.httpClient.get(this.userUrl)
             .map(this.convertResponseToObject);
     }
 }

@@ -2,13 +2,14 @@
 using GregoryJenk.Mastermind.Web.Mvc.Extensions.Users;
 using GregoryJenk.Mastermind.Web.Mvc.Factories.Users;
 using GregoryJenk.Mastermind.Web.Mvc.ServiceClients.Users;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
 
 namespace GregoryJenk.Mastermind.Web.Mvc.Controllers.Api.Users
 {
-    [Route("/api/user")] //TODO: Authorize.
+    [Authorize, Route("/api/user")]
     public class UserController : Controller
     {
         private readonly ExternalUserServiceClientFactory _externalUserServiceClientFactory;

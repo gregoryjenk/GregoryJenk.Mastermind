@@ -1,6 +1,6 @@
 ﻿import { ErrorHandler, NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { HttpModule, JsonpModule } from "@angular/http";
+import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { BrowserModule } from "@angular/platform-browser";
 import { ChartsModule } from "ng2-charts/ng2-charts";
 import { MomentModule } from "angular2-moment";
@@ -8,6 +8,7 @@ import { SlimLoadingBarModule } from "ng2-slim-loading-bar";
 import { AppErrorHandler } from "./app.error";
 import { routing, appRoutingProviders } from "./app.route";
 import { AppComponent } from "./Components/app.component";
+import { AuthenticationInterceptor } from "./Interceptors/Authentication/authentication.interceptor";
 import { DashboardComponent } from "./Components/Dashboards/dashboard.component";
 import { GameComponent } from "./Components/Games/game.component";
 import { GameService } from "./Services/Games/game.service";
@@ -38,8 +39,7 @@ import "rxjs/add/operator/map";
         BrowserModule,
         ChartsModule,
         FormsModule,
-        HttpModule,
-        JsonpModule,
+        HttpClientModule,
         MomentModule,
         SlimLoadingBarModule,
         routing
@@ -47,6 +47,11 @@ import "rxjs/add/operator/map";
     providers: [
         appRoutingProviders,
         GameService,
+        {
+            multi: true,
+            provide: HTTP_INTERCEPTORS,
+            useClass: AuthenticationInterceptor
+        },
         NotificationService,
         {
             provide: ErrorHandler,
