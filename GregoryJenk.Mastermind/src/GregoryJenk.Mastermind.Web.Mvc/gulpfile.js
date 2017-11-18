@@ -148,7 +148,11 @@ gulp.task("typescript", function () {
         .js.pipe(gulp.dest(typeScriptProject.config.compilerOptions.outDir));
 });
 
-gulp.task("watch", function () {
+gulp.task("watch-less", function () {
+    return gulp.watch("./wwwroot/app/less/**/*", ["less"]);
+});
+
+gulp.task("watch-webpack", function () {
     return gulp.watch("./Typescripts/**/*", ["webpack"]);
 });
 

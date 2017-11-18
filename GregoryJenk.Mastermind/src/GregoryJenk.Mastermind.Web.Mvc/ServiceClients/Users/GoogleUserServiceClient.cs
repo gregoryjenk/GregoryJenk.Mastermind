@@ -1,5 +1,6 @@
 ﻿using Google.Apis.Auth.OAuth2;
 using Google.Apis.Auth.OAuth2.Flows;
+using Google.Apis.Auth.OAuth2.Responses;
 using GregoryJenk.Mastermind.Message.ViewModels.Users;
 using GregoryJenk.Mastermind.Web.Mvc.Options.Authentication.Google;
 using GregoryJenk.Mastermind.Web.Mvc.Options.Services.Google;
@@ -10,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading;
 
 namespace GregoryJenk.Mastermind.Web.Mvc.ServiceClients.Users
 {
@@ -39,7 +41,72 @@ namespace GregoryJenk.Mastermind.Web.Mvc.ServiceClients.Users
 
         public Uri ReadAuthoriseUri()
         {
-            IAuthorizationCodeFlow authorizationCodeFlow = new GoogleAuthorizationCodeFlow(new GoogleAuthorizationCodeFlow.Initializer()
+            IAuthorizationCodeFlow authorizationCodeFlow = CreateAuthorisationFlow();
+
+            //TODO: Parameterise the redirect URI.
+            Uri authorizationCodeRequestUrl = authorizationCodeFlow.CreateAuthorizationCodeRequest("http://localhost:50793/login-google").Build();
+
+            return authorizationCodeRequestUrl;
+        }
+
+        public UserViewModel ReadByCode(string code)
+        {
+            UserViewModel userViewModel = new UserViewModel();
+
+            IAuthorizationCodeFlow authorizationCodeFlow = CreateAuthorisationFlow();
+
+            CancellationToken cancellationToken = new CancellationToken();
+
+            TokenResponse tokenResponse = authorizationCodeFlow.ExchangeCodeForTokenAsync("", code, "http://localhost:50793/login-google", cancellationToken).Result;
+
+            HttpResponseMessage httpResponseMessage = _httpClient.GetAsync(string.Format("oauth2/v1/userinfo?alt=json&access_token={0}", tokenResponse.AccessToken)).Result;
+
+            if (httpResponseMessage.StatusCode == HttpStatusCode.OK)
+            {
+                dynamic json = JObject.Parse(httpResponseMessage.Content.ReadAsStringAsync().Result);
+
+                if (!string.IsNullOrEmpty(Convert.ToString(json.name)))
+                {
+                    userViewModel.Name = Convert.ToString(json.name);
+                }
+
+                if (!string.IsNullOrEmpty(Convert.ToString(json.email)))
+                {
+                    userViewModel.Email = Convert.ToString(json.email);
+                }
+
+                if (!string.IsNullOrEmpty(Convert.ToString(json.id)))
+                {
+                    userViewModel.ExternalId = Convert.ToString(json.id);
+                }
+
+                if (!string.IsNullOrEmpty(Convert.ToString(json.picture)))
+                {
+                    userViewModel.Image = ReadImage(Convert.ToString(json.picture));
+                }
+            }
+
+            return userViewModel;
+        }
+
+        public UserViewModel ReadById(string id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IList<UserViewModel> ReadAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IList<UserViewModel> ReadAll(int index, int count)
+        {
+            throw new NotImplementedException();
+        }
+
+        private IAuthorizationCodeFlow CreateAuthorisationFlow()
+        {
+            return new GoogleAuthorizationCodeFlow(new GoogleAuthorizationCodeFlow.Initializer()
             {
                 ClientSecrets = new ClientSecrets()
                 {
@@ -48,46 +115,10 @@ namespace GregoryJenk.Mastermind.Web.Mvc.ServiceClients.Users
                 },
                 Scopes = new string[]
                 {
-                    "https://www.googleapis.com/auth/userinfo.email"
+                    "https://www.googleapis.com/auth/userinfo.email",
+                    "https://www.googleapis.com/auth/userinfo.profile"
                 }
             });
-
-            //TODO: Parameterise the redirect URI.
-            Uri authorizationCodeRequestUrl = authorizationCodeFlow.CreateAuthorizationCodeRequest("http://localhost:50793/login-google").Build();
-
-            return authorizationCodeRequestUrl;
-        }
-
-        public ExternalUserViewModel ReadById(string id)
-        {
-            var externalUserViewModel = new ExternalUserViewModel();
-
-            if (!string.IsNullOrEmpty(id))
-            {
-                HttpResponseMessage httpResponseMessage = _httpClient.GetAsync(string.Format("{0}/v1/people/{1}?key={2}", _resource, id, _apiKey)).Result;
-
-                if (httpResponseMessage.StatusCode == HttpStatusCode.OK)
-                {
-                    dynamic json = JObject.Parse(httpResponseMessage.Content.ReadAsStringAsync().Result);
-
-                    if (!string.IsNullOrEmpty(Convert.ToString(json.image.url)))
-                    {
-                        externalUserViewModel.Image = ReadImage(Convert.ToString(json.image.url));
-                    }
-                }
-            }
-
-            return externalUserViewModel;
-        }
-
-        public IList<ExternalUserViewModel> ReadAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        public IList<ExternalUserViewModel> ReadAll(int index, int count)
-        {
-            throw new NotImplementedException();
         }
 
         private string ReadImage(string path)

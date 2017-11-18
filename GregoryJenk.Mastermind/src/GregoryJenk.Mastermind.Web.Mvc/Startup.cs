@@ -3,11 +3,14 @@ using GregoryJenk.Mastermind.Web.Mvc.Options.Authentication.Google;
 using GregoryJenk.Mastermind.Web.Mvc.Options.Services.Games;
 using GregoryJenk.Mastermind.Web.Mvc.Options.Services.Google;
 using GregoryJenk.Mastermind.Web.Mvc.ServiceClients.Games;
+using GregoryJenk.Mastermind.Web.Mvc.Services.Tokens;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using System;
@@ -47,6 +50,22 @@ namespace GregoryJenk.Mastermind.Web.Mvc
             serviceCollection.Configure<GoogleAuthenticationOption>(options => _configuration.GetSection("authentication:google").Bind(options));
             serviceCollection.Configure<GoogleServiceOption>(options => _configuration.GetSection("services:google").Bind(options));
 
+            serviceCollection.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(configureOptions =>
+                {
+                    configureOptions.TokenValidationParameters = new TokenValidationParameters()
+                    {
+                        //TODO: Change the JWT configuration to be read from the settings file.
+                        IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("foobarfoobarfoobarfoobar")),
+                        ValidateActor = true,
+                        ValidateAudience = true,
+                        ValidateIssuerSigningKey = true,
+                        ValidateLifetime = true,
+                        ValidAudience = "http://localhost:50793/",
+                        ValidIssuer = "GregoryJenk.Mastermind.Web.Mvc"
+                    };
+                });
+
             serviceCollection.AddMvc()
                 .AddJsonOptions(mvcJsonOptions => {
                     mvcJsonOptions.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
@@ -60,12 +79,15 @@ namespace GregoryJenk.Mastermind.Web.Mvc
             //Register implementations for Depedency Injection here.
             serviceCollection.AddSingleton<ExternalUserServiceClientFactory>();
             serviceCollection.AddTransient<IGameServiceClient, GameServiceClient>();
+            serviceCollection.AddTransient<ITokenService, JwtService>();
         }
 
         public void Configure(IApplicationBuilder applicationBuilder, IHostingEnvironment hostingEnvironment, ILoggerFactory loggerFactory)
         {
             loggerFactory.AddConsole();
             loggerFactory.AddDebug();
+
+            applicationBuilder.UseAuthentication();
 
             if (hostingEnvironment.IsDevelopment())
             {

@@ -1,19 +1,23 @@
-﻿using GregoryJenk.Mastermind.Web.Mvc.Factories.Users;
+﻿using GregoryJenk.Mastermind.Message.ViewModels.Users;
+using GregoryJenk.Mastermind.Web.Mvc.Factories.Users;
 using GregoryJenk.Mastermind.Web.Mvc.ServiceClients.Users;
+using GregoryJenk.Mastermind.Web.Mvc.Services.Tokens;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
-using System.Threading.Tasks;
+using System.Reflection;
 
 namespace GregoryJenk.Mastermind.Web.Mvc.Controllers.Mvc
 {
     public class DefaultController : Controller
     {
+        private readonly ITokenService _tokenService;
         private readonly ExternalUserServiceClientFactory _externalUserServiceClientFactory;
 
-        public DefaultController(ExternalUserServiceClientFactory externalUserServiceClientFactory)
+        public DefaultController(ITokenService tokenService, ExternalUserServiceClientFactory externalUserServiceClientFactory)
         {
+            _tokenService = tokenService;
             _externalUserServiceClientFactory = externalUserServiceClientFactory;
         }
 
@@ -36,6 +40,10 @@ namespace GregoryJenk.Mastermind.Web.Mvc.Controllers.Mvc
         [HttpGet, Route("/"), Route("{*url}")]
         public IActionResult Index()
         {
+            var assemblyInformationalVersionAttribute = Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>();
+
+            ViewBag.Version = assemblyInformationalVersionAttribute.InformationalVersion;
+
             return View();
         }
 
@@ -46,17 +54,23 @@ namespace GregoryJenk.Mastermind.Web.Mvc.Controllers.Mvc
         }
 
         [HttpGet, Route("/login-google")]
-        public IActionResult LoginGoogle()
+        public IActionResult LoginGoogle(string code)
         {
             IExternalUserServiceClient externalUserServiceClient = _externalUserServiceClientFactory.Create("google");
 
-            return View();
+            UserViewModel userViewModel = externalUserServiceClient.ReadByCode(code);
+
+            //TODO: Check that the user has been saved.
+
+            _tokenService.Create(userViewModel, "google");
+
+            return Redirect("/");
         }
 
         [Authorize, HttpGet, Route("/logout")]
-        public async Task<IActionResult> Logout()
+        public IActionResult Logout()
         {
-            await HttpContext.Authentication.SignOutAsync("Cookies");
+            _tokenService.Delete();
 
             return Redirect("/login");
         }

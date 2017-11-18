@@ -13,10 +13,6 @@ namespace GregoryJenk.Mastermind.Web.Mvc.ServiceClients.Users
     /// </summary>
     public class TwitterUserServiceClient : IExternalUserServiceClient
     {
-        private readonly HttpClient _httpClient;
-        private readonly string _apiKey;
-        private readonly string _resource;
-
         public TwitterUserServiceClient(IOptions<TwitterServiceOption> twitterServiceOption)
         {
             throw new NotImplementedException();
@@ -27,17 +23,22 @@ namespace GregoryJenk.Mastermind.Web.Mvc.ServiceClients.Users
             throw new NotImplementedException();
         }
 
-        public ExternalUserViewModel ReadById(string id)
+        public UserViewModel ReadByCode(string code)
         {
             throw new NotImplementedException();
         }
 
-        public IList<ExternalUserViewModel> ReadAll()
+        public UserViewModel ReadById(string id)
         {
             throw new NotImplementedException();
         }
 
-        public IList<ExternalUserViewModel> ReadAll(int index, int count)
+        public IList<UserViewModel> ReadAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IList<UserViewModel> ReadAll(int index, int count)
         {
             throw new NotImplementedException();
         }
