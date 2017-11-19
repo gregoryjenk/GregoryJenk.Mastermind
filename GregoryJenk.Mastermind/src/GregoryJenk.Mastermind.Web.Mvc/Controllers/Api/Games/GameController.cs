@@ -1,6 +1,6 @@
-﻿using GregoryJenk.Mastermind.Message.ViewModels.Games;
+﻿using GregoryJenk.Mastermind.Message.Extensions.Users;
+using GregoryJenk.Mastermind.Message.ViewModels.Games;
 using GregoryJenk.Mastermind.Message.ViewModels.Users;
-using GregoryJenk.Mastermind.Web.Mvc.Extensions.Users;
 using GregoryJenk.Mastermind.Web.Mvc.ServiceClients.Games;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

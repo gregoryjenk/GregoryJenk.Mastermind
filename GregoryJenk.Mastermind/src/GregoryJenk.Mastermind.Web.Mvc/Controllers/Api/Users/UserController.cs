@@ -1,5 +1,5 @@
-﻿using GregoryJenk.Mastermind.Message.ViewModels.Users;
-using GregoryJenk.Mastermind.Web.Mvc.Extensions.Users;
+﻿using GregoryJenk.Mastermind.Message.Extensions.Users;
+using GregoryJenk.Mastermind.Message.ViewModels.Users;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
