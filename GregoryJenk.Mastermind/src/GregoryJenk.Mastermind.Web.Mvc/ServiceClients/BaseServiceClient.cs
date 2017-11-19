@@ -1,10 +1,12 @@
 ﻿using GregoryJenk.Mastermind.Message.ViewModels;
+using GregoryJenk.Mastermind.Web.Mvc.Services.Tokens;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 
 namespace GregoryJenk.Mastermind.Web.Mvc.ServiceClients
@@ -15,12 +17,17 @@ namespace GregoryJenk.Mastermind.Web.Mvc.ServiceClients
         protected readonly HttpClient _httpClient;
         protected readonly string _resource;
 
-        public BaseServiceClient(Uri baseUrl, string resource)
+        public BaseServiceClient(ITokenService tokenService, Uri baseUrl, string resource)
         {
+            string tokenScheme = tokenService.ReadScheme();
+            string tokenValue = tokenService.ReadValue();
+
             _httpClient = new HttpClient()
             {
                 BaseAddress = baseUrl
             };
+
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(tokenScheme, tokenValue);
 
             _resource = resource;
         }

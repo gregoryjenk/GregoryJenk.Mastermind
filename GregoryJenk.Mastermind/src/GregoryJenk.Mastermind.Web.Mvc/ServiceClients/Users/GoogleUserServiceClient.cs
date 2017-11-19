@@ -57,6 +57,7 @@ namespace GregoryJenk.Mastermind.Web.Mvc.ServiceClients.Users
 
             CancellationToken cancellationToken = new CancellationToken();
 
+            //TODO: Parameterise the redirect URI.
             TokenResponse tokenResponse = authorizationCodeFlow.ExchangeCodeForTokenAsync("", code, "http://localhost:50793/login-google", cancellationToken).Result;
 
             HttpResponseMessage httpResponseMessage = _httpClient.GetAsync(string.Format("oauth2/v1/userinfo?alt=json&access_token={0}", tokenResponse.AccessToken)).Result;

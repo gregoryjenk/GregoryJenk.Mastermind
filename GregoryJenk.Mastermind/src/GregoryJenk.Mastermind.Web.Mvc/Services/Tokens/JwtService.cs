@@ -54,5 +54,17 @@ namespace GregoryJenk.Mastermind.Web.Mvc.Services.Tokens
             _httpContextAccessor.HttpContext.Response.Cookies.Delete("GregoryJenk.Mastermind.Web.Mvc.Controllers.Mvc.JwtToken.Scheme");
             _httpContextAccessor.HttpContext.Response.Cookies.Delete("GregoryJenk.Mastermind.Web.Mvc.Controllers.Mvc.JwtToken.Value");
         }
+
+        public string ReadScheme()
+        {
+            return _httpContextAccessor.HttpContext.Request.Cookies
+                .Single(x => x.Key == "GregoryJenk.Mastermind.Web.Mvc.Controllers.Mvc.JwtToken.Scheme").Value;
+        }
+
+        public string ReadValue()
+        {
+            return _httpContextAccessor.HttpContext.Request.Cookies
+                .Single(x => x.Key == "GregoryJenk.Mastermind.Web.Mvc.Controllers.Mvc.JwtToken.Value").Value;
+        }
     }
 }

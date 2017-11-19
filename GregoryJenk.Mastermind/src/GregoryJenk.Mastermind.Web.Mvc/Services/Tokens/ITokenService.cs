@@ -8,5 +8,7 @@ namespace GregoryJenk.Mastermind.Web.Mvc.Services.Tokens
     {
         void Create(UserViewModel userViewModel, string scheme);
         void Delete();
+        string ReadScheme();
+        string ReadValue();
     }
 }
