@@ -14,9 +14,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-  <PackageReference Include="Google.Apis.Auth" Version="1.30.0" />
+  <PackageReference Include="Google.Apis.Auth" Version="1.31.1" />
   <PackageReference Include="GregoryJenk.Mastermind.Message" Version="1.12.3" />
-  <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
+  <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.3" />
   </ItemGroup>
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="2.0.0" />
