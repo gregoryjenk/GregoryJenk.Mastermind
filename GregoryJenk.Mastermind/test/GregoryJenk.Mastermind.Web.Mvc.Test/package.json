@@ -5,12 +5,12 @@
   "devDependencies": {
     "@types/jasmine": "2.8.2",
     "jasmine": "2.8.0",
-    "karma": "1.7.1",
+    "karma": "2.0.0",
     "karma-jasmine": "1.1.1",
     "karma-phantomjs-launcher": "1.0.4",
-    "karma-spec-reporter": "0.0.31",
-    "karma-typescript": "3.0.8",
-    "ts-node": "3.3.0",
+    "karma-spec-reporter": "0.0.32",
+    "karma-typescript": "3.0.9",
+    "ts-node": "4.1.0",
     "typescript": "2.6.2"
   }
 }
