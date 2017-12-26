@@ -12,10 +12,10 @@ export class PegCodeComponent {
 
     }
 
-    private readColourClass(colour: CodePegColour): string {
+    private readColourClass(): string {
         let colourClass: string;
 
-        switch (colour) {
+        switch (this.pegCode.colour) {
             case CodePegColour.Lock:
                 colourClass = "peg-code__lock";
                 break;
