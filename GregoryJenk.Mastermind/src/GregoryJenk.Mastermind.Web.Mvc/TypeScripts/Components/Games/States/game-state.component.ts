@@ -15,6 +15,9 @@ export class GameStateComponent {
         let gameStateClass: string;
 
         switch (this.gameState) {
+            case GameState.Created:
+                gameStateClass = "game-state__created";
+                break;
             case GameState.Started:
                 gameStateClass = "game-state__started";
                 break;
@@ -29,5 +32,28 @@ export class GameStateComponent {
         }
 
         return gameStateClass;
+    }
+
+    private readGameStateTitle(): string {
+        let gameStateName: string;
+
+        switch (this.gameState) {
+            case GameState.Created:
+                gameStateName = "Created";
+                break;
+            case GameState.Started:
+                gameStateName = "Started";
+                break;
+            case GameState.Ended:
+                gameStateName = "Ended";
+                break;
+            case GameState.Matched:
+                gameStateName = "Matched";
+                break;
+            default:
+                throw new TypeError("No matching game state found");
+        }
+
+        return gameStateName;
     }
 }

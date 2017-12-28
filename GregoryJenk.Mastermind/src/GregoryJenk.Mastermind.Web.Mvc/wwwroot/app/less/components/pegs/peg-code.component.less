@@ -5,50 +5,55 @@
     height: 50px;
     margin: 5px;
     width: 50px;
-}
 
-    .peg-code.peg-code__dragging {
+    i {
+        visibility: hidden;
+    }
+
+    &.peg-code__dragging {
         
     }
 
-    .peg-code.peg-code__targeting {
+    &.peg-code__targeting {
         
     }
 
-    .peg-code.peg-code__lock {
+    &.peg-code__lock {
         background-color: transparent;
         text-align: center;
 
         i {
             color: #999999;
+            visibility: visible;
             margin-top: 10px;
         }
     }
 
-    .peg-code.peg-code__blue {
+    &.peg-code__blue {
         background-color: #AEC6CF;
     }
 
-    .peg-code.peg-code__green {
+    &.peg-code__green {
         background-color: #77DD77;
     }
 
-    .peg-code.peg-code__orange {
+    &.peg-code__orange {
         background-color: #FFB347;
     }
 
-    .peg-code.peg-code__purple {
+    &.peg-code__purple {
         background-color: #B39EB5;
     }
 
-    .peg-code.peg-code__red {
+    &.peg-code__red {
         background-color: #FF6961;
     }
 
-    .peg-code.peg-code__yellow {
+    &.peg-code__yellow {
         background-color: #FDFD96;
     }
 
-    .peg-code.peg-code__empty {
+    &.peg-code__empty {
         background-color: transparent;
     }
+}
