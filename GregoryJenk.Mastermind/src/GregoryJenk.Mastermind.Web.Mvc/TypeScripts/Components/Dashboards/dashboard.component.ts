@@ -5,7 +5,7 @@ import { Notification } from "../../Models/Notifications/notification.model";
 import { NotificationService } from "../../Services/Notifications/notification.service";
 
 @Component({
-    selector: ".dashboard-component",
+    selector: "dashboard",
     templateUrl: "/app/templates/components/dashboards/dashboard.component.html"
 })
 export class DashboardComponent {

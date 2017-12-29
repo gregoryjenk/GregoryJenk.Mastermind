@@ -1,6 +1,7 @@
 ﻿import { Routes, RouterModule } from "@angular/router";
 import { DashboardComponent } from "./Components/Dashboards/dashboard.component";
 import { GameComponent } from "./Components/Games/game.component";
+import { GameConfigureComponent } from "./Components/Games/game-configure.component";
 
 const appRoutes: Routes = [
     {
@@ -14,9 +15,13 @@ const appRoutes: Routes = [
         path: "dashboard"
     },
     {
-        component: GameComponent,
+        component: GameConfigureComponent,
         path: "play"
     },
+    {
+        component: GameComponent,
+        path: "game/:id"
+    }
     //{
     //    component: PageNotFoundComponent,
     //    path: "**"

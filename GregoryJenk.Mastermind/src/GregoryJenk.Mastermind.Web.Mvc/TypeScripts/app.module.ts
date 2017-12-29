@@ -11,6 +11,7 @@ import { AppComponent } from "./Components/app.component";
 import { AuthenticationInterceptor } from "./Interceptors/Authentication/authentication.interceptor";
 import { DashboardComponent } from "./Components/Dashboards/dashboard.component";
 import { GameComponent } from "./Components/Games/game.component";
+import { GameConfigureComponent } from "./Components/Games/game-configure.component";
 import { GameService } from "./Services/Games/game.service";
 import { GameStateComponent } from "./Components/Games/States/game-state.component";
 import { NavigationBarComponent } from "./Components/Navigations/navigation-bar.component";
@@ -30,6 +31,7 @@ import "rxjs/add/operator/map";
         AppComponent,
         DashboardComponent,
         GameComponent,
+        GameConfigureComponent,
         GameStateComponent,
         NavigationBarComponent,
         NotificationBarComponent,

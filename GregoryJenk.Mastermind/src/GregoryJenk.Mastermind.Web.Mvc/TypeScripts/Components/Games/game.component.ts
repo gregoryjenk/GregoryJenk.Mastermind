@@ -6,7 +6,7 @@ import { Notification } from "../../Models/Notifications/notification.model";
 import { NotificationService } from "../../Services/Notifications/notification.service";
 
 @Component({
-    selector: ".game-component",
+    selector: "game",
     templateUrl: "/app/templates/components/games/game.component.html"
 })
 export class GameComponent {
