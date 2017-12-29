@@ -33,6 +33,14 @@ namespace GregoryJenk.Mastermind.Web.Mvc.Controllers.Api.Games
             return Created(string.Format("api/game/{0}", gameViewModel.Id), gameViewModel);
         }
 
+        [HttpGet, Route("{id}")]
+        public IActionResult ReadById(Guid id)
+        {
+            GameViewModel gameViewModel = _gameServiceClient.ReadById(id);
+
+            return Ok(gameViewModel);
+        }
+
         [HttpGet, Route("")]
         public IActionResult ReadAll()
         {
