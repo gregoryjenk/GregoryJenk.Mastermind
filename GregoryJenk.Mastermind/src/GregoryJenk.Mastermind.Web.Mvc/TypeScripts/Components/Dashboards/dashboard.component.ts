@@ -12,7 +12,7 @@ import { NotificationService } from "../../Services/Notifications/notification.s
 export class DashboardComponent {
     private games: Game[] = [];
 
-    constructor(private router: Router, private gameService: GameService, private notificationService: NotificationService) {
+    constructor(private gameService: GameService, private notificationService: NotificationService, private router: Router) {
         this.notificationService.start();
 
         this.gameService.readAll()
