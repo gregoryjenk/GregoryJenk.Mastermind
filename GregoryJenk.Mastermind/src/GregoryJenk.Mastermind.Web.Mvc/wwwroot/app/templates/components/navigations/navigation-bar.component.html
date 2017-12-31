@@ -1,25 +1,59 @@
-﻿<nav class="navbar navbar-default navbar-fixed-top animated fadeIn">
+﻿<nav class="navbar navbar-default navbar-fixed-top animated slideInDown">
     <div class="container">
         <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-6">
-                <a class="btn btn-lg btn-primary" routerLink="play" role="button">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-10">
+                <a routerLink="">
+                    Mastermind
+                </a>
+                <a routerLink="play">
                     Play
                 </a>
-                <a href="/logout">
-                    Logout
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 hidden-xs text-center">
+                <a href="https://www.gregoryjenk.com/" target="_blank" title="Gregory Jenkins' Website">
+                    <span class="fa-stack fa-lg">
+                        <i class="fa fa-circle-thin fa-stack-2x">
+
+                        </i>
+                        <i class="fa fa-globe fa-stack-1x">
+
+                        </i>
+                    </span>
+                </a>
+                <a href="https://github.com/gregoryjenk/GregoryJenk.Mastermind/" target="_blank" title="Mastermind on GitHub">
+                    <span class="fa-stack fa-lg">
+                        <i class="fa fa-circle-thin fa-stack-2x">
+
+                        </i>
+                        <i class="fa fa-github fa-stack-1x">
+
+                        </i>
+                    </span>
+                </a>
+                <a href="https://www.nuget.org/profiles/gregoryjenk/" target="_blank" title="Gregory Jenkins' NuGet packages">
+                    NuGet
+                    <i class="fa fa-external-link">
+
+                    </i>
+                </a>
+                <a href="https://www.npmjs.com/~gregoryjenk/" target="_blank" title="Gregory Jenkins' NPM packages">
+                    NPM
+                    <i class="fa fa-external-link">
+
+                    </i>
                 </a>
             </div>
-            <div class="col-lg-6 col-md-6 col-sm-6 text-right">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-2">
                 <div class="row">
-                    <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="col-lg-10 col-md-10 col-sm-10 hidden-xs text-right">
                         <b>
                             {{parent.user?.name}}
                         </b>
                         <br />
                         {{parent.user?.email}}
                     </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6">
-                        <img src="{{parent.user?.image}}" />
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                        <img class="user-image" src="{{parent.user?.image}}" />
                     </div>
                 </div>
             </div>
