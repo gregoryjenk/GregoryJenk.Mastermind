@@ -2,6 +2,7 @@
 import { Guess } from "./Guess.model";
 
 export class Game {
+    public id: string;
     public decoderUserId: string;
     public guesses: Guess[] = [];
     public answerCodePegs: CodePeg[] = [];
