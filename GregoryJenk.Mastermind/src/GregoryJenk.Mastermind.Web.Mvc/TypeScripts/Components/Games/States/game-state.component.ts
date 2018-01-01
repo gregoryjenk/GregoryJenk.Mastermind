@@ -28,7 +28,11 @@ export class GameStateComponent {
                 gameStateClass = "game-state__matched";
                 break;
             default:
-                throw new TypeError("No matching game state found");
+                gameStateClass = "game-state__unknown";
+                break;
+                //The issue with throwing an exception is when components are still
+                //loading the game state.
+                //throw new TypeError("No matching game state found");
         }
 
         return gameStateClass;
@@ -51,7 +55,11 @@ export class GameStateComponent {
                 gameStateName = "Matched";
                 break;
             default:
-                throw new TypeError("No matching game state found");
+                gameStateName = "Unknown";
+                break;
+                //The issue with throwing an exception is when components are still
+                //loading the game state.
+                //throw new TypeError("No matching game state found");
         }
 
         return gameStateName;

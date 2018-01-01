@@ -32,30 +32,34 @@ namespace GregoryJenk.Mastermind.Web.Mvc.ServiceClients
             _resource = resource;
         }
 
-        public VmId Create(VM viewModel)
+        public VM Create(VM viewModel)
         {
-            string json = JsonConvert.SerializeObject(viewModel);
+            string requestJson = JsonConvert.SerializeObject(viewModel);
 
-            StringContent jsonStringContent = new StringContent(json, Encoding.UTF8, "application/json");
+            StringContent requestJsonStringContent = new StringContent(requestJson, Encoding.UTF8, "application/json");
 
-            HttpResponseMessage httpResponseMessage = _httpClient.PostAsync(_resource, jsonStringContent).Result;
+            HttpResponseMessage httpResponseMessage = _httpClient.PostAsync(_resource, requestJsonStringContent).Result;
 
             httpResponseMessage.EnsureSuccessStatusCode();
 
-            string id = httpResponseMessage.Headers.Location.Segments.Last();
+            string responseJson = httpResponseMessage.Content.ReadAsStringAsync().Result;
 
-            return ConvertLocationIdToViewModelId(id);
+            return JsonConvert.DeserializeObject<VM>(responseJson);
         }
 
-        public void Update(VmId id, VM viewModel)
+        public VM Update(VmId id, VM viewModel)
         {
-            string json = JsonConvert.SerializeObject(viewModel);
+            string requestJson = JsonConvert.SerializeObject(viewModel);
 
-            StringContent jsonStringContent = new StringContent(json, Encoding.UTF8, "application/json");
+            StringContent requestJsonStringContent = new StringContent(requestJson, Encoding.UTF8, "application/json");
 
-            HttpResponseMessage httpResponseMessage = _httpClient.PutAsync(string.Format("{0}/{1}", _resource, id), jsonStringContent).Result;
+            HttpResponseMessage httpResponseMessage = _httpClient.PutAsync(string.Format("{0}/{1}", _resource, id), requestJsonStringContent).Result;
 
             httpResponseMessage.EnsureSuccessStatusCode();
+
+            string responseJson = httpResponseMessage.Content.ReadAsStringAsync().Result;
+
+            return JsonConvert.DeserializeObject<VM>(responseJson);
         }
 
         public void Delete(VmId id)
@@ -99,6 +103,7 @@ namespace GregoryJenk.Mastermind.Web.Mvc.ServiceClients
             throw new NotImplementedException();
         }
 
+        [Obsolete]
         private VmId ConvertLocationIdToViewModelId(string id)
         {
             return (VmId)TypeDescriptor.GetConverter(typeof(VmId)).ConvertFromInvariantString(id);

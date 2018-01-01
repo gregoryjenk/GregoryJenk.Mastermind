@@ -23,14 +23,17 @@ namespace GregoryJenk.Mastermind.Web.Mvc.Controllers.Api.Games
         [HttpPost, Route("")]
         public IActionResult Create([FromBody] GameViewModel gameViewModel)
         {
-            UserViewModel userViewModel = new UserViewModel();
-
-            userViewModel.ConvertPrincipal(User);
-
-            //TODO: Create game and return the values.
-            _gameServiceClient.Create(gameViewModel);
+            gameViewModel = _gameServiceClient.Create(gameViewModel);
 
             return Created(string.Format("api/game/{0}", gameViewModel.Id), gameViewModel);
+        }
+
+        [HttpPut, Route("{id}/state")]
+        public IActionResult UpdateState(Guid id, [FromBody] GameViewModel gameViewModel)
+        {
+            gameViewModel = _gameServiceClient.UpdateState(id, gameViewModel);
+
+            return Ok(gameViewModel);
         }
 
         [HttpGet, Route("{id}")]

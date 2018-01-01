@@ -1,4 +1,5 @@
 ﻿import { Component } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
 import { CodePeg } from "../../Models/Pegs/code-peg.model";
 import { Game } from "../../Models/Games/game.model";
 import { GameService } from "../../Services/Games/game.service";
@@ -18,21 +19,12 @@ export class GameComponent {
     private currentGame: Game;
     private playedGames: Game[] = [];
 
-    constructor(private gameService: GameService, private notificationService: NotificationService) {
+    constructor(private activatedRoute: ActivatedRoute, private gameService: GameService, private notificationService: NotificationService) {
         this.configureColours();
-    }
 
-    private onPegCodeDropped(pegCodeSource: CodePeg, pegCodeTarget: CodePeg) {
-        let guess = this.currentGame.guesses.length - 1;
-        let index = this.currentGame.guesses[guess].guessCodePegs.indexOf(pegCodeTarget);
-
-        this.currentGame.guesses[length].guessCodePegs[index] = pegCodeSource;
-    }
-
-    private startGame() {
         this.notificationService.start();
 
-        this.gameService.create(new Game())
+        this.gameService.readById(activatedRoute.snapshot.params["id"])
             .subscribe(
                 response => {
                     this.currentGame = response;
@@ -40,11 +32,40 @@ export class GameComponent {
                     this.notificationService.complete();
                 },
                 error => {
-                    this.notificationService.create(new Notification("Uh oh!", "Could not create game", NotificationType.Danger));
+                    this.notificationService.create(new Notification("Uh oh!", "Could not load game", NotificationType.Danger));
 
                     this.notificationService.complete();
                 }
             );
+    }
+
+    private startGame() {
+        var gameClone = Object.assign({}, this.currentGame);
+
+        gameClone.state = GameState.Started;
+
+        this.notificationService.start();
+
+        this.gameService.updateState(this.currentGame.id, gameClone)
+            .subscribe(
+                response => {
+                    this.currentGame = response;
+
+                    this.notificationService.complete();
+                },
+                error => {
+                    this.notificationService.create(new Notification("Uh oh!", "Could not start game", NotificationType.Danger));
+
+                    this.notificationService.complete();
+                }
+            );
+    }
+
+    private onPegCodeDropped(pegCodeSource: CodePeg, pegCodeTarget: CodePeg) {
+        let guess = this.currentGame.guesses.length - 1;
+        let index = this.currentGame.guesses[guess].guessCodePegs.indexOf(pegCodeTarget);
+
+        this.currentGame.guesses[length].guessCodePegs[index] = pegCodeSource;
     }
 
     private configureColours() {
