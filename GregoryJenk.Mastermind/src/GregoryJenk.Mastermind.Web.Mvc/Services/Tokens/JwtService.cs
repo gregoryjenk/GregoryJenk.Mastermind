@@ -1,20 +1,25 @@
 ﻿using GregoryJenk.Mastermind.Message.ViewModels.Users;
+using GregoryJenk.Mastermind.Web.Mvc.Options.Authentication.Jwt;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
+using System.Text;
 
 namespace GregoryJenk.Mastermind.Web.Mvc.Services.Tokens
 {
     public class JwtService : ITokenService
     {
-        protected readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IOptions<JwtAuthenticationOption> _jwtAuthenticationOption;
 
-        public JwtService(IHttpContextAccessor httpContextAccessor)
+        public JwtService(IHttpContextAccessor httpContextAccessor, IOptions<JwtAuthenticationOption> jwtAuthenticationOption)
         {
             _httpContextAccessor = httpContextAccessor;
+            _jwtAuthenticationOption = jwtAuthenticationOption;
         }
 
         public void Create(UserViewModel userViewModel, string scheme)
@@ -29,13 +34,12 @@ namespace GregoryJenk.Mastermind.Web.Mvc.Services.Tokens
             };
 
             JwtSecurityToken jwtSecurityToken = new JwtSecurityToken(
-                //TODO: Configure token properties.
-                audience: "http://localhost:50793/",
+                audience: _jwtAuthenticationOption.Value.ValidAudience,
                 claims: claims,
                 expires: DateTime.UtcNow.AddDays(2),
                 issuer: "GregoryJenk.Mastermind.Web.Mvc",
                 notBefore: DateTime.UtcNow,
-                signingCredentials: new SigningCredentials(new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("foobarfoobarfoobarfoobar")), SecurityAlgorithms.HmacSha256)
+                signingCredentials: new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtAuthenticationOption.Value.IssuerSigningKey)), SecurityAlgorithms.HmacSha256)
             );
 
             CookieOptions cookieOptions = new CookieOptions()

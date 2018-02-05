@@ -3,6 +3,7 @@ using Google.Apis.Auth.OAuth2.Flows;
 using Google.Apis.Auth.OAuth2.Responses;
 using GregoryJenk.Mastermind.Message.ViewModels.Users;
 using GregoryJenk.Mastermind.Web.Mvc.Options.Authentication.Google;
+using GregoryJenk.Mastermind.Web.Mvc.Options.Authentication.Jwt;
 using GregoryJenk.Mastermind.Web.Mvc.Options.Services.Google;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json.Linq;
@@ -21,13 +22,15 @@ namespace GregoryJenk.Mastermind.Web.Mvc.ServiceClients.Users
     public class GoogleUserServiceClient : IExternalUserServiceClient
     {
         private readonly IOptions<GoogleAuthenticationOption> _googleAuthenticationOption;
+        private readonly IOptions<JwtAuthenticationOption> _jwtAuthenticationOption;
         private readonly HttpClient _httpClient;
         private readonly string _apiKey;
         private readonly string _resource;
 
-        public GoogleUserServiceClient(IOptions<GoogleAuthenticationOption> googleAuthenticationOption, IOptions<GoogleServiceOption> googleServiceOption)
+        public GoogleUserServiceClient(IOptions<GoogleAuthenticationOption> googleAuthenticationOption, IOptions<GoogleServiceOption> googleServiceOption, IOptions<JwtAuthenticationOption> jwtAuthenticationOption)
         {
             _googleAuthenticationOption = googleAuthenticationOption;
+            _jwtAuthenticationOption = jwtAuthenticationOption;
 
             _httpClient = new HttpClient()
             {
@@ -43,8 +46,7 @@ namespace GregoryJenk.Mastermind.Web.Mvc.ServiceClients.Users
         {
             IAuthorizationCodeFlow authorizationCodeFlow = CreateAuthorisationFlow();
 
-            //TODO: Parameterise the redirect URI.
-            Uri authorizationCodeRequestUrl = authorizationCodeFlow.CreateAuthorizationCodeRequest("http://localhost:50793/login-google").Build();
+            Uri authorizationCodeRequestUrl = authorizationCodeFlow.CreateAuthorizationCodeRequest($"{_jwtAuthenticationOption.Value.ValidAudience}login-google").Build();
 
             return authorizationCodeRequestUrl;
         }
@@ -57,8 +59,7 @@ namespace GregoryJenk.Mastermind.Web.Mvc.ServiceClients.Users
 
             CancellationToken cancellationToken = new CancellationToken();
 
-            //TODO: Parameterise the redirect URI.
-            TokenResponse tokenResponse = authorizationCodeFlow.ExchangeCodeForTokenAsync("", code, "http://localhost:50793/login-google", cancellationToken).Result;
+            TokenResponse tokenResponse = authorizationCodeFlow.ExchangeCodeForTokenAsync("", code, $"{_jwtAuthenticationOption.Value.ValidAudience}login-google", cancellationToken).Result;
 
             HttpResponseMessage httpResponseMessage = _httpClient.GetAsync(string.Format("oauth2/v1/userinfo?alt=json&access_token={0}", tokenResponse.AccessToken)).Result;
 

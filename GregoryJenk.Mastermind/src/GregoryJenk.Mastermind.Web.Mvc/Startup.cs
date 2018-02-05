@@ -1,5 +1,6 @@
 ﻿using GregoryJenk.Mastermind.Web.Mvc.Factories.Users;
 using GregoryJenk.Mastermind.Web.Mvc.Options.Authentication.Google;
+using GregoryJenk.Mastermind.Web.Mvc.Options.Authentication.Jwt;
 using GregoryJenk.Mastermind.Web.Mvc.Options.Services.Games;
 using GregoryJenk.Mastermind.Web.Mvc.Options.Services.Google;
 using GregoryJenk.Mastermind.Web.Mvc.ServiceClients.Games;
@@ -16,6 +17,7 @@ using Newtonsoft.Json.Serialization;
 using System;
 using System.IO;
 using System.Linq;
+using System.Text;
 
 namespace GregoryJenk.Mastermind.Web.Mvc
 {
@@ -49,19 +51,19 @@ namespace GregoryJenk.Mastermind.Web.Mvc
             serviceCollection.Configure<GameServiceOption>(options => _configuration.GetSection("services:game").Bind(options));
             serviceCollection.Configure<GoogleAuthenticationOption>(options => _configuration.GetSection("authentication:google").Bind(options));
             serviceCollection.Configure<GoogleServiceOption>(options => _configuration.GetSection("services:google").Bind(options));
+            serviceCollection.Configure<JwtAuthenticationOption>(options => _configuration.GetSection("authentication:jwt").Bind(options));
 
             serviceCollection.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(configureOptions =>
                 {
                     configureOptions.TokenValidationParameters = new TokenValidationParameters()
                     {
-                        //TODO: Change the JWT configuration to be read from the settings file.
-                        IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("foobarfoobarfoobarfoobar")),
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["authentication:jwt:issuerSigningKey"])),
                         ValidateActor = true,
                         ValidateAudience = true,
                         ValidateIssuerSigningKey = true,
                         ValidateLifetime = true,
-                        ValidAudience = "http://localhost:50793/",
+                        ValidAudience = _configuration["authentication:jwt:validAudience"],
                         ValidIssuer = "GregoryJenk.Mastermind.Web.Mvc"
                     };
                 });
