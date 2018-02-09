@@ -13,11 +13,13 @@ namespace GregoryJenk.Mastermind.Web.Mvc.Controllers.Mvc
     public class DefaultController : Controller
     {
         private readonly ITokenService _tokenService;
+        private readonly IUserServiceClient _userServiceClient;
         private readonly ExternalUserServiceClientFactory _externalUserServiceClientFactory;
 
-        public DefaultController(ITokenService tokenService, ExternalUserServiceClientFactory externalUserServiceClientFactory)
+        public DefaultController(ITokenService tokenService, IUserServiceClient userServiceClient, ExternalUserServiceClientFactory externalUserServiceClientFactory)
         {
             _tokenService = tokenService;
+            _userServiceClient = userServiceClient;
             _externalUserServiceClientFactory = externalUserServiceClientFactory;
         }
 
@@ -56,15 +58,24 @@ namespace GregoryJenk.Mastermind.Web.Mvc.Controllers.Mvc
         [HttpGet, Route("/login-google")]
         public IActionResult LoginGoogle(string code)
         {
-            IExternalUserServiceClient externalUserServiceClient = _externalUserServiceClientFactory.Create("google");
+            try
+            {
+                IExternalUserServiceClient externalUserServiceClient = _externalUserServiceClientFactory.Create("google");
 
-            UserViewModel userViewModel = externalUserServiceClient.ReadByCode(code);
+                UserViewModel userViewModel = externalUserServiceClient.ReadByCode(code);
 
-            //TODO: Check that the user has been saved.
+                _tokenService.Create(userViewModel, "google");
 
-            _tokenService.Create(userViewModel, "google");
+                _userServiceClient.Upsert();
 
-            return Redirect("/");
+                return Redirect("/");
+            }
+            catch (Exception ex)
+            {
+                _tokenService.Delete();
+
+                return Redirect("/error");
+            }
         }
 
         [Authorize, HttpGet, Route("/logout")]

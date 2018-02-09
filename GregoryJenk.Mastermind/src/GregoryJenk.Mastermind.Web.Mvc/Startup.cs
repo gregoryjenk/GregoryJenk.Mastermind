@@ -4,6 +4,7 @@ using GregoryJenk.Mastermind.Web.Mvc.Options.Authentication.Jwt;
 using GregoryJenk.Mastermind.Web.Mvc.Options.Services.Games;
 using GregoryJenk.Mastermind.Web.Mvc.Options.Services.Google;
 using GregoryJenk.Mastermind.Web.Mvc.ServiceClients.Games;
+using GregoryJenk.Mastermind.Web.Mvc.ServiceClients.Users;
 using GregoryJenk.Mastermind.Web.Mvc.Services.Tokens;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -82,6 +83,7 @@ namespace GregoryJenk.Mastermind.Web.Mvc
             serviceCollection.AddSingleton<ExternalUserServiceClientFactory>();
             serviceCollection.AddTransient<IGameServiceClient, GameServiceClient>();
             serviceCollection.AddTransient<ITokenService, JwtService>();
+            serviceCollection.AddTransient<IUserServiceClient, UserServiceClient>();
         }
 
         public void Configure(IApplicationBuilder applicationBuilder, IHostingEnvironment hostingEnvironment, ILoggerFactory loggerFactory)
