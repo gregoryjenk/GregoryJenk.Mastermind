@@ -1,4 +1,5 @@
-﻿using GregoryJenk.Mastermind.Message.ViewModels.Users;
+﻿using GregoryJenk.Mastermind.Message.ViewModels.Tokens;
+using GregoryJenk.Mastermind.Message.ViewModels.Users;
 using GregoryJenk.Mastermind.Web.Mvc.Factories.Users;
 using GregoryJenk.Mastermind.Web.Mvc.ServiceClients.Users;
 using GregoryJenk.Mastermind.Web.Mvc.Services.Tokens;
@@ -64,7 +65,9 @@ namespace GregoryJenk.Mastermind.Web.Mvc.Controllers.Mvc
 
                 UserViewModel userViewModel = externalUserServiceClient.ReadByCode(code);
 
-                _tokenService.Create(userViewModel, "google");
+                TokenViewModel tokenViewModel = _tokenService.Create(userViewModel, "google");
+
+                _userServiceClient.IncludeAuthorisationHeader(tokenViewModel);
 
                 _userServiceClient.Upsert();
 

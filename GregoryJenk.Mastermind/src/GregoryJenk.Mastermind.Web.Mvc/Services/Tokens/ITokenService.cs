@@ -1,4 +1,5 @@
-﻿using GregoryJenk.Mastermind.Message.ViewModels.Users;
+﻿using GregoryJenk.Mastermind.Message.ViewModels.Tokens;
+using GregoryJenk.Mastermind.Message.ViewModels.Users;
 using System;
 using System.Linq;
 
@@ -6,9 +7,8 @@ namespace GregoryJenk.Mastermind.Web.Mvc.Services.Tokens
 {
     public interface ITokenService
     {
-        void Create(UserViewModel userViewModel, string scheme);
+        TokenViewModel Create(UserViewModel userViewModel, string scheme);
         void Delete();
-        string ReadScheme();
-        string ReadValue();
+        TokenViewModel Read();
     }
 }

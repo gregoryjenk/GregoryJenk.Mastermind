@@ -1,4 +1,5 @@
 ﻿using GregoryJenk.Mastermind.Message.ViewModels;
+using GregoryJenk.Mastermind.Message.ViewModels.Tokens;
 using GregoryJenk.Mastermind.Web.Mvc.Services.Tokens;
 using Newtonsoft.Json;
 using System;
@@ -15,21 +16,20 @@ namespace GregoryJenk.Mastermind.Web.Mvc.ServiceClients
     public abstract class BaseServiceClient<VM, VmId> where VM : BaseEntityViewModel<VmId>
     {
         protected readonly HttpClient _httpClient;
+        protected readonly ITokenService _tokenService;
         protected readonly string _resource;
 
         public BaseServiceClient(ITokenService tokenService, Uri baseUrl, string resource)
         {
-            string tokenScheme = tokenService.ReadScheme();
-            string tokenValue = tokenService.ReadValue();
-
             _httpClient = new HttpClient()
             {
                 BaseAddress = baseUrl
             };
 
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(tokenScheme, tokenValue);
-
+            _tokenService = tokenService;
             _resource = resource;
+
+            IncludeAuthorisationHeader(_tokenService.Read());
         }
 
         public VM Create(VM viewModel)
@@ -101,6 +101,14 @@ namespace GregoryJenk.Mastermind.Web.Mvc.ServiceClients
         public IList<VM> ReadAll(int index, int count)
         {
             throw new NotImplementedException();
+        }
+
+        public void IncludeAuthorisationHeader(TokenViewModel tokenViewModel)
+        {
+            if (!(tokenViewModel.Scheme is null) && !(tokenViewModel.Value is null))
+            {
+                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(tokenViewModel.Scheme, tokenViewModel.Value);
+            }
         }
 
         [Obsolete]

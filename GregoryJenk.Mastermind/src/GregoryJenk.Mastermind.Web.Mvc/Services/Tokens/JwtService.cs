@@ -1,4 +1,5 @@
-﻿using GregoryJenk.Mastermind.Message.ViewModels.Users;
+﻿using GregoryJenk.Mastermind.Message.ViewModels.Tokens;
+using GregoryJenk.Mastermind.Message.ViewModels.Users;
 using GregoryJenk.Mastermind.Web.Mvc.Options.Authentication.Jwt;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
@@ -22,7 +23,7 @@ namespace GregoryJenk.Mastermind.Web.Mvc.Services.Tokens
             _jwtAuthenticationOption = jwtAuthenticationOption;
         }
 
-        public void Create(UserViewModel userViewModel, string scheme)
+        public TokenViewModel Create(UserViewModel userViewModel, string scheme)
         {
             Claim[] claims = new Claim[]
             {
@@ -51,6 +52,12 @@ namespace GregoryJenk.Mastermind.Web.Mvc.Services.Tokens
 
             _httpContextAccessor.HttpContext.Response.Cookies.Append("GregoryJenk.Mastermind.Web.Mvc.Controllers.Mvc.JwtToken.Scheme", "Bearer", cookieOptions);
             _httpContextAccessor.HttpContext.Response.Cookies.Append("GregoryJenk.Mastermind.Web.Mvc.Controllers.Mvc.JwtToken.Value", token, cookieOptions);
+
+            return new TokenViewModel()
+            {
+                Scheme = "Bearer",
+                Value = token
+            };
         }
 
         public void Delete()
@@ -59,16 +66,25 @@ namespace GregoryJenk.Mastermind.Web.Mvc.Services.Tokens
             _httpContextAccessor.HttpContext.Response.Cookies.Delete("GregoryJenk.Mastermind.Web.Mvc.Controllers.Mvc.JwtToken.Value");
         }
 
-        public string ReadScheme()
+        public TokenViewModel Read()
         {
-            return _httpContextAccessor.HttpContext.Request.Cookies
-                .Single(x => x.Key == "GregoryJenk.Mastermind.Web.Mvc.Controllers.Mvc.JwtToken.Scheme").Value;
+            return new TokenViewModel()
+            {
+                Scheme = ReadScheme(),
+                Value = ReadValue()
+            };
         }
 
-        public string ReadValue()
+        private string ReadScheme()
         {
             return _httpContextAccessor.HttpContext.Request.Cookies
-                .Single(x => x.Key == "GregoryJenk.Mastermind.Web.Mvc.Controllers.Mvc.JwtToken.Value").Value;
+                .SingleOrDefault(x => x.Key == "GregoryJenk.Mastermind.Web.Mvc.Controllers.Mvc.JwtToken.Scheme").Value;
+        }
+
+        private string ReadValue()
+        {
+            return _httpContextAccessor.HttpContext.Request.Cookies
+                .SingleOrDefault(x => x.Key == "GregoryJenk.Mastermind.Web.Mvc.Controllers.Mvc.JwtToken.Value").Value;
         }
     }
 }
