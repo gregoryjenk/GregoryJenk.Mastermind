@@ -9,6 +9,7 @@ using GregoryJenk.Mastermind.Web.Mvc.Services.Tokens;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -84,6 +85,9 @@ namespace GregoryJenk.Mastermind.Web.Mvc
             serviceCollection.AddTransient<IGameServiceClient, GameServiceClient>();
             serviceCollection.AddTransient<ITokenService, JwtService>();
             serviceCollection.AddTransient<IUserServiceClient, UserServiceClient>();
+
+            //There is an issue with IHttpContextAccessor, it's not being injected automatically, so needs to be registered.
+            serviceCollection.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
         }
 
         public void Configure(IApplicationBuilder applicationBuilder, IHostingEnvironment hostingEnvironment, ILoggerFactory loggerFactory)

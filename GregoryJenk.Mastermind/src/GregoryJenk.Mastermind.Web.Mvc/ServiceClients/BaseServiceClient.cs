@@ -105,7 +105,7 @@ namespace GregoryJenk.Mastermind.Web.Mvc.ServiceClients
 
         public void IncludeAuthorisationHeader(TokenViewModel tokenViewModel)
         {
-            if (!(tokenViewModel.Scheme is null) && !(tokenViewModel.Value is null))
+            if (!string.IsNullOrEmpty(tokenViewModel.Scheme) && !string.IsNullOrEmpty(tokenViewModel.Value))
             {
                 _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(tokenViewModel.Scheme, tokenViewModel.Value);
             }
