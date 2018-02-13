@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
+<!DOCTYPE html>
 <html lang="en">
     <head>
         <base href="/" />
@@ -28,5 +29,6 @@
         <script src="~/lib/jquery/dist/jquery.min.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
         @RenderSection("body_scripts", false)
+        @Html.Raw(JavaScriptSnippet.FullScript)
     </body>
 </html>

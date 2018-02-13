@@ -80,6 +80,8 @@ namespace GregoryJenk.Mastermind.Web.Mvc
                     mvcJsonOptions.SerializerSettings.NullValueHandling = NullValueHandling.Include;
                 });
 
+            serviceCollection.AddApplicationInsightsTelemetry(_configuration["applicationInsights:instrumentationKey"]);
+
             //Register implementations for Depedency Injection here.
             serviceCollection.AddSingleton<ExternalUserServiceClientFactory>();
             serviceCollection.AddTransient<IGameServiceClient, GameServiceClient>();
