@@ -1,6 +1,6 @@
 {
   "name": "gregoryjenk-mastermind-web-mvc-test",
-  "version": "1.10.0",
+  "version": "1.11.1",
   "private": true,
   "devDependencies": {
     "@types/jasmine": "2.8.6",
