@@ -6,6 +6,7 @@ namespace GregoryJenk.Mastermind.Web.Mvc.ServiceClients.Games
 {
     public interface IGameServiceClient : IServiceClient<GameViewModel, Guid>
     {
+        GameViewModel CreateGuess(Guid id, GameViewModel gameViewModel, GuessViewModel guessViewModel);
         GameViewModel UpdateState(Guid id, GameViewModel gameViewModel);
     }
 }

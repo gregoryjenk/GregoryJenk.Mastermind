@@ -3,6 +3,7 @@ import { ActivatedRoute } from "@angular/router";
 import { CodePeg } from "../../Models/Pegs/code-peg.model";
 import { Game } from "../../Models/Games/game.model";
 import { GameService } from "../../Services/Games/game.service";
+import { Guess } from "../../Models/Games/Guess.model";
 import { Notification } from "../../Models/Notifications/notification.model";
 import { NotificationService } from "../../Services/Notifications/notification.service";
 
@@ -17,6 +18,7 @@ export class GameComponent {
 
     private colours: CodePeg[] = [];
     private currentGame: Game;
+    private currentGuess: Guess = new Guess();
     private playedGames: Game[] = [];
 
     constructor(private activatedRoute: ActivatedRoute, private gameService: GameService, private notificationService: NotificationService) {
@@ -55,6 +57,26 @@ export class GameComponent {
                 },
                 error => {
                     this.notificationService.create(new Notification("Uh oh!", "Could not start game", NotificationType.Danger));
+
+                    this.notificationService.complete();
+                }
+            );
+    }
+
+    private createGuess() {
+        this.notificationService.start();
+
+        this.gameService.createGuess(this.currentGame.id, this.currentGame, this.currentGuess)
+            .subscribe(
+                response => {
+                    this.currentGame = response;
+
+                    this.currentGuess = new Guess();
+
+                    this.notificationService.complete();
+                },
+                error => {
+                    this.notificationService.create(new Notification("Uh oh!", "Could not create guess", NotificationType.Danger));
 
                     this.notificationService.complete();
                 }

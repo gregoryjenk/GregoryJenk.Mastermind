@@ -12,38 +12,6 @@ var webpackConfig = require("./webpack.config.js");
 var paths = {
     lib: [
         {
-            src: "./node_modules/@angular/common/bundles/common.umd.js",
-            dest: "./wwwroot/lib/@angular/common/bundles/"
-        },
-        {
-            src: "./node_modules/@angular/compiler/bundles/compiler.umd.js",
-            dest: "./wwwroot/lib/@angular/compiler/bundles/"
-        },
-        {
-            src: "./node_modules/@angular/core/bundles/core.umd.js",
-            dest: "./wwwroot/lib/@angular/core/bundles/"
-        },
-        {
-            src: "./node_modules/@angular/forms/bundles/forms.umd.js",
-            dest: "./wwwroot/lib/@angular/forms/bundles/"
-        },
-        {
-            src: "./node_modules/@angular/http/bundles/http.umd.js",
-            dest: "./wwwroot/lib/@angular/http/bundles/"
-        },
-        {
-            src: "./node_modules/@angular/platform-browser/bundles/platform-browser.umd.js",
-            dest: "./wwwroot/lib/@angular/platform-browser/bundles/"
-        },
-        {
-            src: "./node_modules/@angular/platform-browser-dynamic/bundles/platform-browser-dynamic.umd.js",
-            dest: "./wwwroot/lib/@angular/platform-browser-dynamic/bundles/"
-        },
-        {
-            src: "./node_modules/@angular/router/bundles/router.umd.js",
-            dest: "./wwwroot/lib/@angular/router/bundles/"
-        },
-        {
             src: "./node_modules/animate.css/animate.min.css",
             dest: "./wwwroot/lib/animate.css/"
         },
@@ -88,12 +56,20 @@ var paths = {
             dest: "./wwwroot/lib/ng2-charts/components/charts/"
         },
         {
+            src: "./node_modules/popper.js/dist/umd/popper.min.js",
+            dest: "./wwwroot/lib/popper.js/dist/umd/"
+        },
+        {
             src: "./node_modules/reflect-metadata/Reflect.js",
             dest: "./wwwroot/lib/reflect-metadata/"
         },
         {
             src: "./node_modules/rxjs/**/*.js",
             dest: "./wwwroot/lib/rxjs/"
+        },
+        {
+            src: "./node_modules/@aspnet/signalr-client/dist/browser/signalr-client-1.0.0-alpha2-final.min.js",
+            dest: "./wwwroot/lib/@aspnet/signalr-client/dist/browser/"
         },
         {
             src: "./node_modules/systemjs/dist/system.src.js",

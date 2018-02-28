@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs/Observable";
 import { BaseService } from "../base.service";
 import { Game } from "../../Models/Games/game.model";
+import { Guess } from "../../Models/Games/Guess.model";
 
 //TODO: Convert result to proper response objects.
 @Injectable()
@@ -18,6 +19,14 @@ export class GameService extends BaseService {
         let requestOptions = { headers: headers };
 
         return this.httpClient.post(this.gameUrl, game, requestOptions)
+            .map(this.convertResponseToObject);
+    }
+
+    public createGuess(id: string, game: Game, guess: Guess): Observable<Game> {
+        let headers = new HttpHeaders({ "Content-Type": "application/json" });
+        let requestOptions = { headers: headers };
+
+        return this.httpClient.post(this.gameUrl + "/" + id + "/guess", { game: game, guess: guess }, requestOptions)
             .map(this.convertResponseToObject);
     }
 
