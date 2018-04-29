@@ -20,12 +20,12 @@ export class AppComponent {
 
         this.userService.read()
             .subscribe(
-                response => {
+                (response: any) => {
                     this.user = response;
 
                     this.notificationService.complete();
                 },
-                error => {
+                (error: any) => {
                     this.notificationService.create(new Notification("Uh oh!", "Could not read user", NotificationType.Danger));
 
                     this.notificationService.complete();

@@ -19,12 +19,12 @@ export class GameConfigureComponent {
 
         this.gameService.create(new Game())
             .subscribe(
-                response => {
+                (response: any) => {
                     this.router.navigate(["/game/" + response.id])
 
                     this.notificationService.complete();
                 },
-                error => {
+                (error: any) => {
                     this.notificationService.create(new Notification("Uh oh!", "Could not create game", NotificationType.Danger));
 
                     this.notificationService.complete();

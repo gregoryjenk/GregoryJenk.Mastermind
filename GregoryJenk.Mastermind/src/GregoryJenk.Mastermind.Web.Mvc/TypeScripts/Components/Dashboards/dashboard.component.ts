@@ -17,12 +17,12 @@ export class DashboardComponent {
 
         this.gameService.readAll()
             .subscribe(
-                response => {
+                (response: any) => {
                     this.games = response;
 
                     this.notificationService.complete();
                 },
-                error => {
+                (error: any) => {
                     this.notificationService.create(new Notification("Uh oh!", "Could not load games", NotificationType.Danger));
 
                     this.notificationService.complete();
@@ -35,12 +35,12 @@ export class DashboardComponent {
 
         this.gameService.create(new Game())
             .subscribe(
-                response => {
+                (response: any) => {
                     this.router.navigate(["/game/" + response.id])
 
                     this.notificationService.complete();
                 },
-                error => {
+                (error: any) => {
                     this.notificationService.create(new Notification("Uh oh!", "Could not create game", NotificationType.Danger));
 
                     this.notificationService.complete();

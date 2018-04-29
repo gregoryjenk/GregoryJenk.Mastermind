@@ -8,7 +8,7 @@ module.exports = {
     },
     module: {
         exprContextCritical: true,
-        loaders: [
+        rules: [
             {
                 include: [/TypeScripts/],
                 loader: "ts-loader",

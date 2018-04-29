@@ -28,12 +28,12 @@ export class GameComponent {
 
         this.gameService.readById(activatedRoute.snapshot.params["id"])
             .subscribe(
-                response => {
+                (response: any) => {
                     this.currentGame = response;
 
                     this.notificationService.complete();
                 },
-                error => {
+                (error: any) => {
                     this.notificationService.create(new Notification("Uh oh!", "Could not load game", NotificationType.Danger));
 
                     this.notificationService.complete();
@@ -50,12 +50,12 @@ export class GameComponent {
 
         this.gameService.updateState(this.currentGame.id, gameClone)
             .subscribe(
-                response => {
+                (response: any) => {
                     this.currentGame = response;
 
                     this.notificationService.complete();
                 },
-                error => {
+                (error: any) => {
                     this.notificationService.create(new Notification("Uh oh!", "Could not start game", NotificationType.Danger));
 
                     this.notificationService.complete();
@@ -68,14 +68,14 @@ export class GameComponent {
 
         this.gameService.createGuess(this.currentGame.id, this.currentGame, this.currentGuess)
             .subscribe(
-                response => {
+                (response: any) => {
                     this.currentGame = response;
 
                     this.currentGuess = new Guess();
 
                     this.notificationService.complete();
                 },
-                error => {
+                (error: any) => {
                     this.notificationService.create(new Notification("Uh oh!", "Could not create guess", NotificationType.Danger));
 
                     this.notificationService.complete();
