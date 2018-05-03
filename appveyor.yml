@@ -2,6 +2,7 @@ version: 1.0.{build}
 environment:
   nodejs_version: "6"
 install:
+- ps: Install-Product node $env:nodejs_version
 - cmd: >-
     cd GregoryJenk.Mastermind\src\GregoryJenk.Mastermind.Web.Mvc
 
