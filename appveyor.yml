@@ -6,7 +6,7 @@ install:
 - cmd: >-
     cd GregoryJenk.Mastermind\src\GregoryJenk.Mastermind.Web.Mvc
 
-    #Seems like the global NPM install is causing an issue.
+    # Seems like the global NPM install is causing an issue.
     #npm install -g npm
 
     npm install
