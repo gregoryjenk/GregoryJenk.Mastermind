@@ -10,7 +10,4 @@
     <PackageReference Include="GregoryJenk.Mastermind.Message" Version="1.13.3" />
     <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="2.0.1" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\GregoryJenk.Mastermind.Common\GregoryJenk.Mastermind.Common.csproj" />
-  </ItemGroup>
 </Project>
