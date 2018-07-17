@@ -5,7 +5,7 @@ import { CodePeg } from "../../Models/Pegs/code-peg.model";
     selector: "[peg-code-draggable]"
 })
 export class PegCodeDraggableDirective implements OnInit {
-    @Input("peg-code-draggable") pegCode: CodePeg;
+    @Input() pegCode: CodePeg;
 
     constructor(private elementRef: ElementRef) {
 
@@ -19,7 +19,7 @@ export class PegCodeDraggableDirective implements OnInit {
         el.addEventListener("dragstart", (e: any) => {
             el.classList.add("peg-code__dragging")
             e.dataTransfer.effectAllowed = "move";
-            e.dataTransfer.setData("value", JSON.stringify(this.pegCode));
+            e.dataTransfer.setData("text/plain", JSON.stringify(this.pegCode));
         });
 
         el.addEventListener("dragend", (e: any) => {

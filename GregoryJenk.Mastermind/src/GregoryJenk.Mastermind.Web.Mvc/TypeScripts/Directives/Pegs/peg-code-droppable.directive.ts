@@ -38,7 +38,7 @@ export class PegCodeDroppableDirective implements OnInit {
 
             el.classList.remove("peg-code__targeting");
 
-            let data = JSON.parse(e.dataTransfer.getData("value"));
+            let data = JSON.parse(e.dataTransfer.getData("text/plain"));
 
             this.pegCodeDropped.emit(data);
 
