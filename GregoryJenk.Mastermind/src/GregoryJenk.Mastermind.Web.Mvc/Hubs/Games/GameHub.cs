@@ -9,7 +9,7 @@ namespace GregoryJenk.Mastermind.Web.Mvc.Hubs.Games
     {
         public Task Send(string message)
         {
-            return Clients.All.InvokeAsync("Send", message);
+            return Clients.All.SendAsync("Send", message);
         }
     }
 }
