@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace GregoryJenk.Mastermind.Cache.InMemory.Caches.Users
 {
-    public class UserCache : BaseCache<UserViewModel, string>, IUserCache
+    public class UserCache : BaseCache<UserViewModel, Guid>, IUserCache
     {
 
     }
