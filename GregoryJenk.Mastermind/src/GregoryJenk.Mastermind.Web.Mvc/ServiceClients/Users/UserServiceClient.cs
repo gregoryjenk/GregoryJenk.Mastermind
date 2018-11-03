@@ -9,7 +9,7 @@ using System.Net.Http;
 
 namespace GregoryJenk.Mastermind.Web.Mvc.ServiceClients.Users
 {
-    public class UserServiceClient : BaseServiceClient<UserViewModel, string>, IUserServiceClient
+    public class UserServiceClient : BaseServiceClient<UserViewModel, Guid>, IUserServiceClient
     {
         public UserServiceClient(ITokenService tokenService, IOptions<GameServiceOption> gameServiceOption)
             : base(tokenService, gameServiceOption.Value.BaseUrl, "user")

@@ -23,7 +23,7 @@ import { PegCodeDroppableDirective } from "./Directives/Pegs/peg-code-droppable.
 import { UserService } from "./Services/Users/user.service";
 
 //Adding extension like function to map objects from service requests.
-import "rxjs/add/operator/map";
+import "rxjs/Rx";
 
 @NgModule({
     bootstrap: [AppComponent],

@@ -8,7 +8,7 @@ namespace GregoryJenk.Mastermind.Cache.InMemory.Caches
     {
         public BaseCache()
         {
-
+            
         }
 
         public bool Any(string key)
@@ -21,9 +21,9 @@ namespace GregoryJenk.Mastermind.Cache.InMemory.Caches
             return null;
         }
 
-        public void Set(VM viewModel)
+        public void Set(string key, VM viewModel)
         {
-
+            
         }
     }
 }
