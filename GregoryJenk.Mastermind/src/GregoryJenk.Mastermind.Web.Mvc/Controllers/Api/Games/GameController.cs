@@ -10,7 +10,7 @@ using System.Linq;
 namespace GregoryJenk.Mastermind.Web.Mvc.Controllers.Api.Games
 {
     [Authorize, Route("/api/game")]
-    public class GameController : Controller
+    public class GameController : ControllerBase
     {
         private readonly IGameServiceClient _gameServiceClient;
 

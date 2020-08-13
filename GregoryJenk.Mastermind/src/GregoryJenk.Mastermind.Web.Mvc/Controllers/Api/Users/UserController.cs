@@ -8,7 +8,7 @@ using System.Linq;
 namespace GregoryJenk.Mastermind.Web.Mvc.Controllers.Api.Users
 {
     [Authorize, Route("/api/user")]
-    public class UserController : Controller
+    public class UserController : ControllerBase
     {
         [HttpGet, Route("")]
         public IActionResult Read()
