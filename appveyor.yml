@@ -1,22 +1,8 @@
-version: 1.11.1.{build}
+version: '{branch}.{build}'
 environment:
-  nodejs_version: "6"
-install:
-- ps: Install-Product node $env:nodejs_version
-- cmd: >-
-    cd GregoryJenk.Mastermind\src\GregoryJenk.Mastermind.Web.Mvc
-
-    REM Seems like the global NPM install is causing an issue.
-    REM npm install -g npm
-
-    npm install
-before_build:
-- cmd: >-
-    dotnet --version
-
-    dotnet restore
-
-    dotnet build
+  nodejs_version: 14
+image: Visual Studio 2019
 build:
-  verbosity: normal
-test: off
+  project: ./GregoryJenk.Mastermind/GregoryJenk.Mastermind.sln
+  verbosity: detailed
+test: on
