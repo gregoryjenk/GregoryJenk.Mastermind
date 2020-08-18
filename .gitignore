@@ -261,6 +261,6 @@ __pycache__/
 *.pyc
 
 # Repository specific files
-GregoryJenk.Mastermind/src/GregoryJenk.Mastermind.Web.Mvc/wwwroot/app/css/*
-GregoryJenk.Mastermind/src/GregoryJenk.Mastermind.Web.Mvc/wwwroot/app/js/*
-GregoryJenk.Mastermind/src/GregoryJenk.Mastermind.Web.Mvc/wwwroot/lib/*
+src/src/GregoryJenk.Mastermind.Web.Mvc/wwwroot/app/css/*
+src/src/GregoryJenk.Mastermind.Web.Mvc/wwwroot/app/js/*
+src/src/GregoryJenk.Mastermind.Web.Mvc/wwwroot/lib/*

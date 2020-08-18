@@ -3,6 +3,6 @@ environment:
   nodejs_version: 14
 image: Visual Studio 2019
 build:
-  project: ./GregoryJenk.Mastermind/GregoryJenk.Mastermind.sln
+  project: ./src/GregoryJenk.Mastermind.sln
   verbosity: detailed
 test: on
