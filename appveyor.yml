@@ -5,6 +5,7 @@ image: Visual Studio 2019
 install:
 - cmd: >-
     cd ./src/src/GregoryJenk.Mastermind.Web.Mvc
+
     npm install
 before_build:
   nuget restore ../../../src/GregoryJenk.Mastermind.sln
