@@ -2,7 +2,13 @@ version: '{branch}.{build}'
 environment:
   nodejs_version: 14
 image: Visual Studio 2019
+install:
+- cmd: >-
+    cd ./src/src/GregoryJenk.Mastermind.Web.Mvc
+    npm install
+before_build:
+  nuget restore ../../../src/GregoryJenk.Mastermind.sln
 build:
   project: ./src/GregoryJenk.Mastermind.sln
-  verbosity: detailed
+  verbosity: normal
 test: on
