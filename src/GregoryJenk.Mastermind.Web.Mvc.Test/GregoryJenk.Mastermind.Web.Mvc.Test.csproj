@@ -18,6 +18,6 @@
     <PackageReference Include="MSTest.TestFramework" Version="1.3.2" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\GregoryJenk.Mastermind.Web.Mvc\GregoryJenk.Mastermind.Web.Mvc.csproj" />
+    <ProjectReference Include="..\src\GregoryJenk.Mastermind.Web.Mvc\GregoryJenk.Mastermind.Web.Mvc.csproj" />
   </ItemGroup>
 </Project>
