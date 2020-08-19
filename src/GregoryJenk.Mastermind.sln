@@ -3,9 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30406.217
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{ABABC048-4E23-4A42-A7D7-4207A18603A8}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GregoryJenk.Mastermind.Web.Mvc", "src\GregoryJenk.Mastermind.Web.Mvc\GregoryJenk.Mastermind.Web.Mvc.csproj", "{99C01F92-F2DF-434E-8BBF-3E70E03A915F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GregoryJenk.Mastermind.Web.Mvc", "GregoryJenk.Mastermind.Web.Mvc\GregoryJenk.Mastermind.Web.Mvc.csproj", "{99C01F92-F2DF-434E-8BBF-3E70E03A915F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GregoryJenk.Mastermind.Web.Mvc.Test", "GregoryJenk.Mastermind.Web.Mvc.Test\GregoryJenk.Mastermind.Web.Mvc.Test.csproj", "{841A094C-657F-46C5-97A3-8DC7AA084847}"
 EndProject
@@ -38,9 +36,6 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{99C01F92-F2DF-434E-8BBF-3E70E03A915F} = {ABABC048-4E23-4A42-A7D7-4207A18603A8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {266C35C1-0918-414E-AA32-EFFC7B1C523A}
