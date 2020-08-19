@@ -2,9 +2,6 @@
   <PropertyGroup>
     <VersionPrefix>2.0.0</VersionPrefix>
     <TargetFramework>netstandard2.0</TargetFramework>
-	  <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
-    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
-    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="GregoryJenk.Mastermind.Message" Version="1.14.0" />
