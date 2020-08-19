@@ -9,9 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GregoryJenk.Mastermind.Web.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GregoryJenk.Mastermind.Web.Mvc.Test", "GregoryJenk.Mastermind.Web.Mvc.Test\GregoryJenk.Mastermind.Web.Mvc.Test.csproj", "{841A094C-657F-46C5-97A3-8DC7AA084847}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GregoryJenk.Mastermind.Cache.InMemory", "src\GregoryJenk.Mastermind.Cache.InMemory\GregoryJenk.Mastermind.Cache.InMemory.csproj", "{7DBB1046-A524-4F0B-935C-10373FA437A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GregoryJenk.Mastermind.Cache.InMemory", "GregoryJenk.Mastermind.Cache.InMemory\GregoryJenk.Mastermind.Cache.InMemory.csproj", "{7DBB1046-A524-4F0B-935C-10373FA437A6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GregoryJenk.Mastermind.Cache.Redis", "src\GregoryJenk.Mastermind.Cache.Redis\GregoryJenk.Mastermind.Cache.Redis.csproj", "{24BF49DD-0EB5-489C-A15E-95CA50B6921C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GregoryJenk.Mastermind.Cache.Redis", "GregoryJenk.Mastermind.Cache.Redis\GregoryJenk.Mastermind.Cache.Redis.csproj", "{24BF49DD-0EB5-489C-A15E-95CA50B6921C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,8 +41,6 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{99C01F92-F2DF-434E-8BBF-3E70E03A915F} = {ABABC048-4E23-4A42-A7D7-4207A18603A8}
-		{7DBB1046-A524-4F0B-935C-10373FA437A6} = {ABABC048-4E23-4A42-A7D7-4207A18603A8}
-		{24BF49DD-0EB5-489C-A15E-95CA50B6921C} = {ABABC048-4E23-4A42-A7D7-4207A18603A8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {266C35C1-0918-414E-AA32-EFFC7B1C523A}
