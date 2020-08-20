@@ -2,7 +2,7 @@
 using System;
 using System.Linq;
 
-namespace GregoryJenk.Mastermind.Cache.InMemory.Caches.Users
+namespace GregoryJenk.Mastermind.Cache.Memory.Caches.Users
 {
     public class UserCache : BaseCache<UserViewModel, Guid>, IUserCache
     {

@@ -17,12 +17,14 @@ namespace GregoryJenk.Mastermind.Web.Mvc.Test.Factories.Users
         {
             //Arrange.
             var googleServiceOptionMock = new Mock<IOptions<GoogleServiceOption>>();
+
             googleServiceOptionMock.Setup(x => x.Value).Returns(new GoogleServiceOption()
             {
                 BaseUrl = new Uri("http://foo.bar")
             });
 
             var serviceProviderMock = new Mock<IServiceProvider>();
+
             serviceProviderMock.Setup(x => x.GetService(typeof(IOptions<GoogleServiceOption>))).Returns(googleServiceOptionMock.Object);
 
             var externalUserServiceClientFactory = new ExternalUserServiceClientFactory(serviceProviderMock.Object);

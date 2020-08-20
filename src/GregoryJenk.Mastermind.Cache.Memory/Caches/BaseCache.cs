@@ -2,13 +2,13 @@
 using System;
 using System.Linq;
 
-namespace GregoryJenk.Mastermind.Cache.InMemory.Caches
+namespace GregoryJenk.Mastermind.Cache.Memory.Caches
 {
     public abstract class BaseCache<VM, VmId> where VM : BaseEntityViewModel<VmId>
     {
         public BaseCache()
         {
-            
+
         }
 
         public bool Any(string key)
@@ -23,7 +23,7 @@ namespace GregoryJenk.Mastermind.Cache.InMemory.Caches
 
         public void Set(string key, VM viewModel)
         {
-            
+
         }
     }
 }
