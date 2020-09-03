@@ -15,5 +15,5 @@ See the published [GregoryJenk.Mastermind.Message NuGet package here](https://ww
 
 | Build | Status |
 | :--- | :--- |
-| AppVeyor (development) | [![Build status](https://ci.appveyor.com/api/projects/status/7vpioj2jryfejmd5/branch/development?svg=true)](https://ci.appveyor.com/project/gregoryjenk/gregoryjenk-mastermind/branch/development) |
+| AppVeyor (develop) | [![Build status](https://ci.appveyor.com/api/projects/status/7vpioj2jryfejmd5/branch/develop?svg=true)](https://ci.appveyor.com/project/gregoryjenk/gregoryjenk-mastermind/branch/develop) |
 | AppVeyor (master) | [![Build status](https://ci.appveyor.com/api/projects/status/7vpioj2jryfejmd5/branch/master?svg=true)](https://ci.appveyor.com/project/gregoryjenk/gregoryjenk-mastermind/branch/master) |
