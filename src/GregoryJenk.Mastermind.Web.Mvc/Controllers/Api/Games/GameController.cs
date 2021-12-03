@@ -30,10 +30,7 @@ namespace GregoryJenk.Mastermind.Web.Mvc.Controllers.Api.Games
         [HttpPost, Route("{id}/guess")]
         public IActionResult CreateGuess(Guid id, [FromBody] CreateGuessRequest createGuessRequest)
         {
-            GameViewModel gameViewModel = createGuessRequest.Game;
-            GuessViewModel guessViewModel = createGuessRequest.Guess;
-
-            gameViewModel = _gameServiceClient.CreateGuess(id, gameViewModel, guessViewModel);
+            var gameViewModel = _gameServiceClient.CreateGuess(id, createGuessRequest.Game, createGuessRequest.Guess);
 
             return Created(string.Format("api/game/{0}", gameViewModel.Id), gameViewModel);
         }
