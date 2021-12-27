@@ -7,9 +7,9 @@ namespace GregoryJenk.Mastermind.Web.Mvc.Hubs.Games
 {
     public class GameHub : Hub
     {
-        public Task Send(string message)
+        public async Task NotifyStateAsync(string message)
         {
-            return Clients.All.SendAsync("Send", message);
+            await Clients.All.SendAsync("notifyState", message);
         }
     }
 }
