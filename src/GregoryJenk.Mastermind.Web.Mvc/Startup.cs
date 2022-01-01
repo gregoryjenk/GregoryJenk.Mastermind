@@ -34,10 +34,10 @@ namespace GregoryJenk.Mastermind.Web.Mvc
 
         public Startup(IWebHostEnvironment webHostEnvironment)
         {
-            IConfigurationBuilder configurationBuilder = new ConfigurationBuilder()
+            var configurationBuilder = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{webHostEnvironment.EnvironmentName}.json", optional: true, reloadOnChange: true);
+                .AddJsonFile("appsettings.json", true, true)
+                .AddJsonFile($"appsettings.{webHostEnvironment.EnvironmentName}.json", true, true);
 
             if (webHostEnvironment.IsDevelopment())
             {
@@ -69,7 +69,7 @@ namespace GregoryJenk.Mastermind.Web.Mvc
 
             serviceCollection.Configure((GoogleAuthenticationOption googleAuthenticationOption) =>
             {
-                _configuration.GetSection("authentication:google").Bind(googleAuthenticationOption);
+                _configuration.GetSection("Authentication:google").Bind(googleAuthenticationOption);
             });
             
             serviceCollection.Configure((GoogleServiceOption googleServiceOption) =>
@@ -144,6 +144,8 @@ namespace GregoryJenk.Mastermind.Web.Mvc
             }
 
             applicationBuilder.UseHttpsRedirection();
+
+            //applicationBuilder.UseDefaultFiles();
 
             applicationBuilder.UseStaticFiles();
 
