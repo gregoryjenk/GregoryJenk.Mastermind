@@ -3,7 +3,7 @@
     <TargetFramework>netstandard2.1</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="GregoryJenk.Mastermind.Message" Version="2.0.2" />
+    <PackageReference Include="GregoryJenk.Mastermind.Message" Version="2.0.3" />
     <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="6.0.0" />
   </ItemGroup>
 </Project>

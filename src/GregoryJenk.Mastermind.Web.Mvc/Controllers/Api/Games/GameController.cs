@@ -1,4 +1,4 @@
-﻿using GregoryJenk.Mastermind.Message.Messages.Games;
+﻿using GregoryJenk.Mastermind.Message.Requests.Games.Guesses;
 using GregoryJenk.Mastermind.Message.ViewModels.Games;
 using GregoryJenk.Mastermind.Web.Mvc.ServiceClients.Games;
 using Microsoft.AspNetCore.Authorization;
@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace GregoryJenk.Mastermind.Web.Mvc.Controllers.Api.Games
 {
-    [Authorize, Route("/api/game")]
+    [ApiController, Authorize, Route("api/game")]
     public class GameController : ControllerBase
     {
         private readonly IGameServiceClient _gameServiceClient;
@@ -28,9 +28,9 @@ namespace GregoryJenk.Mastermind.Web.Mvc.Controllers.Api.Games
         }
 
         [HttpPost, Route("{id}/guess")]
-        public IActionResult CreateGuess(Guid id, [FromBody] CreateGuessRequest createGuessRequest)
+        public IActionResult CreateGuess(Guid id, [FromBody] GameGuessCreateRequest gameGuessCreateRequest)
         {
-            var gameViewModel = _gameServiceClient.CreateGuess(id, createGuessRequest.Game, createGuessRequest.Guess);
+            var gameViewModel = _gameServiceClient.CreateGuess(id, gameGuessCreateRequest.Game, gameGuessCreateRequest.Guess);
 
             return Created(string.Format("api/game/{0}", gameViewModel.Id), gameViewModel);
         }
