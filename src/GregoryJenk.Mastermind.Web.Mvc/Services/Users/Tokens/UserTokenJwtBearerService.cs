@@ -1,5 +1,5 @@
-﻿using GregoryJenk.Mastermind.Message.ViewModels.Tokens;
-using GregoryJenk.Mastermind.Message.ViewModels.Users;
+﻿using GregoryJenk.Mastermind.Message.ViewModels.Users;
+using GregoryJenk.Mastermind.Message.ViewModels.Users.Tokens;
 using GregoryJenk.Mastermind.Web.Mvc.Options.Authentication.Jwt;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
@@ -10,20 +10,20 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 
-namespace GregoryJenk.Mastermind.Web.Mvc.Services.Tokens
+namespace GregoryJenk.Mastermind.Web.Mvc.Services.Users.Tokens
 {
-    public class JwtService : ITokenService
+    public class UserTokenJwtBearerService : IUserTokenService
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IOptions<JwtAuthenticationOption> _jwtAuthenticationOption;
 
-        public JwtService(IHttpContextAccessor httpContextAccessor, IOptions<JwtAuthenticationOption> jwtAuthenticationOption)
+        public UserTokenJwtBearerService(IHttpContextAccessor httpContextAccessor, IOptions<JwtAuthenticationOption> jwtAuthenticationOption)
         {
             _httpContextAccessor = httpContextAccessor;
             _jwtAuthenticationOption = jwtAuthenticationOption;
         }
 
-        public TokenViewModel Create(UserViewModel userViewModel, string scheme)
+        public UserTokenViewModel Create(UserViewModel userViewModel, string scheme)
         {
             Claim[] claims = new Claim[]
             {
@@ -53,7 +53,7 @@ namespace GregoryJenk.Mastermind.Web.Mvc.Services.Tokens
             _httpContextAccessor.HttpContext.Response.Cookies.Append("GregoryJenk.Mastermind.Web.Mvc.Controllers.Mvc.JwtToken.Scheme", "Bearer", cookieOptions);
             _httpContextAccessor.HttpContext.Response.Cookies.Append("GregoryJenk.Mastermind.Web.Mvc.Controllers.Mvc.JwtToken.Value", token, cookieOptions);
 
-            return new TokenViewModel()
+            return new UserTokenViewModel()
             {
                 Scheme = "Bearer",
                 Value = token
@@ -66,9 +66,9 @@ namespace GregoryJenk.Mastermind.Web.Mvc.Services.Tokens
             _httpContextAccessor.HttpContext.Response.Cookies.Delete("GregoryJenk.Mastermind.Web.Mvc.Controllers.Mvc.JwtToken.Value");
         }
 
-        public TokenViewModel Read()
+        public UserTokenViewModel Read()
         {
-            return new TokenViewModel()
+            return new UserTokenViewModel()
             {
                 Scheme = ReadScheme(),
                 Value = ReadValue()
