@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace GregoryJenk.Mastermind.Web.Mvc
 {
-    public class Program
+    public static class Program
     {
         public static void Main(string[] args)
         {
@@ -18,17 +18,17 @@ namespace GregoryJenk.Mastermind.Web.Mvc
         private static IHostBuilder CreateHostBuilder(string[] args)
         {
             return Host.CreateDefaultBuilder(args)
-                .ConfigureLogging(configureLogging =>
+                .ConfigureLogging((ILoggingBuilder loggingBuilder) =>
                 {
-                    configureLogging.ClearProviders();
+                    loggingBuilder.ClearProviders();
 
-                    configureLogging.AddConsole();
+                    loggingBuilder.AddConsole();
 
-                    //configureLogging.SetMinimumLevel(LogLevel.Trace);
+                    //loggingBuilder.SetMinimumLevel(LogLevel.Information);
                 })
-                .ConfigureWebHostDefaults(configure =>
+                .ConfigureWebHostDefaults((IWebHostBuilder webHostBuilder) =>
                 {
-                    configure.UseStartup<Startup>();
+                    webHostBuilder.UseStartup<Startup>();
                 });
         }
     }
