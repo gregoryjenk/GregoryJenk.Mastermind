@@ -30,24 +30,11 @@ namespace GregoryJenk.Mastermind.Web.Mvc
 {
     public class Startup
     {
-        private readonly IConfigurationRoot _configuration;
+        private readonly IConfiguration _configuration;
 
-        public Startup(IWebHostEnvironment webHostEnvironment)
+        public Startup(IConfiguration configuration)
         {
-            var configurationBuilder = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", true, true)
-                .AddJsonFile($"appsettings.{webHostEnvironment.EnvironmentName}.json", true, true);
-
-            if (webHostEnvironment.IsDevelopment())
-            {
-                //Add development environment settings here.
-                configurationBuilder.AddUserSecrets<Startup>();
-            }
-
-            configurationBuilder.AddEnvironmentVariables();
-
-            _configuration = configurationBuilder.Build();
+            _configuration = configuration;
         }
 
         public void ConfigureServices(IServiceCollection serviceCollection)
