@@ -1,5 +1,5 @@
-﻿using GregoryJenk.Mastermind.Message.Extensions.Users;
-using GregoryJenk.Mastermind.Message.ViewModels.Users;
+﻿using GregoryJenk.Mastermind.Message.ViewModels.Users;
+using GregoryJenk.Mastermind.Web.Mvc.Extensions.Users;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -13,9 +13,9 @@ namespace GregoryJenk.Mastermind.Web.Mvc.Controllers.Api.Users
         [HttpGet, Route("")]
         public IActionResult Read()
         {
-            UserViewModel userViewModel = new UserViewModel();
+            var userViewModel = new UserViewModel();
 
-            userViewModel.ConvertPrincipal(User);
+            userViewModel.SetByClaimsPrincipal(User);
 
             return Ok(userViewModel);
         }
