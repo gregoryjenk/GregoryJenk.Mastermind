@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace GregoryJenk.Mastermind.Cache.Memory.Caches.Users
 {
-    public class UserViewModelCache : BaseViewModelCache<UserViewModel, Guid, string>, IUserViewModelCache
+    public class UserViewModelCache : BaseCache<UserViewModel, string>, IUserViewModelCache
     {
         public UserViewModelCache(IMemoryCache memoryCache)
             : base(memoryCache)
@@ -16,7 +16,7 @@ namespace GregoryJenk.Mastermind.Cache.Memory.Caches.Users
 
         public string GenerateKey(UserViewModel userViewModel)
         {
-            return $"user:{userViewModel.Scheme}:{userViewModel.Id}";
+            return $"user:{userViewModel.Id}";
         }
     }
 }
