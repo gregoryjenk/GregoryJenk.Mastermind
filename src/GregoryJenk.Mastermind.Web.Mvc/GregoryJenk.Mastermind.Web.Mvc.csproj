@@ -8,7 +8,6 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Google.Apis.Auth" Version="1.68.0" />
-    <PackageReference Include="GregoryJenk.Mastermind.Message" Version="2.0.3" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.22.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="9.0.0" />
@@ -17,5 +16,6 @@
   <ItemGroup>
     <ProjectReference Include="..\GregoryJenk.Mastermind.Cache.Memory\GregoryJenk.Mastermind.Cache.Memory.csproj" />
     <ProjectReference Include="..\GregoryJenk.Mastermind.Cache.Redis\GregoryJenk.Mastermind.Cache.Redis.csproj" />
+    <ProjectReference Include="..\GregoryJenk.Mastermind.Service\GregoryJenk.Mastermind.Service.csproj" />
   </ItemGroup>
 </Project>
