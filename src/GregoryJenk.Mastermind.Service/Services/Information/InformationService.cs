@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Reflection;
 
-namespace GregoryJenk.Mastermind.Web.Mvc.Services.Information
+namespace GregoryJenk.Mastermind.Service.Services.Information
 {
     public static class InformationService
     {

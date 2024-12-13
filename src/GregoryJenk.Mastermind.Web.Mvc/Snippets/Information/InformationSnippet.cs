@@ -1,4 +1,4 @@
-﻿using GregoryJenk.Mastermind.Web.Mvc.Services.Information;
+﻿using GregoryJenk.Mastermind.Service.Services.Information;
 using System;
 using System.Linq;
 
