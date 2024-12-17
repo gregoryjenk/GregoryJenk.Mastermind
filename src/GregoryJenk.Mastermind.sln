@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{7E74404C-967E-49C9-B00E-6FFEE087A660}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GregoryJenk.Mastermind.Bridge.Google", "GregoryJenk.Mastermind.Bridge.Google\GregoryJenk.Mastermind.Bridge.Google.csproj", "{1F866491-BEEB-4E24-8AB1-0BA5BB05B395}"
+EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GregoryJenk.Mastermind.Cache.Memory", "GregoryJenk.Mastermind.Cache.Memory\GregoryJenk.Mastermind.Cache.Memory.csproj", "{7DBB1046-A524-4F0B-935C-10373FA437A6}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GregoryJenk.Mastermind.Cache.Redis", "GregoryJenk.Mastermind.Cache.Redis\GregoryJenk.Mastermind.Cache.Redis.csproj", "{24BF49DD-0EB5-489C-A15E-95CA50B6921C}"
@@ -21,6 +23,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1F866491-BEEB-4E24-8AB1-0BA5BB05B395}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F866491-BEEB-4E24-8AB1-0BA5BB05B395}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F866491-BEEB-4E24-8AB1-0BA5BB05B395}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F866491-BEEB-4E24-8AB1-0BA5BB05B395}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7DBB1046-A524-4F0B-935C-10373FA437A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7DBB1046-A524-4F0B-935C-10373FA437A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7DBB1046-A524-4F0B-935C-10373FA437A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
