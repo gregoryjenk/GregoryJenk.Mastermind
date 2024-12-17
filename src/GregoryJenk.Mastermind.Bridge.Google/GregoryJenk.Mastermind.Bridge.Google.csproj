@@ -2,4 +2,7 @@
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
   </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GregoryJenk.Mastermind.Service\GregoryJenk.Mastermind.Service.csproj" />
+  </ItemGroup>
 </Project>
