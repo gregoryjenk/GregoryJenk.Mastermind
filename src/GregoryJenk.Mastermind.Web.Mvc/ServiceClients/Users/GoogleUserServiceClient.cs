@@ -46,7 +46,7 @@ namespace GregoryJenk.Mastermind.Web.Mvc.ServiceClients.Users
         {
             IAuthorizationCodeFlow authorizationCodeFlow = CreateAuthorisationFlow();
 
-            Uri authorizationCodeRequestUrl = authorizationCodeFlow.CreateAuthorizationCodeRequest($"{_jwtAuthenticationOption.Value.ValidAudience}login-google").Build();
+            Uri authorizationCodeRequestUrl = authorizationCodeFlow.CreateAuthorizationCodeRequest($"{_jwtAuthenticationOption.Value.ValidAudience}/login-google").Build();
 
             return authorizationCodeRequestUrl;
         }
@@ -59,7 +59,7 @@ namespace GregoryJenk.Mastermind.Web.Mvc.ServiceClients.Users
 
             CancellationToken cancellationToken = new CancellationToken();
 
-            TokenResponse tokenResponse = authorizationCodeFlow.ExchangeCodeForTokenAsync("", code, $"{_jwtAuthenticationOption.Value.ValidAudience}login-google", cancellationToken).Result;
+            TokenResponse tokenResponse = authorizationCodeFlow.ExchangeCodeForTokenAsync("", code, $"{_jwtAuthenticationOption.Value.ValidAudience}/login-google", cancellationToken).Result;
 
             HttpResponseMessage httpResponseMessage = _httpClient.GetAsync(string.Format("oauth2/v1/userinfo?alt=json&access_token={0}", tokenResponse.AccessToken)).Result;
 
