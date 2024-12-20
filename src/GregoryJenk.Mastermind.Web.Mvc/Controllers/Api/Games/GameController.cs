@@ -1,30 +1,31 @@
-﻿using GregoryJenk.Mastermind.Message.Requests.Games.Guesses;
+﻿using GregoryJenk.Mastermind.Message.Requests.Games;
 using GregoryJenk.Mastermind.Message.ViewModels.Games;
-using GregoryJenk.Mastermind.Web.Mvc.ServiceClients.Games;
+using GregoryJenk.Mastermind.Service.Services.Games;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace GregoryJenk.Mastermind.Web.Mvc.Controllers.Api.Games
 {
     [ApiController, Authorize, Route("api/game")]
     public class GameController : ControllerBase
     {
-        private readonly IGameServiceClient _gameServiceClient;
+        private readonly IGameService _gameService;
 
-        public GameController(IGameServiceClient gameServiceClient)
+        public GameController(IGameService gameService)
         {
-            _gameServiceClient = gameServiceClient;
+            _gameService = gameService;
         }
 
         [HttpPost, Route("")]
-        public IActionResult Create([FromBody] GameViewModel gameViewModel)
+        public async Task<IActionResult> CreateAsync()
         {
-            gameViewModel = _gameServiceClient.Create(gameViewModel);
+            var gameViewModel = await _gameService.CreateAsync();
 
-            return Created(string.Format("api/game/{0}", gameViewModel.Id), gameViewModel);
+            return Created(new Uri($"{Request.Scheme}://{Request.Host}/api/game/{gameViewModel.Id}"), gameViewModel);
         }
 
         [HttpPost, Route("{id}/guess")]
