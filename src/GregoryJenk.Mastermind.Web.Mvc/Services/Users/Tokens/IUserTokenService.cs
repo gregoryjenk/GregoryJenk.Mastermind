@@ -7,7 +7,7 @@ namespace GregoryJenk.Mastermind.Web.Mvc.Services.Users.Tokens
 {
     public interface IUserTokenService
     {
-        UserTokenViewModel Create(UserViewModel userViewModel, string scheme);
+        UserTokenViewModel Create(UserViewModel userViewModel);
 
         void Delete();
 

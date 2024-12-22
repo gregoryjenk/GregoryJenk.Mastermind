@@ -23,13 +23,13 @@ namespace GregoryJenk.Mastermind.Web.Mvc.Services.Users.Tokens
             _jwtAuthenticationOption = jwtAuthenticationOption;
         }
 
-        public UserTokenViewModel Create(UserViewModel userViewModel, string scheme)
+        public UserTokenViewModel Create(UserViewModel userViewModel)
         {
             Claim[] claims = new Claim[]
             {
                 new Claim(ClaimTypes.Name, userViewModel.Name),
                 new Claim(ClaimTypes.Email, userViewModel.Email),
-                new Claim("Scheme", scheme),
+                new Claim("Scheme", userViewModel.Scheme),
                 new Claim("ExternalId", userViewModel.ExternalId),
                 new Claim("Image", userViewModel.Image)
             };
