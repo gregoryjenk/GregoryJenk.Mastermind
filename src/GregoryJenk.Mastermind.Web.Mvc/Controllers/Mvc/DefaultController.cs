@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
-using System.Reflection;
 
 namespace GregoryJenk.Mastermind.Web.Mvc.Controllers.Mvc
 {
@@ -43,10 +42,6 @@ namespace GregoryJenk.Mastermind.Web.Mvc.Controllers.Mvc
         [HttpGet, Route("/"), Route("{*url}")]
         public IActionResult Index()
         {
-            var assemblyInformationalVersionAttribute = Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>();
-
-            ViewBag.Version = assemblyInformationalVersionAttribute.InformationalVersion;
-
             return View();
         }
 
