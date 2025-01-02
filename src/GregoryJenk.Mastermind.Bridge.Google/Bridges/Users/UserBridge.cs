@@ -29,7 +29,7 @@ namespace GregoryJenk.Mastermind.Bridge.Google.Bridges.Users
 
         public UserBridge(IOptions<BridgeOption> bridgeOption, IHttpClientFactory httpClientFactory, IMapper mapper)
         {
-            _baseUrl = new Uri("https://www.googleapis.com");
+            _baseUrl = bridgeOption.Value.BaseUrl;
             _clientId = bridgeOption.Value.ClientId;
             _clientSecret = bridgeOption.Value.ClientSecret;
             _redirectUrl = bridgeOption.Value.RedirectUrl;
