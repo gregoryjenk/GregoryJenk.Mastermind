@@ -7,6 +7,8 @@ namespace GregoryJenk.Mastermind.Service.Proxies.Users
 {
     public interface IUserProxy
     {
+        Task<UserViewModel> ReadAsync();
+
         Task<UserViewModel> UpsertAsync();
     }
 }
