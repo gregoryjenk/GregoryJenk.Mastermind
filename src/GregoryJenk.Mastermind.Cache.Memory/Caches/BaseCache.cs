@@ -24,7 +24,12 @@ namespace GregoryJenk.Mastermind.Cache.Memory.Caches
 
         public void Upsert(MKey key, M message)
         {
-            _memoryCache.Set(key, message);
+            var memoryCacheEntryOptions = new MemoryCacheEntryOptions()
+            {
+                SlidingExpiration = TimeSpan.FromHours(1)
+            };
+
+            _memoryCache.Set(key, message, memoryCacheEntryOptions);
         }
 
         public void DeleteByKey(MKey key)
