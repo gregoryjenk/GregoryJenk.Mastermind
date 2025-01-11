@@ -8,6 +8,8 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Net.Mime;
+using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace GregoryJenk.Mastermind.Service.Proxies.Games
@@ -69,17 +71,76 @@ namespace GregoryJenk.Mastermind.Service.Proxies.Games
 
         public async Task<IList<GameViewModel>> ReadByDecoderUserIdAsync()
         {
-            throw new NotImplementedException();
+            var httpClient = _httpClientFactory.CreateClient(ProxyConstant.DefaultName);
+
+            var httpRequestMessageUrl = new Uri(_baseUrl, "game");
+
+            var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, httpRequestMessageUrl);
+
+            httpRequestMessage.Headers.Add(HeaderNames.Accept, MediaTypeNames.Application.Json);
+
+            var httpResponseMessage = await httpClient.SendAsync(httpRequestMessage);
+
+            if (httpResponseMessage.IsSuccessStatusCode)
+            {
+                return await httpResponseMessage.Content.ReadFromJsonAsync<IList<GameViewModel>>();
+            }
+            else
+            {
+                throw new HttpRequestException();
+            }
         }
 
         public async Task<GameViewModel> CreateGuessAsync(GameCreateGuessRequest gameCreateGuessRequest)
         {
-            throw new NotImplementedException();
+            var httpClient = _httpClientFactory.CreateClient(ProxyConstant.DefaultName);
+
+            var httpRequestMessageUrl = new Uri(_baseUrl, $"game/{gameCreateGuessRequest.Id}/guess");
+
+            var httpRequestMessage = new HttpRequestMessage(HttpMethod.Post, httpRequestMessageUrl);
+
+            httpRequestMessage.Headers.Add(HeaderNames.Accept, MediaTypeNames.Application.Json);
+
+            var httpRequestMessageJson = JsonSerializer.Serialize(gameCreateGuessRequest);
+
+            httpRequestMessage.Content = new StringContent(httpRequestMessageJson, Encoding.UTF8, MediaTypeNames.Application.Json);
+
+            var httpResponseMessage = await httpClient.SendAsync(httpRequestMessage);
+
+            if (httpResponseMessage.IsSuccessStatusCode)
+            {
+                return await httpResponseMessage.Content.ReadFromJsonAsync<GameViewModel>();
+            }
+            else
+            {
+                throw new HttpRequestException();
+            }
         }
 
         public async Task<GameViewModel> UpdateStateAsync(GameUpdateStateRequest gameUpdateStateRequest)
         {
-            throw new NotImplementedException();
+            var httpClient = _httpClientFactory.CreateClient(ProxyConstant.DefaultName);
+
+            var httpRequestMessageUrl = new Uri(_baseUrl, $"game/{gameUpdateStateRequest.Id}/state");
+
+            var httpRequestMessage = new HttpRequestMessage(HttpMethod.Put, httpRequestMessageUrl);
+
+            httpRequestMessage.Headers.Add(HeaderNames.Accept, MediaTypeNames.Application.Json);
+
+            var httpRequestMessageJson = JsonSerializer.Serialize(gameUpdateStateRequest);
+
+            httpRequestMessage.Content = new StringContent(httpRequestMessageJson, Encoding.UTF8, MediaTypeNames.Application.Json);
+
+            var httpResponseMessage = await httpClient.SendAsync(httpRequestMessage);
+
+            if (httpResponseMessage.IsSuccessStatusCode)
+            {
+                return await httpResponseMessage.Content.ReadFromJsonAsync<GameViewModel>();
+            }
+            else
+            {
+                throw new HttpRequestException();
+            }
         }
     }
 }
