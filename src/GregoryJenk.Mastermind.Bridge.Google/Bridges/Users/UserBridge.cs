@@ -39,8 +39,6 @@ namespace GregoryJenk.Mastermind.Bridge.Google.Bridges.Users
 
         public async Task<UserViewModel> ReadByCodeAsync(string code)
         {
-            var tokenResponse = await ReadTokenResponseByCodeAsync(code);
-
             var httpClient = _httpClientFactory.CreateClient();
 
             var httpRequestMessageUrl = new Uri(_baseUrl, "oauth2/v3/userinfo");
@@ -48,6 +46,8 @@ namespace GregoryJenk.Mastermind.Bridge.Google.Bridges.Users
             var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, httpRequestMessageUrl);
 
             httpRequestMessage.Headers.Add(HeaderNames.Accept, MediaTypeNames.Application.Json);
+
+            var tokenResponse = await ReadTokenResponseByCodeAsync(code);
 
             httpRequestMessage.Headers.Authorization = new AuthenticationHeaderValue(tokenResponse.TokenType, tokenResponse.AccessToken);
 

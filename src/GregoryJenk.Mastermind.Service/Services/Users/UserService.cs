@@ -24,11 +24,11 @@ namespace GregoryJenk.Mastermind.Service.Services.Users
 
         public async Task<AuthenticationTokenStrategyResult> CreateTokenAsync(string scheme, string code, IUserBridge userBridge)
         {
-            var bridgedUserViewModel = await userBridge.ReadByCodeAsync(code);
+            var bridgeUserViewModel = await userBridge.ReadByCodeAsync(code);
 
-            bridgedUserViewModel.Scheme = scheme;
+            bridgeUserViewModel.Scheme = scheme;
 
-            var initialAuthenticationTokenStrategyResult = _authenticationTokenStrategy.Create(bridgedUserViewModel);
+            var initialAuthenticationTokenStrategyResult = _authenticationTokenStrategy.Create(bridgeUserViewModel);
 
             _authenticationStoreStrategy.Set(initialAuthenticationTokenStrategyResult);
 
@@ -39,7 +39,7 @@ namespace GregoryJenk.Mastermind.Service.Services.Users
                 userViewModel = new UserViewModel();
             }
 
-            userViewModel.Set(bridgedUserViewModel);
+            userViewModel.Set(bridgeUserViewModel);
 
             var intermediateAuthenticationTokenStrategyResult = _authenticationTokenStrategy.Create(userViewModel);
 
