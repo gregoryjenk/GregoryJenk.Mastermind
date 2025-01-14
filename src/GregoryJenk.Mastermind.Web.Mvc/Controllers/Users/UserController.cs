@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
 
-namespace GregoryJenk.Mastermind.Web.Mvc.Controllers.Api.Users
+namespace GregoryJenk.Mastermind.Web.Mvc.Controllers.Users
 {
     [ApiController, Authorize, Route("api/user")]
     public class UserController : ControllerBase
