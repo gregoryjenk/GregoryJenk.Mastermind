@@ -1,13 +1,20 @@
-﻿using GregoryJenk.Mastermind.Web.Mvc.Factories.Users;
+﻿using AutoMapper;
+using GregoryJenk.Mastermind.Bridge.Google.Bridges;
+using GregoryJenk.Mastermind.Bridge.Google.Profiles.Users;
+using GregoryJenk.Mastermind.Service.Proxies;
+using GregoryJenk.Mastermind.Service.Proxies.Games;
+using GregoryJenk.Mastermind.Service.Proxies.Users;
+using GregoryJenk.Mastermind.Service.Services.Games;
+using GregoryJenk.Mastermind.Service.Services.Users;
+using GregoryJenk.Mastermind.Service.Strategies.Authentication;
+using GregoryJenk.Mastermind.Web.Mvc.Factories.Authentication;
+using GregoryJenk.Mastermind.Web.Mvc.Factories.Users;
+using GregoryJenk.Mastermind.Web.Mvc.Handlers.Authentication;
 using GregoryJenk.Mastermind.Web.Mvc.Hubs.Games;
-using GregoryJenk.Mastermind.Web.Mvc.Options.Authentication.Google;
-using GregoryJenk.Mastermind.Web.Mvc.Options.Authentication.Jwt;
-using GregoryJenk.Mastermind.Web.Mvc.Options.Services.Games;
-using GregoryJenk.Mastermind.Web.Mvc.Options.Services.Google;
-using GregoryJenk.Mastermind.Web.Mvc.ServiceClients.Games;
-using GregoryJenk.Mastermind.Web.Mvc.ServiceClients.Users;
-using GregoryJenk.Mastermind.Web.Mvc.Services.Tokens;
+using GregoryJenk.Mastermind.Web.Mvc.Snippets.Information;
+using GregoryJenk.Mastermind.Web.Mvc.Strategies.Authentication;
 using Microsoft.ApplicationInsights.AspNetCore.Extensions;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -49,24 +56,28 @@ namespace GregoryJenk.Mastermind.Web.Mvc
             //Binding configuration option objects to sections in the configurations.
             serviceCollection.AddOptions();
 
-            serviceCollection.Configure((GameServiceOption gameServiceOption) =>
+            serviceCollection.Configure((AuthenticationAuthorityGoogleStrategyOption authenticationAuthorityGoogleStrategyOption) =>
             {
-                _configuration.GetSection("services:game").Bind(gameServiceOption);
+                _configuration.GetSection("Authentication:Google")
+                    .Bind(authenticationAuthorityGoogleStrategyOption);
+            });
+            
+            serviceCollection.Configure((AuthenticationTokenJwtBearerStrategyOption authenticationTokenJwtBearerStrategyOption) =>
+            {
+                _configuration.GetSection("Authentication:JwtBearer")
+                    .Bind(authenticationTokenJwtBearerStrategyOption);
             });
 
-            serviceCollection.Configure((GoogleAuthenticationOption googleAuthenticationOption) =>
+            serviceCollection.Configure((BridgeOption bridgeOption) =>
             {
-                _configuration.GetSection("Authentication:google").Bind(googleAuthenticationOption);
+                _configuration.GetSection("Bridge:Google:Bridges")
+                    .Bind(bridgeOption);
             });
             
-            serviceCollection.Configure((GoogleServiceOption googleServiceOption) =>
+            serviceCollection.Configure((ProxyOption proxyOption) =>
             {
-                _configuration.GetSection("services:google").Bind(googleServiceOption);
-            });
-            
-            serviceCollection.Configure((JwtAuthenticationOption jwtAuthenticationOption) =>
-            {
-                _configuration.GetSection("Authentication:JwtBearer").Bind(jwtAuthenticationOption);
+                _configuration.GetSection("Service:Proxies")
+                    .Bind(proxyOption);
             });
 
             serviceCollection.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -102,11 +113,16 @@ namespace GregoryJenk.Mastermind.Web.Mvc
                 });
 
             //Register implementations for Depedency Injection here.
-            serviceCollection.AddSingleton<ExternalUserServiceClientFactory>();
-
-            serviceCollection.AddTransient<IGameServiceClient, GameServiceClient>();
-            serviceCollection.AddTransient<ITokenService, JwtService>();
-            serviceCollection.AddTransient<IUserServiceClient, UserServiceClient>();
+            serviceCollection.AddSingleton<AuthenticationAuthorityStrategyFactory>();
+            serviceCollection.AddSingleton<InformationSnippet>();
+            serviceCollection.AddSingleton<UserBridgeFactory>();
+            serviceCollection.AddTransient<AuthenticationHeaderHandler>();
+            serviceCollection.AddTransient<IAuthenticationStoreStrategy, AuthenticationStoreHttpContextStrategy>();
+            serviceCollection.AddTransient<IAuthenticationTokenStrategy, AuthenticationTokenJwtBearerStrategy>();
+            serviceCollection.AddTransient<IGameProxy, GameProxy>();
+            serviceCollection.AddTransient<IGameService, GameService>();
+            serviceCollection.AddTransient<IUserProxy, UserProxy>();
+            serviceCollection.AddTransient<IUserService, UserService>();
 
             //There is an issue with IHttpContextAccessor, it's not being injected automatically, so needs to be registered.
             serviceCollection.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
