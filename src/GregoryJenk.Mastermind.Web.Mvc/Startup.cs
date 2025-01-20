@@ -26,10 +26,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 using System;
-using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -98,19 +95,19 @@ namespace GregoryJenk.Mastermind.Web.Mvc
             serviceCollection.AddControllersWithViews((MvcOptions mvcOptions) =>
             {
                 mvcOptions.RespectBrowserAcceptHeader = true;
-            })
+            });
                 //.AddJsonOptions((JsonOptions jsonOptions) =>
                 //{
                 //})
-                .AddNewtonsoftJson((MvcNewtonsoftJsonOptions mvcJsonOptions) =>
-                {
-                    mvcJsonOptions.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
-                    mvcJsonOptions.SerializerSettings.DateFormatHandling = DateFormatHandling.IsoDateFormat;
-                    //mvcJsonOptions.SerializerSettings.DateFormatString = "U";
-                    mvcJsonOptions.SerializerSettings.DateParseHandling = DateParseHandling.DateTimeOffset;
-                    mvcJsonOptions.SerializerSettings.DateTimeZoneHandling = DateTimeZoneHandling.Utc;
-                    mvcJsonOptions.SerializerSettings.NullValueHandling = NullValueHandling.Include;
-                });
+                //.AddNewtonsoftJson((MvcNewtonsoftJsonOptions mvcJsonOptions) =>
+                //{
+                //    mvcJsonOptions.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                //    mvcJsonOptions.SerializerSettings.DateFormatHandling = DateFormatHandling.IsoDateFormat;
+                //    //mvcJsonOptions.SerializerSettings.DateFormatString = "U";
+                //    mvcJsonOptions.SerializerSettings.DateParseHandling = DateParseHandling.DateTimeOffset;
+                //    mvcJsonOptions.SerializerSettings.DateTimeZoneHandling = DateTimeZoneHandling.Utc;
+                //    mvcJsonOptions.SerializerSettings.NullValueHandling = NullValueHandling.Include;
+                //});
 
             //Register implementations for Depedency Injection here.
             serviceCollection.AddSingleton<AuthenticationAuthorityStrategyFactory>();
