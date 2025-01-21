@@ -15,5 +15,5 @@ See the published [GregoryJenk.Mastermind.Message NuGet package here](https://ww
 
 | Build | Status |
 | :--- | :--- |
-| AppVeyor (develop) | [![Build status](https://ci.appveyor.com/api/projects/status/7vpioj2jryfejmd5/branch/develop?svg=true)](https://ci.appveyor.com/project/gregoryjenk/gregoryjenk-mastermind/branch/develop) |
-| AppVeyor (master) | [![Build status](https://ci.appveyor.com/api/projects/status/7vpioj2jryfejmd5/branch/master?svg=true)](https://ci.appveyor.com/project/gregoryjenk/gregoryjenk-mastermind/branch/master) |
+| `develop` (GitHub Actions) | [![Build status.](https://github.com/gregoryjenk/GregoryJenk.Mastermind/actions/workflows/continuous-integration-workflow.yml/badge.svg?branch=develop)](https://github.com/gregoryjenk/GregoryJenk.Mastermind/actions/workflows/continuous-integration-workflow.yml?query=branch%3Adevelop) |
+| `master` (GitHub Actions) | [![Build status.](https://github.com/gregoryjenk/GregoryJenk.Mastermind/actions/workflows/continuous-integration-workflow.yml/badge.svg?branch=master)](https://github.com/gregoryjenk/GregoryJenk.Mastermind/actions/workflows/continuous-integration-workflow.yml?query=branch%3Amaster) |
