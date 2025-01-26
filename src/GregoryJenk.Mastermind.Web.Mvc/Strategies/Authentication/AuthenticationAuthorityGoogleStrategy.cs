@@ -40,11 +40,12 @@ namespace GregoryJenk.Mastermind.Web.Mvc.Strategies.Authentication
                 Scopes = scopes
             };
 
-            var authorizationCodeFlow = new AuthorizationCodeFlow(initializer);
+            using (var authorizationCodeFlow = new AuthorizationCodeFlow(initializer))
+            {
+                var authorizationCodeRequestUrl = authorizationCodeFlow.CreateAuthorizationCodeRequest(_redirectUrl.AbsoluteUri);
 
-            var authorizationCodeRequestUrl = authorizationCodeFlow.CreateAuthorizationCodeRequest(_redirectUrl.AbsoluteUri);
-
-            return authorizationCodeRequestUrl.Build();
+                return authorizationCodeRequestUrl.Build();
+            }
         }
     }
 }

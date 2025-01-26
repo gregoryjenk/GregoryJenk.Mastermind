@@ -9,7 +9,7 @@
 
 @RenderBody()
 
-@Html.Partial("_Footer")
+@await Html.PartialAsync("_Footer")
 
 @section body_scripts {
     @RenderSection("body_scripts", false)
