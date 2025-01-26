@@ -4,7 +4,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="13.0.1" />
-    <PackageReference Include="Google.Apis.Auth" Version="1.68.0" />
+    <PackageReference Include="Google.Apis.Auth" Version="1.69.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GregoryJenk.Mastermind.Service\GregoryJenk.Mastermind.Service.csproj" />
