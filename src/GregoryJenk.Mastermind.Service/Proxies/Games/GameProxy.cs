@@ -31,19 +31,20 @@ namespace GregoryJenk.Mastermind.Service.Proxies.Games
 
             var httpRequestMessageUrl = new Uri(_baseUrl, $"game/{id}");
 
-            var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, httpRequestMessageUrl);
-
-            httpRequestMessage.Headers.Add(HeaderNames.Accept, MediaTypeNames.Application.Json);
-
-            var httpResponseMessage = await httpClient.SendAsync(httpRequestMessage);
-
-            if (httpResponseMessage.IsSuccessStatusCode)
+            using (var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, httpRequestMessageUrl))
             {
-                return await httpResponseMessage.Content.ReadFromJsonAsync<GameViewModel>();
-            }
-            else
-            {
-                throw new HttpRequestException();
+                httpRequestMessage.Headers.Add(HeaderNames.Accept, MediaTypeNames.Application.Json);
+
+                var httpResponseMessage = await httpClient.SendAsync(httpRequestMessage);
+
+                if (httpResponseMessage.IsSuccessStatusCode)
+                {
+                    return await httpResponseMessage.Content.ReadFromJsonAsync<GameViewModel>();
+                }
+                else
+                {
+                    throw new HttpRequestException();
+                }
             }
         }
 
@@ -53,19 +54,20 @@ namespace GregoryJenk.Mastermind.Service.Proxies.Games
 
             var httpRequestMessageUrl = new Uri(_baseUrl, "game");
 
-            var httpRequestMessage = new HttpRequestMessage(HttpMethod.Post, httpRequestMessageUrl);
-
-            httpRequestMessage.Headers.Add(HeaderNames.Accept, MediaTypeNames.Application.Json);
-
-            var httpResponseMessage = await httpClient.SendAsync(httpRequestMessage);
-
-            if (httpResponseMessage.IsSuccessStatusCode)
+            using (var httpRequestMessage = new HttpRequestMessage(HttpMethod.Post, httpRequestMessageUrl))
             {
-                return await httpResponseMessage.Content.ReadFromJsonAsync<GameViewModel>();
-            }
-            else
-            {
-                throw new HttpRequestException();
+                httpRequestMessage.Headers.Add(HeaderNames.Accept, MediaTypeNames.Application.Json);
+
+                var httpResponseMessage = await httpClient.SendAsync(httpRequestMessage);
+
+                if (httpResponseMessage.IsSuccessStatusCode)
+                {
+                    return await httpResponseMessage.Content.ReadFromJsonAsync<GameViewModel>();
+                }
+                else
+                {
+                    throw new HttpRequestException();
+                }
             }
         }
 
@@ -75,19 +77,20 @@ namespace GregoryJenk.Mastermind.Service.Proxies.Games
 
             var httpRequestMessageUrl = new Uri(_baseUrl, "game");
 
-            var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, httpRequestMessageUrl);
-
-            httpRequestMessage.Headers.Add(HeaderNames.Accept, MediaTypeNames.Application.Json);
-
-            var httpResponseMessage = await httpClient.SendAsync(httpRequestMessage);
-
-            if (httpResponseMessage.IsSuccessStatusCode)
+            using (var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, httpRequestMessageUrl))
             {
-                return await httpResponseMessage.Content.ReadFromJsonAsync<IList<GameViewModel>>();
-            }
-            else
-            {
-                throw new HttpRequestException();
+                httpRequestMessage.Headers.Add(HeaderNames.Accept, MediaTypeNames.Application.Json);
+
+                var httpResponseMessage = await httpClient.SendAsync(httpRequestMessage);
+
+                if (httpResponseMessage.IsSuccessStatusCode)
+                {
+                    return await httpResponseMessage.Content.ReadFromJsonAsync<IList<GameViewModel>>();
+                }
+                else
+                {
+                    throw new HttpRequestException();
+                }
             }
         }
 
@@ -97,23 +100,24 @@ namespace GregoryJenk.Mastermind.Service.Proxies.Games
 
             var httpRequestMessageUrl = new Uri(_baseUrl, $"game/{gameCreateGuessRequest.Id}/guess");
 
-            var httpRequestMessage = new HttpRequestMessage(HttpMethod.Post, httpRequestMessageUrl);
-
-            httpRequestMessage.Headers.Add(HeaderNames.Accept, MediaTypeNames.Application.Json);
-
-            var httpRequestMessageJson = JsonSerializer.Serialize(gameCreateGuessRequest);
-
-            httpRequestMessage.Content = new StringContent(httpRequestMessageJson, Encoding.UTF8, MediaTypeNames.Application.Json);
-
-            var httpResponseMessage = await httpClient.SendAsync(httpRequestMessage);
-
-            if (httpResponseMessage.IsSuccessStatusCode)
+            using (var httpRequestMessage = new HttpRequestMessage(HttpMethod.Post, httpRequestMessageUrl))
             {
-                return await httpResponseMessage.Content.ReadFromJsonAsync<GameViewModel>();
-            }
-            else
-            {
-                throw new HttpRequestException();
+                httpRequestMessage.Headers.Add(HeaderNames.Accept, MediaTypeNames.Application.Json);
+
+                var httpRequestMessageJson = JsonSerializer.Serialize(gameCreateGuessRequest);
+
+                httpRequestMessage.Content = new StringContent(httpRequestMessageJson, Encoding.UTF8, MediaTypeNames.Application.Json);
+
+                var httpResponseMessage = await httpClient.SendAsync(httpRequestMessage);
+
+                if (httpResponseMessage.IsSuccessStatusCode)
+                {
+                    return await httpResponseMessage.Content.ReadFromJsonAsync<GameViewModel>();
+                }
+                else
+                {
+                    throw new HttpRequestException();
+                }
             }
         }
 
@@ -123,23 +127,24 @@ namespace GregoryJenk.Mastermind.Service.Proxies.Games
 
             var httpRequestMessageUrl = new Uri(_baseUrl, $"game/{gameUpdateStateRequest.Id}/state");
 
-            var httpRequestMessage = new HttpRequestMessage(HttpMethod.Put, httpRequestMessageUrl);
-
-            httpRequestMessage.Headers.Add(HeaderNames.Accept, MediaTypeNames.Application.Json);
-
-            var httpRequestMessageJson = JsonSerializer.Serialize(gameUpdateStateRequest);
-
-            httpRequestMessage.Content = new StringContent(httpRequestMessageJson, Encoding.UTF8, MediaTypeNames.Application.Json);
-
-            var httpResponseMessage = await httpClient.SendAsync(httpRequestMessage);
-
-            if (httpResponseMessage.IsSuccessStatusCode)
+            using (var httpRequestMessage = new HttpRequestMessage(HttpMethod.Put, httpRequestMessageUrl))
             {
-                return await httpResponseMessage.Content.ReadFromJsonAsync<GameViewModel>();
-            }
-            else
-            {
-                throw new HttpRequestException();
+                httpRequestMessage.Headers.Add(HeaderNames.Accept, MediaTypeNames.Application.Json);
+
+                var httpRequestMessageJson = JsonSerializer.Serialize(gameUpdateStateRequest);
+
+                httpRequestMessage.Content = new StringContent(httpRequestMessageJson, Encoding.UTF8, MediaTypeNames.Application.Json);
+
+                var httpResponseMessage = await httpClient.SendAsync(httpRequestMessage);
+
+                if (httpResponseMessage.IsSuccessStatusCode)
+                {
+                    return await httpResponseMessage.Content.ReadFromJsonAsync<GameViewModel>();
+                }
+                else
+                {
+                    throw new HttpRequestException();
+                }
             }
         }
     }

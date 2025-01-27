@@ -28,25 +28,26 @@ namespace GregoryJenk.Mastermind.Service.Proxies.Users
 
             var httpRequestMessageUrl = new Uri(_baseUrl, "user");
 
-            var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, httpRequestMessageUrl);
-
-            httpRequestMessage.Headers.Add(HeaderNames.Accept, MediaTypeNames.Application.Json);
-
-            var httpResponseMessage = await httpClient.SendAsync(httpRequestMessage);
-
-            if (httpResponseMessage.IsSuccessStatusCode)
+            using (var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, httpRequestMessageUrl))
             {
-                return await httpResponseMessage.Content.ReadFromJsonAsync<UserViewModel>();
-            }
-            else
-            {
-                //When no user is found return null to be handled by the caller.
-                if (httpResponseMessage.StatusCode == HttpStatusCode.NotFound)
+                httpRequestMessage.Headers.Add(HeaderNames.Accept, MediaTypeNames.Application.Json);
+
+                var httpResponseMessage = await httpClient.SendAsync(httpRequestMessage);
+
+                if (httpResponseMessage.IsSuccessStatusCode)
                 {
-                    return null;
+                    return await httpResponseMessage.Content.ReadFromJsonAsync<UserViewModel>();
                 }
+                else
+                {
+                    //When no user is found return null to be handled by the caller.
+                    if (httpResponseMessage.StatusCode == HttpStatusCode.NotFound)
+                    {
+                        return null;
+                    }
 
-                throw new HttpRequestException();
+                    throw new HttpRequestException();
+                }
             }
         }
 
@@ -56,19 +57,20 @@ namespace GregoryJenk.Mastermind.Service.Proxies.Users
 
             var httpRequestMessageUrl = new Uri(_baseUrl, "user");
 
-            var httpRequestMessage = new HttpRequestMessage(HttpMethod.Put, httpRequestMessageUrl);
-
-            httpRequestMessage.Headers.Add(HeaderNames.Accept, MediaTypeNames.Application.Json);
-
-            var httpResponseMessage = await httpClient.SendAsync(httpRequestMessage);
-
-            if (httpResponseMessage.IsSuccessStatusCode)
+            using (var httpRequestMessage = new HttpRequestMessage(HttpMethod.Put, httpRequestMessageUrl))
             {
-                return await httpResponseMessage.Content.ReadFromJsonAsync<UserViewModel>();
-            }
-            else
-            {
-                throw new HttpRequestException();
+                httpRequestMessage.Headers.Add(HeaderNames.Accept, MediaTypeNames.Application.Json);
+
+                var httpResponseMessage = await httpClient.SendAsync(httpRequestMessage);
+
+                if (httpResponseMessage.IsSuccessStatusCode)
+                {
+                    return await httpResponseMessage.Content.ReadFromJsonAsync<UserViewModel>();
+                }
+                else
+                {
+                    throw new HttpRequestException();
+                }
             }
         }
     }
