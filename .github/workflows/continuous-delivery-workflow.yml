@@ -1,0 +1,67 @@
+name: Continuous Delivery
+on:
+    release:
+        types:
+            - published
+    workflow_dispatch:
+jobs:
+    build:
+        name: Build
+        runs-on: ubuntu-latest
+        permissions:
+            attestations: write
+            id-token: write
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+            - name: Setup
+              uses: actions/setup-dotnet@v4
+              with:
+                dotnet-version: 9.0.x
+            - name: Restore
+              run: dotnet restore src
+            - name: Build
+              run: dotnet build src --configuration Release --no-restore
+            - name: Test
+              run: dotnet test src --configuration Release --no-build
+            - name: Publish
+              run: dotnet publish src --configuration Release --no-build
+            - name: Attest
+              uses: actions/attest-build-provenance@v1
+              with:
+                subject-path: ./src/GregoryJenk.Mastermind.Web.Mvc/bin/Release/net9.0/publish/**/*
+            - name: Upload
+              uses: actions/upload-artifact@v4
+              with:
+                name: GregoryJenk.Mastermind.Web.Mvc
+                path: ./src/GregoryJenk.Mastermind.Web.Mvc/bin/Release/net9.0/publish/**/*
+    test-deploy:
+        name: Test
+        needs: build
+        runs-on: ubuntu-latest
+        environment:
+            name: Test
+            url: https://mastermind.test.gregoryjenk.com
+        steps:
+            - name: Deploy
+              run: echo "Deploy"
+    beta-deploy:
+        name: Beta
+        needs: test-deploy
+        runs-on: ubuntu-latest
+        environment:
+            name: Beta
+            url: https://mastermind.beta.gregoryjenk.com
+        steps:
+            - name: Deploy
+              run: echo "Deploy"
+    live-deploy:
+        name: Live
+        needs: beta-deploy
+        runs-on: ubuntu-latest
+        environment:
+            name: Live
+            url: https://mastermind.gregoryjenk.com
+        steps:
+            - name: Deploy
+              run: echo "Deploy"
