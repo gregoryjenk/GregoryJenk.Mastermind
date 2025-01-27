@@ -43,25 +43,26 @@ namespace GregoryJenk.Mastermind.Bridge.Google.Bridges.Users
 
             var httpRequestMessageUrl = new Uri(_baseUrl, "oauth2/v3/userinfo");
 
-            var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, httpRequestMessageUrl);
-
-            httpRequestMessage.Headers.Add(HeaderNames.Accept, MediaTypeNames.Application.Json);
-
-            var tokenResponse = await ReadTokenResponseByCodeAsync(code);
-
-            httpRequestMessage.Headers.Authorization = new AuthenticationHeaderValue(tokenResponse.TokenType, tokenResponse.AccessToken);
-
-            var httpResponseMessage = await httpClient.SendAsync(httpRequestMessage);
-
-            if (httpResponseMessage.IsSuccessStatusCode)
+            using (var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, httpRequestMessageUrl))
             {
-                var userInfoResponse = await httpResponseMessage.Content.ReadFromJsonAsync<UserInfoResponse>();
+                httpRequestMessage.Headers.Add(HeaderNames.Accept, MediaTypeNames.Application.Json);
 
-                return _mapper.Map<UserViewModel>(userInfoResponse);
-            }
-            else
-            {
-                throw new HttpRequestException();
+                var tokenResponse = await ReadTokenResponseByCodeAsync(code);
+
+                httpRequestMessage.Headers.Authorization = new AuthenticationHeaderValue(tokenResponse.TokenType, tokenResponse.AccessToken);
+
+                var httpResponseMessage = await httpClient.SendAsync(httpRequestMessage);
+
+                if (httpResponseMessage.IsSuccessStatusCode)
+                {
+                    var userInfoResponse = await httpResponseMessage.Content.ReadFromJsonAsync<UserInfoResponse>();
+
+                    return _mapper.Map<UserViewModel>(userInfoResponse);
+                }
+                else
+                {
+                    throw new HttpRequestException();
+                }
             }
         }
 
@@ -85,9 +86,10 @@ namespace GregoryJenk.Mastermind.Bridge.Google.Bridges.Users
                 Scopes = scopes
             };
 
-            var authorizationCodeFlow = new AuthorizationCodeFlow(initializer);
-
-            return await authorizationCodeFlow.ExchangeCodeForTokenAsync(string.Empty, code, _redirectUrl.AbsoluteUri, CancellationToken.None);
+            using (var authorizationCodeFlow = new AuthorizationCodeFlow(initializer))
+            {
+                return await authorizationCodeFlow.ExchangeCodeForTokenAsync(string.Empty, code, _redirectUrl.AbsoluteUri, CancellationToken.None);
+            }
         }
     }
 }
