@@ -19,7 +19,7 @@ namespace GregoryJenk.Mastermind.Web.Mvc.Factories.Authentication
         {
             if (string.Equals(scheme, FactoryConstant.GoogleScheme, StringComparison.InvariantCultureIgnoreCase))
             {
-                //Not ideal to have this service locator type approach, another way is to inject the options into the factory.
+                //Not ideal to have this service locator type approach, another way is to inject the dependencies into the factory.
                 var authenticationAuthorityGoogleStrategyOption = _serviceProvider.GetService(typeof(IOptions<AuthenticationAuthorityGoogleStrategyOption>)) as IOptions<AuthenticationAuthorityGoogleStrategyOption>;
 
                 return new AuthenticationAuthorityGoogleStrategy(authenticationAuthorityGoogleStrategyOption);

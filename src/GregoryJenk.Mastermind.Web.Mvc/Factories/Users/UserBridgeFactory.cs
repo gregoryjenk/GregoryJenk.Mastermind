@@ -24,7 +24,7 @@ namespace GregoryJenk.Mastermind.Web.Mvc.Factories.Users
             {
                 case FactoryConstant.GoogleScheme:
                 {
-                    //Not ideal to have this service locator type approach, another way is to inject the options into the factory.
+                    //Not ideal to have this service locator type approach, another way is to inject the dependencies into the factory.
                     var bridgeOption = _serviceProvider.GetService(typeof(IOptions<BridgeOption>)) as IOptions<BridgeOption>;
                     var httpClientFactory = _serviceProvider.GetService(typeof(IHttpClientFactory)) as IHttpClientFactory;
                     var mapper = _serviceProvider.GetService(typeof(IMapper)) as IMapper;
