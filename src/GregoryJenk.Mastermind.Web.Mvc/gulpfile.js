@@ -1,141 +1,66 @@
-﻿/// <binding BeforeBuild="less, lib, webpack" Clean="clean" />
-
+﻿/// <binding BeforeBuild="default" Clean="clean" />
+//TODO: Review file.
 var del = require("del");
 var gulp = require("gulp");
-var less = require("gulp-less");
-var minify = require("gulp-minify");
-var typeScript = require("gulp-typescript");
-var typeScriptProject = typeScript.createProject("tsconfig.json");
-var webpack = require("webpack");
-var webpackConfig = require("./webpack.config.js");
+var cleanCSS = require("gulp-clean-css");
+var rename = require("gulp-rename");
+var sass = require("gulp-sass")(require("sass"));
+var sourcemaps = require("gulp-sourcemaps");
 
 var paths = {
     lib: [
-        {
-            src: "./node_modules/animate.css/animate.min.css",
-            dest: "./wwwroot/lib/animate.css/"
-        },
-        {
-            src: "./node_modules/bootstrap/dist/css/bootstrap.min.css",
-            dest: "./wwwroot/lib/bootstrap/dist/css/"
-        },
-        {
-            src: "./node_modules/bootstrap/dist/js/bootstrap.min.js",
-            dest: "./wwwroot/lib/bootstrap/dist/js/"
-        },
-        {
-            src: "./node_modules/chart.js/dist/**/*.js",
-            dest: "./wwwroot/lib/chart.js/dist/"
-        },
-        {
-            src: "./node_modules/core-js/client/shim.min.js",
-            dest: "./wwwroot/lib/core-js/client/"
-        },
-        {
-            src: "./node_modules/font-awesome/css/font-awesome.css",
-            dest: "./wwwroot/lib/font-awesome/css/"
-        },
-        {
-            src: "./node_modules/font-awesome/fonts/*",
-            dest: "./wwwroot/lib/font-awesome/fonts/"
-        },
-        {
-            src: "./node_modules/jquery/dist/jquery.min.js",
-            dest: "./wwwroot/lib/jquery/dist/"
-        },
-        {
-            src: "./node_modules/moment/moment.js",
-            dest: "./wwwroot/lib/moment/"
-        },
-        {
-            src: "./node_modules/ng2-charts/ng2-charts.js",
-            dest: "./wwwroot/lib/ng2-charts/"
-        },
-        {
-            src: "./node_modules/ng2-charts/components/charts/charts.js",
-            dest: "./wwwroot/lib/ng2-charts/components/charts/"
-        },
-        {
-            src: "./node_modules/popper.js/dist/umd/popper.min.js",
-            dest: "./wwwroot/lib/popper.js/dist/umd/"
-        },
-        {
-            src: "./node_modules/reflect-metadata/Reflect.js",
-            dest: "./wwwroot/lib/reflect-metadata/"
-        },
-        {
-            src: "./node_modules/rxjs/**/*.js",
-            dest: "./wwwroot/lib/rxjs/"
-        },
-        {
-            src: "./node_modules/@aspnet/signalr-client/dist/browser/signalr-client-1.0.0-alpha2-final.min.js",
-            dest: "./wwwroot/lib/@aspnet/signalr-client/dist/browser/"
-        },
-        {
-            src: "./node_modules/systemjs/dist/system.src.js",
-            dest: "./wwwroot/lib/systemjs/dist/"
-        },
-        {
-            src: "./node_modules/zone.js/dist/zone.js",
-            dest: "./wwwroot/lib/zone.js/dist/"
-        }
+        "./node_modules/animate.css/animate.min.css",
+        "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+        "./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+        "./node_modules/bootstrap-icons/font/bootstrap-icons.min.css",
+        "./node_modules/bootstrap-icons/font/fonts/**/*"
+    ],
+    sass: [
+        "./wwwroot/src/scss/app.scss",
+        "./wwwroot/src/scss/layout.scss"
     ]
 };
 
 gulp.task("clean", function () {
     return del([
-        "./wwwroot/app/css/**/*",
-        "./wwwroot/app/js/**/*",
-        "./wwwroot/lib/**/*"
+        "./wwwroot/app/css",
+        "./wwwroot/app/js",
+        "./wwwroot/lib"
     ]);
 });
 
-gulp.task("less", function () {
-    return gulp.src("./wwwroot/app/less/**/*.less")
-        .pipe(less())
-        .pipe(gulp.dest("./wwwroot/app/css"));
+gulp.task("clean-css", function () {
+    return del([
+        "./wwwroot/app/css/"
+    ]);
 });
 
 gulp.task("lib", function () {
-    for (var i = 0; i < paths.lib.length; i++) {
-        gulp.src(paths.lib[i].src).pipe(gulp.dest(paths.lib[i].dest));
-    }
+    return gulp.src(paths.lib, { base: "node_modules" })
+        .pipe(gulp.dest("./wwwroot/lib/"));
 });
 
-gulp.task("minify", function () {
-    gulp.src("./wwwroot/app/js/**/*.js")
-        .pipe(minify({
-            ext: {
-                src: ".js",
-                min: ".min.js"
-            },
-            exclude: ["tasks"],
-            ignoreFiles: [
-                ".combo.js",
-                "-min.js"
-            ]
+gulp.task("min-css", function () {
+    return gulp.src("./wwwroot/app/css/**/*.css")
+        //.pipe(sourcemaps.init())
+        .pipe(cleanCSS())
+        //.pipe(sourcemaps.write())
+        .pipe(rename({
+            suffix: ".min"
         }))
-        .pipe(gulp.dest("./wwwroot/app/js/"));
+        .pipe(gulp.dest("./wwwroot/app/css/"));
 });
 
-gulp.task("typescript", function () {
-    return typeScriptProject.src()
-        .pipe(typeScriptProject())
-        .js.pipe(gulp.dest(typeScriptProject.config.compilerOptions.outDir));
+gulp.task("sass", function () {
+    return gulp.src(paths.sass)
+        //.pipe(sourcemaps.init())
+        .pipe(sass().on("error", sass.logError))
+        //.pipe(sourcemaps.write())
+        .pipe(gulp.dest("./wwwroot/app/css/"));
 });
 
-gulp.task("watch-less", function () {
-    return gulp.watch("./wwwroot/app/less/**/*", ["less"]);
+gulp.task("watch-sass", function () {
+    return gulp.watch("./wwwroot/src/scss/**/*", gulp.series("clean-css", "sass", "min-css"));
 });
 
-gulp.task("watch-webpack", function () {
-    return gulp.watch("./Typescripts/**/*", ["webpack"]);
-});
-
-gulp.task("webpack", function () {
-    return webpack(webpackConfig).run(function (done) {
-        if (done) {
-            done();
-        }
-    });
-});
+gulp.task("default", gulp.series("clean", "lib", "sass", "min-css"));
