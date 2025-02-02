@@ -20,16 +20,26 @@
     min-height: 50px;
 }
 
-.panel-link {
+.card-link {
     cursor: pointer;
     -moz-transition: all 1s ease;
     -o-transition: all 1s ease;
     -webkit-transition: all 1s ease;
     transition: all 1s ease;
-    
+
     &:hover {
         background-color: #EEEEEE;
     }
+
+    & > .row > div {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}
+
+.card-link:nth-child(2n+1) {
+
 }
 
 .property-label {
