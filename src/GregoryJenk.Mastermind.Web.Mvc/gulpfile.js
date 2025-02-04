@@ -1,66 +1,75 @@
-﻿/// <binding BeforeBuild="default" Clean="clean" />
-//TODO: Review file.
-var del = require("del");
-var gulp = require("gulp");
-var cleanCSS = require("gulp-clean-css");
-var rename = require("gulp-rename");
-var sass = require("gulp-sass")(require("sass"));
-var sourcemaps = require("gulp-sourcemaps");
+﻿/// <binding BeforeBuild="default" Clean="cleanAsync" />
 
-var paths = {
-    lib: [
+import { deleteAsync } from "del";
+import { dest, series, src, watch } from "gulp";
+import cleanCss from "gulp-clean-css";
+import rename from "gulp-rename";
+import sassFactory from "gulp-sass";
+import sourcemaps from "gulp-sourcemaps";
+import * as sassCompiler from "sass";
+
+const paths = {
+    nodeModules: [
         "./node_modules/animate.css/animate.min.css",
         "./node_modules/bootstrap/dist/css/bootstrap.min.css",
         "./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
         "./node_modules/bootstrap-icons/font/bootstrap-icons.min.css",
         "./node_modules/bootstrap-icons/font/fonts/**/*"
     ],
-    sass: [
-        "./wwwroot/src/scss/app.scss",
-        "./wwwroot/src/scss/layout.scss"
-    ]
+    source: {
+        scss: [
+            "./wwwroot/src/scss/app.scss",
+            "./wwwroot/src/scss/layout.scss"
+        ]
+    }
 };
 
-gulp.task("clean", function () {
-    return del([
+export async function cleanAsync() {
+    return await deleteAsync([
         "./wwwroot/app/css",
         "./wwwroot/app/js",
         "./wwwroot/lib"
     ]);
-});
+}
 
-gulp.task("clean-css", function () {
-    return del([
-        "./wwwroot/app/css/"
+export async function cleanCssAsync() {
+    return await deleteAsync([
+        "./wwwroot/app/css"
     ]);
-});
+}
 
-gulp.task("lib", function () {
-    return gulp.src(paths.lib, { base: "node_modules" })
-        .pipe(gulp.dest("./wwwroot/lib/"));
-});
+export function copyLibraries() {
+    let srcOptions = {
+        base: "./node_modules"
+    };
 
-gulp.task("min-css", function () {
-    return gulp.src("./wwwroot/app/css/**/*.css")
-        //.pipe(sourcemaps.init())
-        .pipe(cleanCSS())
-        //.pipe(sourcemaps.write())
-        .pipe(rename({
-            suffix: ".min"
-        }))
-        .pipe(gulp.dest("./wwwroot/app/css/"));
-});
+    return src(paths.nodeModules, srcOptions)
+        .pipe(dest("./wwwroot/lib"));
+}
 
-gulp.task("sass", function () {
-    return gulp.src(paths.sass)
-        //.pipe(sourcemaps.init())
-        .pipe(sass().on("error", sass.logError))
-        //.pipe(sourcemaps.write())
-        .pipe(gulp.dest("./wwwroot/app/css/"));
-});
+export function compileSass() {
+    let sass = sassFactory(sassCompiler);
 
-gulp.task("watch-sass", function () {
-    return gulp.watch("./wwwroot/src/scss/**/*", gulp.series("clean-css", "sass", "min-css"));
-});
+    return src(paths.source.scss)
+        .pipe(sass())
+        .pipe(dest("./wwwroot/app/css"));
+}
 
-gulp.task("default", gulp.series("clean", "lib", "sass", "min-css"));
+export function minimiseCss() {
+    let renameOptions = {
+        suffix: ".min"
+    };
+
+    return src("./wwwroot/app/css/**/*.css")
+        .pipe(sourcemaps.init())
+        .pipe(cleanCss())
+        .pipe(rename(renameOptions))
+        .pipe(sourcemaps.write("."))
+        .pipe(dest("./wwwroot/app/css"));
+}
+
+export function watchSass() {
+    watch(paths.source.scss, series(cleanCssAsync, compileSass, minimiseCss));
+}
+
+export default series(cleanAsync, copyLibraries, compileSass, minimiseCss);
