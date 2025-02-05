@@ -1,7 +1,6 @@
 {
   "name": "@gregoryjenk/mastermind-web-mvc",
   "version": "2.0.0",
-  "private": true,
   "author": {
     "email": "gregoryjenk@gmail.com",
     "name": "Gregory Jenkins",
@@ -44,9 +43,10 @@
   },
   "homepage": "https://github.com/gregoryjenk/GregoryJenk.Mastermind",
   "license": "MIT",
-  "type": "module",
+  "private": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/gregoryjenk/GregoryJenk.Mastermind.git"
-  }
+  },
+  "type": "module"
 }
