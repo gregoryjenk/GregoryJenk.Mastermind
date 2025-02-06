@@ -14,17 +14,17 @@ jobs:
         steps:
             - name: Checkout
               uses: actions/checkout@v4
-            - name: Setup
+            - name: Setup (.NET)
               uses: actions/setup-dotnet@v4
               with:
                 dotnet-version: 9.0.x
-            - name: Restore
+            - name: Restore (.NET)
               run: dotnet restore src
-            - name: Build
+            - name: Build (.NET)
               run: dotnet build src --configuration Release --no-restore
-            - name: Test
+            - name: Test (.NET)
               run: dotnet test src --configuration Release --no-build
-            - name: Publish
+            - name: Publish (.NET)
               run: dotnet publish src --configuration Release --no-build
             - name: Attest
               uses: actions/attest-build-provenance@v1
