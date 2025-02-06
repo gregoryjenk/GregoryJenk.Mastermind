@@ -1,8 +1,10 @@
 {
   "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./wwwroot/app/js"
+  },
   "files": [
-    "./TypeScripts/app.main.ts",
-    "./TypeScripts/polyfills.ts"
+    "./TypeScripts/app.main.ts"
   ],
   "include": [
     "./TypeScripts/**/*.d.ts"
