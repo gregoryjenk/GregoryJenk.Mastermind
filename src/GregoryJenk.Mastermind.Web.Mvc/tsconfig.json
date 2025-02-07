@@ -1,28 +1,41 @@
 {
-  "compileOnSave": true,
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  },
+  "compileOnSave": false,
   "compilerOptions": {
-    "emitDecoratorMetadata": true,
+    "allowSyntheticDefaultImports": false,
+    "baseUrl": "./TypeScripts",
+    "declaration": false,
+    "downlevelIteration": false,
+    "emitDecoratorMetadata": false,
+    "esModuleInterop": false,
     "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
+    "importHelpers": true,
     "inlineSourceMap": false,
     "inlineSources": false,
-    "module": "commonjs",
-    "moduleResolution": "node",
+    "isolatedModules": true,
+    "module": "ES2022",
+    "moduleResolution": "bundler",
     "noEmitOnError": true,
+    "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true,
-    "outDir": "./wwwroot/app/js/",
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "outDir": "",
     "removeComments": false,
-    "sourceMap": false,
-    "target": "es6",
-    "types": [
-      "core-js"
-    ],
-    "typeRoots": [
-      "./node_modules/@types/"
-    ]
+    "resolveJsonModule": true,
+    "skipLibCheck": false,
+    "sourceMap": true,
+    "strict": true,
+    "target": "ES2022",
+    "types": []
   },
-  //Either the exclude or files properties can be used, but not both, files takes priority.
-  "exclude": [
-    "node_modules",
-    "wwwroot"
-  ]
+  "files": [],
+  "include": []
 }
