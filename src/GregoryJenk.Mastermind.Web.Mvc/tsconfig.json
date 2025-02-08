@@ -27,7 +27,7 @@
     "noImplicitOverride": true,
     "noImplicitReturns": true,
     "noPropertyAccessFromIndexSignature": true,
-    "outDir": "",
+    "outDir": null,
     "removeComments": false,
     "resolveJsonModule": true,
     "skipLibCheck": false,
@@ -36,6 +36,6 @@
     "target": "ES2022",
     "types": []
   },
-  "files": [],
-  "include": []
+  "files": null,
+  "include": null
 }
