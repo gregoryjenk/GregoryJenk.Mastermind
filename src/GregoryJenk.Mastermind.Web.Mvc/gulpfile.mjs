@@ -10,6 +10,9 @@ import * as sassCompiler from "sass";
 
 const paths = {
     nodeModules: [
+        "./node_modules/@gregoryjenk/aesthetic-scheme-default/dist/css/**/*",
+        "./node_modules/@gregoryjenk/aesthetic-scheme-default/dist/fonts/**/*",
+        "./node_modules/@gregoryjenk/aesthetic-scheme-default/dist/images/**/*",
         "./node_modules/animate.css/animate.min.css",
         "./node_modules/bootstrap/dist/css/bootstrap.min.css",
         "./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
