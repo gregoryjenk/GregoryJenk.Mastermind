@@ -21,7 +21,6 @@ const paths = {
     ],
     source: {
         scss: [
-            "./wwwroot/src/scss/app.scss",
             "./wwwroot/src/scss/layout.scss"
         ]
     }
