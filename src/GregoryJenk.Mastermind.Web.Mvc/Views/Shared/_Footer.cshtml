@@ -1,12 +1,18 @@
-﻿<div class="container">
-    <footer class="text-center">
-        <p>
-            @Html.ActionLink("Privacy Policy", "PrivacyPolicy")
-            .
-            @Html.ActionLink("Terms and Conditions", "TermsAndConditions")
-        </p>
-        <p>
-            &copy; 2016 - @DateTime.Now.Year Gregory Jenkins. All rights reserved.
-        </p>
-    </footer>
-</div>
+﻿<footer class="container-fluid">
+    <div class="row">
+        <div class="col text-center">
+            <p>
+                @Html.ActionLink("Privacy Policy", "PrivacyPolicy")
+                .
+                @Html.ActionLink("Terms of Service", "TermsOfService")
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col text-center">
+            <p>
+                Copyright &copy; @DateTime.Now.Year Gregory Jenkins. All rights reserved.
+            </p>
+        </div>
+    </div>
+</footer>
