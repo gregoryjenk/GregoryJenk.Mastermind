@@ -27,26 +27,8 @@ namespace GregoryJenk.Mastermind.Web.Mvc.Extensions.Users
 
             var enAuCultureInfo = new CultureInfo("en-AU");
 
-            DateTimeOffset? updated;
-            DateTimeOffset? deleted;
-
-            if (!string.IsNullOrEmpty(updatedClaim.Value))
-            {
-                updated = DateTimeOffset.Parse(updatedClaim.Value, enAuCultureInfo);
-            }
-            else
-            {
-                updated = null;
-            }
-
-            if (!string.IsNullOrEmpty(deletedClaim.Value))
-            {
-                deleted = DateTimeOffset.Parse(deletedClaim.Value, enAuCultureInfo);
-            }
-            else
-            {
-                deleted = null;
-            }
+            var updated = !string.IsNullOrEmpty(updatedClaim.Value) ? DateTimeOffset.Parse(updatedClaim.Value, enAuCultureInfo) as DateTimeOffset? : null;
+            var deleted = !string.IsNullOrEmpty(deletedClaim.Value) ? DateTimeOffset.Parse(deletedClaim.Value, enAuCultureInfo) as DateTimeOffset? : null;
 
             userViewModel.Id = Guid.Parse(sidClaim.Value);
             userViewModel.Created = DateTimeOffset.Parse(createdClaim.Value, enAuCultureInfo);
