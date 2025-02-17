@@ -42,7 +42,8 @@ export async function cleanCssAsync() {
 
 export function copyLibraries() {
     let srcOptions = {
-        base: "./node_modules"
+        base: "./node_modules",
+        encoding: false
     };
 
     return src(paths.nodeModules, srcOptions)
