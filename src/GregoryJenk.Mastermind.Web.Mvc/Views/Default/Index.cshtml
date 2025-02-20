@@ -1,81 +1,15 @@
-﻿@{
-    Layout = "_Secure";
-}
-
-@section head_styles {
-    <link href="~/app/css/components/games/states/game-state.component.css" rel="stylesheet" />
-    <link href="~/app/css/components/navigations/navigation-bar.component.css" rel="stylesheet" />
-    <link href="~/app/css/components/notifications/notification-bar.component.css" rel="stylesheet" />
-    <link href="~/app/css/components/pegs/peg-code.component.css" rel="stylesheet" />
-}
-
-@section body_scripts {
-    <script src="~/lib/chart.js/dist/Chart.min.js"></script>
-    <script src="~/lib/core-js/client/shim.min.js"></script>
-    <script src="~/lib/zone.js/dist/zone.js"></script>
-    <script src="~/lib/reflect-metadata/Reflect.js"></script>
-    <script src="~/app/js/app.js"></script>
-    @*<script src="~/lib/systemjs/dist/system.src.js"></script>
-    <script>
-        //Loading from the CDN may be more performant than loading local versions but less reliable.
-        //For example: https://unpkg.com/@@angular/common@@<version>.
-        var map = {
-            "@@angular/common": "./lib/@@angular/common",
-            "@@angular/compiler": "./lib/@@angular/compiler",
-            "@@angular/core": "./lib/@@angular/core",
-            "@@angular/forms": "./lib/@@angular/forms",
-            "@@angular/http": "./lib/@@angular/http",
-            "@@angular/platform-browser": "./lib/@@angular/platform-browser",
-            "@@angular/platform-browser-dynamic": "./lib/@@angular/platform-browser-dynamic",
-            "@@angular/router": "./lib/@@angular/router",
-            "atoa": "./lib/atoa",
-            "contra": "./lib/contra",
-            "crossvent": "./lib/crossvent",
-            "dragula": "./lib/dragula",
-            "ng2-charts": "./lib/ng2-charts",
-            "ng2-dragula": "./lib/ng2-dragula",
-            "rxjs": "./lib/rxjs",
-            "ticky": "./lib/ticky"
-        };
-
-        var packages = {
-            "@@angular/common": { defaultExtension: "js", main: "bundles/common.umd.js" },
-            "@@angular/compiler": { defaultExtension: "js", main: "bundles/compiler.umd.js" },
-            "@@angular/core": { defaultExtension: "js", main: "bundles/core.umd.js" },
-            "@@angular/forms": { defaultExtension: "js", main: "bundles/forms.umd.js" },
-            "@@angular/http": { defaultExtension: "js", main: "bundles/http.umd.js" },
-            "@@angular/platform-browser": { defaultExtension: "js", main: "bundles/platform-browser.umd.js" },
-            "@@angular/platform-browser-dynamic": { defaultExtension: "js", main: "bundles/platform-browser-dynamic.umd.js" },
-            "@@angular/router": { defaultExtension: "js", main: "bundles/router.umd.js" },
-            "atoa": { defaultExtension: "js", main: "atoa.js" },
-            "app": { defaultExtension: "js" },
-            "contra": { defaultExtension: "js", main: "contra.js" },
-            "crossvent": { defaultExtension: "js", main: "dist/crossvent.js" },
-            "dragula": { defaultExtension: "js", main: "dragula.js" },
-            "ng2-charts": { defaultExtension: "js", main: "ng2-charts.js" },
-            "ng2-dragula": { defaultExtension: "js", main: "ng2-dragula.js" },
-            "rxjs": { defaultExtension: "js" },
-            "ticky": { defaultExtension: "js", main: "ticky.js" }
-        };
-
-        System.config({
-            map: map,
-            packages: packages
-        });
-
-        System.import("app/js/app.main").then(null, console.error.bind(console));
-    </script>*@
-}
-
-<div class="app-container container">
-    <div class="app-component">
-        <div class="app-loading">
-            <i class="fa fa-circle-o-notch fa-3x fa-spin">
-
-            </i>
-            <h1>
-                Thinking
-            </h1>
+﻿<app-component>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col text-center">
+                <p class="h1">
+                    Thinking
+                </p>
+            </div>
         </div>
     </div>
-</div>
+</app-component>
+@section body_scripts {
+    <script src="/app/js/browser/polyfills.js" type="module"></script>
+    <script src="/app/js/browser/main.js" type="module"></script>
+}
