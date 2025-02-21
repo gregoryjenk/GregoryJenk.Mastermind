@@ -16,6 +16,8 @@ jobs:
             fail-fast: false
             matrix:
                 include:
+                    - build-mode: none
+                      language: actions
                     - build-mode: autobuild
                       language: csharp
         steps:
