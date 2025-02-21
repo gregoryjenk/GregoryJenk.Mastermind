@@ -15,5 +15,5 @@ See the published [GregoryJenk.Mastermind.Message NuGet package here](https://ww
 
 | Build | Status |
 | :--- | :--- |
-| `develop` (GitHub Actions) | [![Build status.](https://github.com/gregoryjenk/GregoryJenk.Mastermind/actions/workflows/continuous-integration-workflow.yml/badge.svg?branch=develop)](https://github.com/gregoryjenk/GregoryJenk.Mastermind/actions/workflows/continuous-integration-workflow.yml?query=branch%3Adevelop) |
-| `master` (GitHub Actions) | [![Build status.](https://github.com/gregoryjenk/GregoryJenk.Mastermind/actions/workflows/continuous-integration-workflow.yml/badge.svg?branch=master)](https://github.com/gregoryjenk/GregoryJenk.Mastermind/actions/workflows/continuous-integration-workflow.yml?query=branch%3Amaster) |
+| GitHub Actions: `develop` | [![Build status.](https://github.com/gregoryjenk/GregoryJenk.Mastermind/actions/workflows/continuous-integration-workflow.yml/badge.svg?branch=develop)](https://github.com/gregoryjenk/GregoryJenk.Mastermind/actions/workflows/continuous-integration-workflow.yml?query=branch%3Adevelop) |
+| GitHub Actions: `master` | [![Build status.](https://github.com/gregoryjenk/GregoryJenk.Mastermind/actions/workflows/continuous-integration-workflow.yml/badge.svg?branch=master)](https://github.com/gregoryjenk/GregoryJenk.Mastermind/actions/workflows/continuous-integration-workflow.yml?query=branch%3Amaster) |
