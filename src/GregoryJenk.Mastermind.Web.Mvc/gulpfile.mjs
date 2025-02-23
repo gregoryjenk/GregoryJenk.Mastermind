@@ -54,7 +54,7 @@ export function compileSass() {
     let sass = sassFactory(sassCompiler);
 
     return src(paths.source.scss)
-        .pipe(sass())
+        .pipe(sass().on("error", sass.logError))
         .pipe(dest("./wwwroot/app/css"));
 }
 

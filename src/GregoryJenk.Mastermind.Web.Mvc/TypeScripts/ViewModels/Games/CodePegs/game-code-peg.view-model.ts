@@ -1,7 +1,9 @@
-﻿export class CodePeg {
+﻿import { BaseValueObjectViewModel } from "../../base-value-object.view-model";
+
+export class GameCodePegViewModel extends BaseValueObjectViewModel {
+    public index: number;
+
     public colour: CodePegColour;
 
-    constructor(colour: CodePegColour) {
-        this.colour = colour;
-    }
+    public gameId: string;
 }

@@ -1,19 +1,15 @@
-﻿import { CodePeg } from "../Pegs/code-peg.model";
-import { Guess } from "./Guess.model";
+﻿import { BaseEntityViewModel } from "../base-entity.view-model";
+import { GameCodePegViewModel } from "./CodePegs/game-code-peg.view-model";
+import { GameGuessViewModel } from "./Guesses/game-guess.view-model";
 
-export class Game {
-    public id: string;
-    public decoderUserId: string;
-    public guesses: Guess[] = [];
-    public answerCodePegs: CodePeg[] = [];
+export class GameViewModel extends BaseEntityViewModel<string> {
     public state: GameState;
 
-    constructor() {
-        this.addGuess(new Guess());
-    }
+    public started: Date;
 
-    public addGuess(guess: Guess): void {
-        //TODO: Check answer.
-        this.guesses.push(guess);
-    }
+    public decoderUserId: string;
+
+    public answerCodePegs: GameCodePegViewModel[] = [];
+
+    public guesses: GameGuessViewModel[] = [];
 }

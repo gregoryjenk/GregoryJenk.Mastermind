@@ -1,11 +1,12 @@
-﻿import { CodePeg } from "../Pegs/code-peg.model";
+﻿import { BaseValueObjectViewModel } from "../../base-value-object.view-model";
+import { GameGuessCodePegViewModel } from "./CodePegs/game-guess-code-peg.view-model";
 
-export class Guess {
-    public guessCodePegs: CodePeg[] = [];
+export class GameGuessViewModel extends BaseValueObjectViewModel {
+    public correctIndexCorrectColour: number;
 
-    constructor() {
-        for (var i = 0; i < 4; i++) {
-            this.guessCodePegs.push(new CodePeg(CodePegColour.Empty));
-        }
-    }
+    public incorrectIndexCorrectColour: number;
+
+    public gameId: string;
+
+    public guessCodePegs: GameGuessCodePegViewModel[] = [];
 }
