@@ -1,4 +1,4 @@
-﻿const enum NotificationType {
+﻿export const enum NotificationType {
     Danger,
     Information,
     Success,

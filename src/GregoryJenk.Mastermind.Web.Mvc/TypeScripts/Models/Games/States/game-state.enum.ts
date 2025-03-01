@@ -1,4 +1,4 @@
-﻿const enum GameState {
+﻿export const enum GameState {
     Created,
     Started,
     Ended,
