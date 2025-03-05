@@ -8,5 +8,5 @@ export class GameGuessViewModel extends BaseValueObjectViewModel {
 
     public gameId: string;
 
-    public guessCodePegs: GameGuessCodePegViewModel[] = [];
+    public guessCodePegs: GameGuessCodePegViewModel[];
 }
