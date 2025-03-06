@@ -1,19 +1,15 @@
 ﻿import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { BaseService } from "../base.service";
-import { User } from "../../Models/Users/user.model";
+import { UserViewModel } from "../../ViewModels/Users/user.view-model";
 
 @Injectable()
-export class UserService extends BaseService {
-    private userUrl = "api/user";
+export class UserService {
+    constructor(private readonly httpClient: HttpClient) {
 
-    constructor(private httpClient: HttpClient) {
-        super();
     }
 
-    public read(): Observable<User> {
-        return this.httpClient.get(this.userUrl)
-            .map(this.convertResponseToObject);
+    public read(): Observable<UserViewModel> {
+        return this.httpClient.get<UserViewModel>("api/user");
     }
 }
