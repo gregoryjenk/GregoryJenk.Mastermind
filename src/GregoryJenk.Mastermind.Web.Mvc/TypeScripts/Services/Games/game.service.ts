@@ -1,50 +1,33 @@
-﻿import { HttpClient, HttpHeaders } from "@angular/common/http";
+﻿import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { BaseService } from "../base.service";
-import { Game } from "../../Models/Games/game.model";
-import { Guess } from "../../Models/Games/Guess.model";
+import { GameCreateGuessRequest } from "../../Requests/Games/game-create-guess.request";
+import { GameUpdateStateRequest } from "../../Requests/Games/game-update-state.request";
+import { GameViewModel } from "../../ViewModels/Games/game.view-model";
 
-//TODO: Convert result to proper response objects.
 @Injectable()
-export class GameService extends BaseService {
-    private gameUrl = "api/game";
+export class GameService {
+    constructor(private readonly httpClient: HttpClient) {
 
-    constructor(private httpClient: HttpClient) {
-        super();
     }
 
-    public create(game: Game): Observable<Game> {
-        let headers = new HttpHeaders({ "Content-Type": "application/json" });
-        let requestOptions = { headers: headers };
-
-        return this.httpClient.post(this.gameUrl, game, requestOptions)
-            .map(this.convertResponseToObject);
+    public readById(id: string): Observable<GameViewModel> {
+        return this.httpClient.get<GameViewModel>(`api/game/${id}`);
     }
 
-    public createGuess(id: string, game: Game, guess: Guess): Observable<Game> {
-        let headers = new HttpHeaders({ "Content-Type": "application/json" });
-        let requestOptions = { headers: headers };
-
-        return this.httpClient.post(this.gameUrl + "/" + id + "/guess", { game: game, guess: guess }, requestOptions)
-            .map(this.convertResponseToObject);
+    public create(): Observable<GameViewModel> {
+        return this.httpClient.post<GameViewModel>("api/game", null);
     }
 
-    public updateState(id: string, game: Game): Observable<Game> {
-        let headers = new HttpHeaders({ "Content-Type": "application/json" });
-        let requestOptions = { headers: headers };
-
-        return this.httpClient.put(this.gameUrl + "/" + id + "/state", game, requestOptions)
-            .map(this.convertResponseToObject);
+    public readByDecoderUserId(): Observable<GameViewModel[]> {
+        return this.httpClient.get<GameViewModel[]>("api/game");
     }
 
-    public readById(id: string): Observable<Game> {
-        return this.httpClient.get(this.gameUrl + "/" + id)
-            .map(this.convertResponseToObject);
+    public createGuess(gameCreateGuessRequest: GameCreateGuessRequest): Observable<GameViewModel> {
+        return this.httpClient.post<GameViewModel>(`api/game/${gameCreateGuessRequest.id}/guess`, gameCreateGuessRequest)
     }
 
-    public readAll(): Observable<Game[]> {
-        return this.httpClient.get(this.gameUrl)
-            .map(this.convertResponseToArray);
+    public updateState(gameUpdateStateRequest: GameUpdateStateRequest): Observable<GameViewModel> {
+        return this.httpClient.put<GameViewModel>(`api/game/${gameUpdateStateRequest.id}/state`, gameUpdateStateRequest)
     }
 }
