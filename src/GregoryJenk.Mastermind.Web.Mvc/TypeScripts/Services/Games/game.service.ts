@@ -24,10 +24,10 @@ export class GameService {
     }
 
     public createGuess(gameCreateGuessRequest: GameCreateGuessRequest): Observable<GameViewModel> {
-        return this.httpClient.post<GameViewModel>(`api/game/${gameCreateGuessRequest.id}/guess`, gameCreateGuessRequest)
+        return this.httpClient.post<GameViewModel>(`api/game/${gameCreateGuessRequest.id}/guess`, gameCreateGuessRequest);
     }
 
     public updateState(gameUpdateStateRequest: GameUpdateStateRequest): Observable<GameViewModel> {
-        return this.httpClient.put<GameViewModel>(`api/game/${gameUpdateStateRequest.id}/state`, gameUpdateStateRequest)
+        return this.httpClient.put<GameViewModel>(`api/game/${gameUpdateStateRequest.id}/state`, gameUpdateStateRequest);
     }
 }
