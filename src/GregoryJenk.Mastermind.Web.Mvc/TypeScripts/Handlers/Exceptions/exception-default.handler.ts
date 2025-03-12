@@ -8,6 +8,6 @@ export class ExceptionDefaultHandler implements ErrorHandler {
             debugger;
         }
 
-        window.location.replace("/error");
+        window.location.assign("error");
     }
 }
