@@ -3,9 +3,9 @@
 
     public created: Date;
 
-    public updated: Date;
+    public updated: Date | null;
 
-    public deleted: Date;
+    public deleted: Date | null;
 
     public version: number;
 }

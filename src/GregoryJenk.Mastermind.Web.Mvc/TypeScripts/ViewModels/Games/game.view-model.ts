@@ -6,7 +6,7 @@ import { GameGuessViewModel } from "./Guesses/game-guess.view-model";
 export class GameViewModel extends BaseEntityViewModel<string> {
     public state: GameState;
 
-    public started: Date;
+    public started: Date | null;
 
     public decoderUserId: string;
 
