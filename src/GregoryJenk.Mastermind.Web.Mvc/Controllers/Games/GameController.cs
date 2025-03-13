@@ -31,7 +31,9 @@ namespace GregoryJenk.Mastermind.Web.Mvc.Controllers.Games
         {
             var gameViewModel = await _gameService.CreateAsync();
 
-            return Created(new Uri($"{Request.Scheme}://{Request.Host}/api/game/{gameViewModel.Id}"), gameViewModel);
+            var location = new Uri($"{Request.Scheme}://{Request.Host}/api/game/{gameViewModel.Id}");
+
+            return Created(location, gameViewModel);
         }
 
         [HttpGet, Route("")]
@@ -47,7 +49,9 @@ namespace GregoryJenk.Mastermind.Web.Mvc.Controllers.Games
         {
             var gameViewModel = await _gameService.CreateGuessAsync(gameCreateGuessRequest);
 
-            return Created(new Uri($"{Request.Scheme}://{Request.Host}/api/game/{gameViewModel.Id}"), gameViewModel);
+            var location = new Uri($"{Request.Scheme}://{Request.Host}/api/game/{gameViewModel.Id}");
+
+            return Created(location, gameViewModel);
         }
 
         [HttpPut, Route("{id}/state")]

@@ -1,35 +1,24 @@
-﻿import { Routes, RouterModule } from "@angular/router";
-import { DashboardComponent } from "./Components/Dashboards/dashboard.component";
+﻿import { Routes } from "@angular/router";
+import { GameCreateComponent } from "./Components/Games/game-create.component";
 import { GameComponent } from "./Components/Games/game.component";
-import { GameConfigureComponent } from "./Components/Games/game-configure.component";
 
-const appRoutes: Routes = [
+export const appRoutes: Routes = [
     {
-        component: DashboardComponent,
+        component: GameCreateComponent,
         path: ""
-        //pathMatch: "full",
-        //redirectTo: "dashboard"
-    },
-    {
-        component: DashboardComponent,
-        path: "dashboard"
-    },
-    {
-        component: GameConfigureComponent,
-        path: "play"
     },
     {
         component: GameComponent,
         path: "game/:id"
+    },
+    {
+        path: "**",
+        redirectTo: redirectTo
     }
-    //{
-    //    component: PageNotFoundComponent,
-    //    path: "**"
-    //}
 ];
 
-export const appRoutingProviders: any[] = [
+function redirectTo(): string {
+    window.location.assign("not-found");
 
-];
-
-export const routing = RouterModule.forRoot(appRoutes);
+    return "";
+}

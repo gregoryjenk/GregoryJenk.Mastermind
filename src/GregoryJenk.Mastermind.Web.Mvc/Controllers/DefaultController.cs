@@ -3,6 +3,7 @@ using GregoryJenk.Mastermind.Web.Mvc.Factories;
 using GregoryJenk.Mastermind.Web.Mvc.Factories.Authentication;
 using GregoryJenk.Mastermind.Web.Mvc.Factories.Users;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
@@ -46,7 +47,7 @@ namespace GregoryJenk.Mastermind.Web.Mvc.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        [HttpGet, Route("")]
+        [HttpGet, Route(""), Route("{**path}")]
         public IActionResult Index()
         {
             return View();
@@ -64,9 +65,19 @@ namespace GregoryJenk.Mastermind.Web.Mvc.Controllers
             return View();
         }
 
+        [HttpGet, Route("not-found")]
+        public IActionResult NotFoundAction()
+        {
+            Response.StatusCode = StatusCodes.Status404NotFound;
+
+            return View("NotFound");
+        }
+
         [HttpGet, Route("error")]
         public IActionResult Error()
         {
+            Response.StatusCode = StatusCodes.Status500InternalServerError;
+
             return View();
         }
     }
