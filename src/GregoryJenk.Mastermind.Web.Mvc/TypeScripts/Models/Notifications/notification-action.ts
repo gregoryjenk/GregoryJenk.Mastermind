@@ -7,5 +7,5 @@ export class NotificationAction extends BaseNotification {
 
     public action: string;
 
-    public result: string;
+    public result: string | null;
 }
