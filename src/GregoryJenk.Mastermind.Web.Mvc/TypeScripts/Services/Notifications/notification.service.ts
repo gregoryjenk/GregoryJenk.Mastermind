@@ -1,35 +1,81 @@
 ﻿import { Injectable } from "@angular/core";
-import { SlimLoadingBarService } from "ng2-slim-loading-bar";
-import { Notification } from "../../Models/Notifications/notification.model";
+import { NotificationAction } from "../../Models/Notifications/notification-action";
+import { NotificationMessage } from "../../Models/Notifications/notification-message";
+import { NotificationType } from "../../Models/Notifications/notification-type";
 
 @Injectable()
 export class NotificationService {
-    private notifications: Notification[] = [];
-
-    constructor(private slimLoadingBarService: SlimLoadingBarService) {
-
+    constructor() {
+        this.messages = [];
+        this.actions = [];
     }
 
-    public create(notification: Notification): void {
-        this.notifications.push(notification);
+    public messages: NotificationMessage[];
 
-        setTimeout(() => {
-            notification.hide();
-        },
-        4000);
+    public actions: NotificationAction[];
+
+    public createMessage(type: NotificationType, title: string, message: string): string {
+        let id: string;
+        let expired = new Date();
+        let created = new Date();
+        let notificationMessage = new NotificationMessage();
+
+        id = crypto.randomUUID();
+
+        expired.setDate(expired.getDate() + 1);
+
+        notificationMessage.id = id;
+        notificationMessage.type = type;
+        notificationMessage.expired = expired;
+        notificationMessage.created = created;
+        notificationMessage.title = title;
+        notificationMessage.message = message;
+
+        this.messages.push(notificationMessage);
+
+        return notificationMessage.id;
     }
 
-    public delete(notification: Notification): void {
-        var index = this.notifications.indexOf(notification);
+    public deleteMessage(id: string): void {
+        let index: number;
 
-        this.notifications.splice(index, 1);
+        index = this.messages.findIndex(notificationMessage => notificationMessage.id === id);
+
+        this.messages.splice(index, 1);
     }
 
-    public start(): void {
-        this.slimLoadingBarService.start();
+    public startAction(type: NotificationType, action: string): string {
+        let id: string;
+        let expired = new Date();
+        let started = new Date();
+        let notificationAction = new NotificationAction();
+
+        id = crypto.randomUUID();
+
+        expired.setDate(expired.getDate() + 1);
+
+        notificationAction.id = id;
+        notificationAction.type = type;
+        notificationAction.expired = expired;
+        notificationAction.started = started;
+        notificationAction.action = action;
+
+        this.actions.push(notificationAction);
+
+        return notificationAction.id;
     }
 
-    public complete(): void {
-        this.slimLoadingBarService.complete();
+    public endAction(id: string, type: NotificationType, result: string): void {
+        let index: number;
+        let ended = new Date();
+        let notificationAction: NotificationAction;
+
+        index = this.actions.findIndex(notificationAction => notificationAction.id === id);
+
+        notificationAction = this.actions.at(index) as NotificationAction;
+
+        notificationAction.type = type;
+        notificationAction.ended = ended;
+        notificationAction.result = result;
     }
 }
