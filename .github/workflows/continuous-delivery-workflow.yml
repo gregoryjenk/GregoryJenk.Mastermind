@@ -63,5 +63,16 @@ jobs:
             name: Live
             url: https://mastermind.gregoryjenk.com
         steps:
+            - name: Download
+              uses: actions/download-artifact@v4
+              with:
+                name: GregoryJenk.Mastermind.Web.Mvc
+                path: ./GregoryJenk.Mastermind.Web.Mvc
             - name: Deploy
-              run: echo "Deploy"
+              uses: azure/webapps-deploy@v3
+              with:
+                app-name: ${{ secrets.AZURE_APP_NAME }}
+                clean: true
+                package: ./GregoryJenk.Mastermind.Web.Mvc
+                publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
+                restart: true
