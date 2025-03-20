@@ -13,12 +13,9 @@ using GregoryJenk.Mastermind.Web.Mvc.Handlers.Authentication;
 using GregoryJenk.Mastermind.Web.Mvc.Hubs.Games;
 using GregoryJenk.Mastermind.Web.Mvc.Snippets.Information;
 using GregoryJenk.Mastermind.Web.Mvc.Strategies.Authentication;
-using Microsoft.ApplicationInsights.AspNetCore.Extensions;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
@@ -43,22 +40,14 @@ namespace GregoryJenk.Mastermind.Web.Mvc
 
         public void ConfigureServices(IServiceCollection serviceCollection)
         {
-            serviceCollection.AddApplicationInsightsTelemetry((ApplicationInsightsServiceOptions applicationInsightsServiceOptions) =>
-            {
-                applicationInsightsServiceOptions.EnableHeartbeat = true;
-                //applicationInsightsServiceOptions.EnableRequestTrackingTelemetryModule = true;
-                //applicationInsightsServiceOptions.InstrumentationKey = _configuration["ApplicationInsights:InstrumentationKey"];
-            });
-
-            //Binding configuration option objects to sections in the configurations.
-            serviceCollection.AddOptions();
+            serviceCollection.AddApplicationInsightsTelemetry();
 
             serviceCollection.Configure((AuthenticationAuthorityGoogleStrategyOption authenticationAuthorityGoogleStrategyOption) =>
             {
                 _configuration.GetSection("Authentication:Google")
                     .Bind(authenticationAuthorityGoogleStrategyOption);
             });
-            
+
             serviceCollection.Configure((AuthenticationTokenJwtBearerStrategyOption authenticationTokenJwtBearerStrategyOption) =>
             {
                 _configuration.GetSection("Authentication:JwtBearer")
@@ -70,7 +59,7 @@ namespace GregoryJenk.Mastermind.Web.Mvc
                 _configuration.GetSection("Bridge:Google:Bridges")
                     .Bind(bridgeOption);
             });
-            
+
             serviceCollection.Configure((ProxyOption proxyOption) =>
             {
                 _configuration.GetSection("Service:Proxies")
@@ -85,6 +74,7 @@ namespace GregoryJenk.Mastermind.Web.Mvc
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Authentication:JwtBearer:IssuerSigningKey"])),
                         ValidateActor = true,
                         ValidateAudience = true,
+                        ValidateIssuer = true,
                         ValidateIssuerSigningKey = true,
                         ValidateLifetime = true,
                         ValidAudience = _configuration["Authentication:JwtBearer:ValidAudience"],
@@ -92,46 +82,37 @@ namespace GregoryJenk.Mastermind.Web.Mvc
                     };
                 });
 
+            serviceCollection.AddAutoMapper((IMapperConfigurationExpression mapperConfigurationExpression) =>
+            {
+                mapperConfigurationExpression.AddProfile<UserViewModelProfile>();
+            });
+
             serviceCollection.AddControllersWithViews((MvcOptions mvcOptions) =>
             {
                 mvcOptions.RespectBrowserAcceptHeader = true;
             });
-                //.AddJsonOptions((JsonOptions jsonOptions) =>
-                //{
-                //})
-                //.AddNewtonsoftJson((MvcNewtonsoftJsonOptions mvcJsonOptions) =>
-                //{
-                //    mvcJsonOptions.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
-                //    mvcJsonOptions.SerializerSettings.DateFormatHandling = DateFormatHandling.IsoDateFormat;
-                //    //mvcJsonOptions.SerializerSettings.DateFormatString = "U";
-                //    mvcJsonOptions.SerializerSettings.DateParseHandling = DateParseHandling.DateTimeOffset;
-                //    mvcJsonOptions.SerializerSettings.DateTimeZoneHandling = DateTimeZoneHandling.Utc;
-                //    mvcJsonOptions.SerializerSettings.NullValueHandling = NullValueHandling.Include;
-                //});
 
-            //Register implementations for Depedency Injection here.
             serviceCollection.AddSingleton<AuthenticationAuthorityStrategyFactory>();
             serviceCollection.AddSingleton<InformationSnippet>();
             serviceCollection.AddSingleton<UserBridgeFactory>();
-            serviceCollection.AddTransient<AuthenticationHeaderHandler>();
-            serviceCollection.AddTransient<IAuthenticationStoreStrategy, AuthenticationStoreHttpContextStrategy>();
-            serviceCollection.AddTransient<IAuthenticationTokenStrategy, AuthenticationTokenJwtBearerStrategy>();
-            serviceCollection.AddTransient<IGameProxy, GameProxy>();
-            serviceCollection.AddTransient<IGameService, GameService>();
-            serviceCollection.AddTransient<IUserProxy, UserProxy>();
-            serviceCollection.AddTransient<IUserService, UserService>();
+            serviceCollection.AddScoped<AuthenticationHeaderHandler>();
+            serviceCollection.AddScoped<IAuthenticationStoreStrategy, AuthenticationStoreHttpContextStrategy>();
+            serviceCollection.AddScoped<IAuthenticationTokenStrategy, AuthenticationTokenJwtBearerStrategy>();
+            serviceCollection.AddScoped<IGameProxy, GameProxy>();
+            serviceCollection.AddScoped<IGameService, GameService>();
+            serviceCollection.AddScoped<IUserProxy, UserProxy>();
+            serviceCollection.AddScoped<IUserService, UserService>();
 
-            //There is an issue with IHttpContextAccessor, it's not being injected automatically, so needs to be registered.
-            serviceCollection.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
-            //TODO: serviceCollection.AddHttpContextAccessor();
+            serviceCollection.AddHttpClient(ProxyConstant.DefaultName)
+                .AddHttpMessageHandler<AuthenticationHeaderHandler>();
+
+            serviceCollection.AddHttpContextAccessor();
 
             serviceCollection.AddSignalR();
         }
 
         public void Configure(IApplicationBuilder applicationBuilder, IWebHostEnvironment webHostEnvironment)
         {
-            applicationBuilder.UseAuthentication();
-
             if (webHostEnvironment.IsDevelopment())
             {
                 applicationBuilder.UseDeveloperExceptionPage();
@@ -145,20 +126,19 @@ namespace GregoryJenk.Mastermind.Web.Mvc
 
             applicationBuilder.UseHttpsRedirection();
 
-            //applicationBuilder.UseDefaultFiles();
-
             applicationBuilder.UseStaticFiles();
 
             applicationBuilder.UseRouting();
 
-            //TODO: Check whether UseAuthentication() is still needed?
+            applicationBuilder.UseAuthentication();
+
             applicationBuilder.UseAuthorization();
 
             applicationBuilder.UseEndpoints((IEndpointRouteBuilder endpointRouteBuilder) =>
             {
                 endpointRouteBuilder.MapControllers();
 
-                endpointRouteBuilder.MapHub<GameHub>("/game");
+                endpointRouteBuilder.MapHub<GameHub>("hub/game");
             });
         }
     }
