@@ -45,15 +45,22 @@ namespace GregoryJenk.Mastermind.Web.Mvc
             serviceCollection.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer((JwtBearerOptions jwtBearerOptions) =>
                 {
+                    var issuerSigningKey = _configuration["Authentication:JwtBearer:IssuerSigningKey"];
+                    var validAudience = _configuration["Authentication:JwtBearer:ValidAudience"];
+
+                    var issuerSigningKeyBytes = Encoding.UTF8.GetBytes(issuerSigningKey);
+
+                    var symmetricSecurityKey = new SymmetricSecurityKey(issuerSigningKeyBytes);
+
                     jwtBearerOptions.TokenValidationParameters = new TokenValidationParameters()
                     {
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Authentication:JwtBearer:IssuerSigningKey"])),
+                        IssuerSigningKey = symmetricSecurityKey,
                         ValidateActor = true,
                         ValidateAudience = true,
                         ValidateIssuer = true,
                         ValidateIssuerSigningKey = true,
                         ValidateLifetime = true,
-                        ValidAudience = _configuration["Authentication:JwtBearer:ValidAudience"],
+                        ValidAudience = validAudience,
                         ValidIssuer = "GregoryJenk.Mastermind.Web.Mvc"
                     };
                 });
