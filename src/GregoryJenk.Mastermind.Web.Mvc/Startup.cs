@@ -42,30 +42,6 @@ namespace GregoryJenk.Mastermind.Web.Mvc
         {
             serviceCollection.AddApplicationInsightsTelemetry();
 
-            serviceCollection.Configure((AuthenticationAuthorityGoogleStrategyOption authenticationAuthorityGoogleStrategyOption) =>
-            {
-                _configuration.GetSection("Authentication:Google")
-                    .Bind(authenticationAuthorityGoogleStrategyOption);
-            });
-
-            serviceCollection.Configure((AuthenticationTokenJwtBearerStrategyOption authenticationTokenJwtBearerStrategyOption) =>
-            {
-                _configuration.GetSection("Authentication:JwtBearer")
-                    .Bind(authenticationTokenJwtBearerStrategyOption);
-            });
-
-            serviceCollection.Configure((BridgeOption bridgeOption) =>
-            {
-                _configuration.GetSection("Bridge:Google:Bridges")
-                    .Bind(bridgeOption);
-            });
-
-            serviceCollection.Configure((ProxyOption proxyOption) =>
-            {
-                _configuration.GetSection("Service:Proxies")
-                    .Bind(proxyOption);
-            });
-
             serviceCollection.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer((JwtBearerOptions jwtBearerOptions) =>
                 {
@@ -92,9 +68,11 @@ namespace GregoryJenk.Mastermind.Web.Mvc
                 mvcOptions.RespectBrowserAcceptHeader = true;
             });
 
-            serviceCollection.AddSingleton<AuthenticationAuthorityStrategyFactory>();
-            serviceCollection.AddSingleton<InformationSnippet>();
-            serviceCollection.AddSingleton<UserBridgeFactory>();
+            serviceCollection.AddHttpClient(ProxyConstant.DefaultName)
+                .AddHttpMessageHandler<AuthenticationHeaderHandler>();
+
+            serviceCollection.AddHttpContextAccessor();
+
             serviceCollection.AddScoped<AuthenticationHeaderHandler>();
             serviceCollection.AddScoped<IAuthenticationStoreStrategy, AuthenticationStoreHttpContextStrategy>();
             serviceCollection.AddScoped<IAuthenticationTokenStrategy, AuthenticationTokenJwtBearerStrategy>();
@@ -103,12 +81,35 @@ namespace GregoryJenk.Mastermind.Web.Mvc
             serviceCollection.AddScoped<IUserProxy, UserProxy>();
             serviceCollection.AddScoped<IUserService, UserService>();
 
-            serviceCollection.AddHttpClient(ProxyConstant.DefaultName)
-                .AddHttpMessageHandler<AuthenticationHeaderHandler>();
-
-            serviceCollection.AddHttpContextAccessor();
-
             serviceCollection.AddSignalR();
+
+            serviceCollection.AddSingleton<AuthenticationAuthorityStrategyFactory>();
+            serviceCollection.AddSingleton<InformationSnippet>();
+            serviceCollection.AddSingleton<UserBridgeFactory>();
+
+            serviceCollection.Configure((AuthenticationAuthorityGoogleStrategyOption authenticationAuthorityGoogleStrategyOption) =>
+            {
+                _configuration.GetSection("Authentication:Google")
+                    .Bind(authenticationAuthorityGoogleStrategyOption);
+            });
+
+            serviceCollection.Configure((AuthenticationTokenJwtBearerStrategyOption authenticationTokenJwtBearerStrategyOption) =>
+            {
+                _configuration.GetSection("Authentication:JwtBearer")
+                    .Bind(authenticationTokenJwtBearerStrategyOption);
+            });
+
+            serviceCollection.Configure((BridgeOption bridgeOption) =>
+            {
+                _configuration.GetSection("Bridge:Google:Bridges")
+                    .Bind(bridgeOption);
+            });
+
+            serviceCollection.Configure((ProxyOption proxyOption) =>
+            {
+                _configuration.GetSection("Service:Proxies")
+                    .Bind(proxyOption);
+            });
         }
 
         public void Configure(IApplicationBuilder applicationBuilder, IWebHostEnvironment webHostEnvironment)
