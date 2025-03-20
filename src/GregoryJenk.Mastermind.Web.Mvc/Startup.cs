@@ -21,7 +21,6 @@ using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Linq;
@@ -94,29 +93,10 @@ namespace GregoryJenk.Mastermind.Web.Mvc
             serviceCollection.AddSingleton<InformationSnippet>();
             serviceCollection.AddSingleton<UserBridgeFactory>();
 
-            serviceCollection.Configure((AuthenticationAuthorityGoogleStrategyOption authenticationAuthorityGoogleStrategyOption) =>
-            {
-                _configuration.GetSection("Authentication:Google")
-                    .Bind(authenticationAuthorityGoogleStrategyOption);
-            });
-
-            serviceCollection.Configure((AuthenticationTokenJwtBearerStrategyOption authenticationTokenJwtBearerStrategyOption) =>
-            {
-                _configuration.GetSection("Authentication:JwtBearer")
-                    .Bind(authenticationTokenJwtBearerStrategyOption);
-            });
-
-            serviceCollection.Configure((BridgeOption bridgeOption) =>
-            {
-                _configuration.GetSection("Bridge:Google:Bridges")
-                    .Bind(bridgeOption);
-            });
-
-            serviceCollection.Configure((ProxyOption proxyOption) =>
-            {
-                _configuration.GetSection("Service:Proxies")
-                    .Bind(proxyOption);
-            });
+            serviceCollection.Configure<AuthenticationAuthorityGoogleStrategyOption>(_configuration.GetSection("Authentication:Google"));
+            serviceCollection.Configure<AuthenticationTokenJwtBearerStrategyOption>(_configuration.GetSection("Authentication:JwtBearer"));
+            serviceCollection.Configure<BridgeOption>(_configuration.GetSection("Bridge:Google:Bridges"));
+            serviceCollection.Configure<ProxyOption>(_configuration.GetSection("Service:Proxies"));
         }
 
         public void Configure(IApplicationBuilder applicationBuilder, IWebHostEnvironment webHostEnvironment)
