@@ -3,6 +3,7 @@ using GregoryJenk.Mastermind.Service.Strategies.Authentication;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System;
+using System.Globalization;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
@@ -23,10 +24,12 @@ namespace GregoryJenk.Mastermind.Web.Mvc.Strategies.Authentication
 
         public AuthenticationTokenStrategyResult Create(UserViewModel userViewModel)
         {
+            var enAuCultureInfo = new CultureInfo("en-AU");
+
             var id = userViewModel.Id.ToString();
-            var created = userViewModel.Created.ToString();
-            var updated = userViewModel.Updated.ToString();
-            var deleted = userViewModel.Deleted.ToString();
+            var created = userViewModel.Created.ToString(enAuCultureInfo);
+            var updated = userViewModel.Updated.HasValue ? userViewModel.Updated.Value.ToString(enAuCultureInfo) : string.Empty;
+            var deleted = userViewModel.Deleted.HasValue ? userViewModel.Deleted.Value.ToString(enAuCultureInfo) : string.Empty;
             var version = userViewModel.Version.ToString();
 
             var claims = new Claim[]
