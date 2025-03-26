@@ -15,9 +15,7 @@ using GregoryJenk.Mastermind.Web.Mvc.Snippets.Information;
 using GregoryJenk.Mastermind.Web.Mvc.Strategies.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
@@ -115,12 +113,9 @@ namespace GregoryJenk.Mastermind.Web.Mvc
 
             webApplication.UseAuthorization();
 
-            webApplication.UseEndpoints((IEndpointRouteBuilder endpointRouteBuilder) =>
-            {
-                endpointRouteBuilder.MapControllers();
+            webApplication.MapControllers();
 
-                endpointRouteBuilder.MapHub<GameHub>("hub/game");
-            });
+            webApplication.MapHub<GameHub>("hub/game");
 
             webApplication.Run();
         }
