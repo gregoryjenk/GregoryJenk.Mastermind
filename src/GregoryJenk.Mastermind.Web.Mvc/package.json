@@ -18,7 +18,7 @@
     "@angular/platform-browser": "19.2.4",
     "@angular/platform-browser-dynamic": "19.2.4",
     "@angular/router": "19.2.4",
-    "@gregoryjenk/aesthetic-scheme-default": "2.0.3",
+    "@gregoryjenk/aesthetic-default": "2.0.16",
     "@microsoft/signalr": "8.0.7",
     "animate.css": "4.1.1",
     "bootstrap": "5.3.3",
