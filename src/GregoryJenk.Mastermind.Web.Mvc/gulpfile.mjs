@@ -20,8 +20,8 @@ const paths = {
         "./node_modules/bootstrap-icons/font/fonts/**/*"
     ],
     source: {
-        scss: [
-            "./wwwroot/src/scss/layout.scss"
+        styles: [
+            "./wwwroot/src/styles/**/*"
         ]
     }
 };
@@ -53,7 +53,7 @@ export function copyLibraries() {
 export function compileSass() {
     let sass = sassFactory(sassCompiler);
 
-    return src(paths.source.scss)
+    return src(paths.source.styles)
         .pipe(sass().on("error", sass.logError))
         .pipe(dest("./wwwroot/app/css"));
 }
@@ -72,7 +72,7 @@ export function minimiseCss() {
 }
 
 export function watchSass() {
-    watch(paths.source.scss, series(cleanCssAsync, compileSass, minimiseCss));
+    watch(paths.source.styles, series(cleanCssAsync, compileSass, minimiseCss));
 }
 
 export default series(cleanAsync, copyLibraries, compileSass, minimiseCss);
