@@ -1,35 +1,37 @@
-﻿import { Component } from "@angular/core";
-import { Notification } from "../Models/Notifications/notification.model";
+﻿import { Component, OnInit } from "@angular/core";
+import { RouterOutlet } from "@angular/router";
+import { NotificationType } from "../Models/Notifications/notification-type";
 import { NotificationService } from "../Services/Notifications/notification.service";
-import { User } from "../Models/Users/user.model";
 import { UserService } from "../Services/Users/user.service";
+import { UserViewModel } from "../ViewModels/Users/user.view-model";
+import { NavigationBarComponent } from "./Navigations/navigation-bar.component";
+
+let imports = [
+    NavigationBarComponent,
+    RouterOutlet
+];
 
 @Component({
-    selector: ".app-component",
-    templateUrl: "/app/templates/components/app.component.html"
+    imports: imports,
+    selector: "app-component",
+    templateUrl: "../../wwwroot/app/templates/components/app.component.html"
 })
-export class AppComponent {
-    public user: User = new User();
+export class AppComponent implements OnInit {
+    constructor(public readonly userService: UserService, public readonly notificationService: NotificationService) {
 
-    constructor(public notificationService: NotificationService, public userService: UserService) {
-        this.readUser();
     }
 
-    private readUser() {
-        this.notificationService.start();
+    public user: UserViewModel;
 
+    public ngOnInit(): void {
         this.userService.read()
-            .subscribe(
-                (response: any) => {
-                    this.user = response;
-
-                    this.notificationService.complete();
+            .subscribe({
+                next: (userViewModel: UserViewModel) => {
+                    this.user = userViewModel;
                 },
-                (error: any) => {
-                    this.notificationService.create(new Notification("Uh oh!", "Could not read user", NotificationType.Danger));
-
-                    this.notificationService.complete();
+                error: (exception: any) => {
+                    this.notificationService.createMessage(NotificationType.Danger, "User Read Exception", "Could not complete the request to read user.");
                 }
-            );
+            });
     }
 }

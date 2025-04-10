@@ -15,29 +15,31 @@ let ngZoneOptions = {
     eventCoalescing: true
 };
 
+let providers = [
+    provideHttpClient(withInterceptorsFromDi()),
+    provideRouter(appRoutes, withComponentInputBinding()),
+    provideZoneChangeDetection(ngZoneOptions),
+    {
+        multi: true,
+        provide: HTTP_INTERCEPTORS,
+        useClass: AuthenticationHeaderInterceptor
+    },
+    {
+        multi: true,
+        provide: HTTP_INTERCEPTORS,
+        useClass: NotificationActionInterceptor
+    },
+    {
+        provide: ErrorHandler,
+        useClass: ExceptionDefaultHandler
+    },
+    AuthenticationStoreCookieStrategy,
+    CookieService,
+    GameService,
+    NotificationService,
+    UserService
+];
+
 export const appConfig: ApplicationConfig = {
-    providers: [
-        provideHttpClient(withInterceptorsFromDi()),
-        provideRouter(appRoutes, withComponentInputBinding()),
-        provideZoneChangeDetection(ngZoneOptions),
-        {
-            multi: true,
-            provide: HTTP_INTERCEPTORS,
-            useClass: AuthenticationHeaderInterceptor
-        },
-        {
-            multi: true,
-            provide: HTTP_INTERCEPTORS,
-            useClass: NotificationActionInterceptor
-        },
-        {
-            provide: ErrorHandler,
-            useClass: ExceptionDefaultHandler
-        },
-        AuthenticationStoreCookieStrategy,
-        CookieService,
-        GameService,
-        NotificationService,
-        UserService
-    ]
+    providers: providers
 };
