@@ -2,11 +2,12 @@
 import { NotificationService } from "../../Services/Notifications/notification.service";
 
 @Component({
-    selector: "notification-bar",
-    templateUrl: "/app/templates/components/notifications/notification-bar.component.html"
+    selector: "notification-bar-component",
+    styleUrl: "../../../wwwroot/src/styles/components/notifications/notification-bar.component.scss",
+    templateUrl: "../../../wwwroot/app/templates/components/notifications/notification-bar.component.html"
 })
 export class NotificationBarComponent {
-    constructor(private notificationService: NotificationService) {
+    constructor(private readonly notificationService: NotificationService) {
 
     }
 }

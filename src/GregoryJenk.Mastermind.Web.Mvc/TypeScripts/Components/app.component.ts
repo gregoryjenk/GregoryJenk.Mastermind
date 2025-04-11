@@ -5,9 +5,11 @@ import { NotificationService } from "../Services/Notifications/notification.serv
 import { UserService } from "../Services/Users/user.service";
 import { UserViewModel } from "../ViewModels/Users/user.view-model";
 import { NavigationBarComponent } from "./Navigations/navigation-bar.component";
+import { NotificationBarComponent } from "./Notifications/notification-bar.component";
 
 let imports = [
     NavigationBarComponent,
+    NotificationBarComponent,
     RouterOutlet
 ];
 
