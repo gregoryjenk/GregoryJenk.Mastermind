@@ -5,11 +5,6 @@ import { NotificationType } from "../../Models/Notifications/notification-type";
 
 @Injectable()
 export class NotificationService {
-    constructor() {
-        this.messages = [];
-        this.actions = [];
-    }
-
     public messages: NotificationMessage[];
 
     public actions: NotificationAction[];
@@ -30,6 +25,10 @@ export class NotificationService {
         notificationMessage.created = created;
         notificationMessage.title = title;
         notificationMessage.message = message;
+
+        if (this.messages === null || this.messages === undefined) {
+            this.messages = [];
+        }
 
         this.messages.push(notificationMessage);
 
@@ -59,6 +58,10 @@ export class NotificationService {
         notificationAction.expired = expired;
         notificationAction.started = started;
         notificationAction.action = action;
+
+        if (this.actions === null || this.actions === undefined) {
+            this.actions = [];
+        }
 
         this.actions.push(notificationAction);
 
