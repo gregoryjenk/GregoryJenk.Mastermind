@@ -1,59 +1,31 @@
-﻿.peg-code {
-    border: 1px solid #CCCCCC;
-    border-radius: 50%;
-    display: inline-block;
-    height: 50px;
-    margin: 5px;
-    width: 50px;
-
-    i {
-        visibility: hidden;
-    }
-
-    &.peg-code__dragging {
-        
-    }
-
-    &.peg-code__targeting {
-        
-    }
-
-    &.peg-code__lock {
-        background-color: transparent;
-        text-align: center;
-
-        i {
-            color: #999999;
-            visibility: visible;
-            margin-top: 10px;
+﻿.game-code-peg-component {
+    &__code-peg-colour {
+        &--none {
+            background-color: transparent;
         }
-    }
 
-    &.peg-code__blue {
-        background-color: #AEC6CF;
-    }
+        &--blue {
+            background-color: var(--bs-blue);
+        }
 
-    &.peg-code__green {
-        background-color: #77DD77;
-    }
+        &--green {
+            background-color: var(--bs-green);
+        }
 
-    &.peg-code__orange {
-        background-color: #FFB347;
-    }
+        &--orange {
+            background-color: var(--bs-orange);
+        }
 
-    &.peg-code__purple {
-        background-color: #B39EB5;
-    }
+        &--purple {
+            background-color: var(--bs-purple);
+        }
 
-    &.peg-code__red {
-        background-color: #FF6961;
-    }
+        &--red {
+            background-color: var(--bs-red);
+        }
 
-    &.peg-code__yellow {
-        background-color: #FDFD96;
-    }
-
-    &.peg-code__empty {
-        background-color: transparent;
+        &--yellow {
+            background-color: var(--bs-yellow);
+        }
     }
 }
