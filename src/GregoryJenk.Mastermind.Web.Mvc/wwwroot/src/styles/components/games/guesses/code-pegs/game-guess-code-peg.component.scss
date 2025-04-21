@@ -1,0 +1,31 @@
+﻿.game-guess-code-peg-component {
+    &__code-peg-colour {
+        &--none {
+            background-color: transparent;
+        }
+
+        &--blue {
+            background-color: var(--bs-blue);
+        }
+
+        &--green {
+            background-color: var(--bs-green);
+        }
+
+        &--orange {
+            background-color: var(--bs-orange);
+        }
+
+        &--purple {
+            background-color: var(--bs-purple);
+        }
+
+        &--red {
+            background-color: var(--bs-red);
+        }
+
+        &--yellow {
+            background-color: var(--bs-yellow);
+        }
+    }
+}

@@ -1,47 +1,58 @@
-﻿import { CodePeg } from "../../Models/Pegs/code-peg.model";
-import { Component, Input } from "@angular/core";
+﻿import { Component, Input } from "@angular/core";
+import { GameCodePegColour } from "../../../Models/Games/CodePegs/game-code-peg-colour";
+import { GameCodePegViewModel } from "../../../ViewModels/Games/CodePegs/game-code-peg.view-model";
 
 @Component({
-    selector: "peg-code",
-    templateUrl: "/app/templates/components/pegs/peg-code.component.html"
+    selector: "game-code-peg-component",
+    styleUrl: "../../../../wwwroot/src/styles/components/games/code-pegs/game-code-peg.component.scss",
+    templateUrl: "../../../../wwwroot/app/templates/components/games/code-pegs/game-code-peg.component.html"
 })
-export class PegCodeComponent {
-    @Input() pegCode: CodePeg;
+export class GameCodePegComponent {
+    @Input()
+    public codePeg: GameCodePegViewModel;
 
-    constructor() {
-
-    }
-
-    private readColourClass(): string {
+    public readColourClass(gameCodePegColour: GameCodePegColour): string {
         let colourClass: string;
 
-        switch (this.pegCode.colour) {
-            case CodePegColour.Lock:
-                colourClass = "peg-code__lock";
+        switch (gameCodePegColour) {
+            case GameCodePegColour.None: {
+                colourClass = "game-code-peg-component__code-peg-colour--none";
+
                 break;
-            case CodePegColour.Blue:
-                colourClass = "peg-code__blue";
+            }
+            case GameCodePegColour.Blue: {
+                colourClass = "game-code-peg-component__code-peg-colour--blue";
+
                 break;
-            case CodePegColour.Green:
-                colourClass = "peg-code__green";
+            }
+            case GameCodePegColour.Green: {
+                colourClass = "game-code-peg-component__code-peg-colour--green";
+
                 break;
-            case CodePegColour.Orange:
-                colourClass = "peg-code__orange";
+            }
+            case GameCodePegColour.Orange: {
+                colourClass = "game-code-peg-component__code-peg-colour--orange";
+
                 break;
-            case CodePegColour.Purple:
-                colourClass = "peg-code__purple";
+            }
+            case GameCodePegColour.Purple: {
+                colourClass = "game-code-peg-component__code-peg-colour--purple";
+
                 break;
-            case CodePegColour.Red:
-                colourClass = "peg-code__red";
+            }
+            case GameCodePegColour.Red: {
+                colourClass = "game-code-peg-component__code-peg-colour--red";
+
                 break;
-            case CodePegColour.Yellow:
-                colourClass = "peg-code__yellow";
+            }
+            case GameCodePegColour.Yellow: {
+                colourClass = "game-code-peg-component__code-peg-colour--yellow";
+
                 break;
-            case CodePegColour.Empty:
-                colourClass = "peg-code__empty";
-                break;
-            default:
-                throw new TypeError("No matching colour found");
+            }
+            default: {
+                throw new TypeError(`Colour not supported with ${gameCodePegColour}.`);
+            }
         }
 
         return colourClass;
