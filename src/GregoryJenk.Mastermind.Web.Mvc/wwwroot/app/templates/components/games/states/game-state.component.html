@@ -1,9 +1,5 @@
-﻿<span class="game-state {{readGameStateClass()}}" title="{{readGameStateTitle()}}">
-    <i class="fa"
-        [class.fa-hourglass-start]="gameState == 0"
-        [class.fa-bolt]="gameState == 1"
-        [class.fa-times]="gameState == 2"
-        [class.fa-check]="gameState == 3">
-
-    </i>
+﻿<span class="game-state-component">
+    <span class="game-state-component__state {{ readStateClass(state) }}">
+        {{ readStateName(state) }}
+    </span>
 </span>
