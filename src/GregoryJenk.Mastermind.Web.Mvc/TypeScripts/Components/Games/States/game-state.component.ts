@@ -1,67 +1,76 @@
 ﻿import { Component, Input } from "@angular/core";
+import { GameState } from "../../../Models/Games/States/game-state";
 
 @Component({
-    selector: "game-state",
-    templateUrl: "/app/templates/components/games/states/game-state.component.html"
+    selector: "game-state-component",
+    styleUrl: "../../../../wwwroot/src/styles/components/games/states/game-state.component.scss",
+    templateUrl: "../../../../wwwroot/app/templates/components/games/states/game-state.component.html"
 })
 export class GameStateComponent {
-    @Input() gameState: GameState;
+    @Input()
+    public state: GameState;
 
-    constructor() {
+    public readStateClass(gameState: GameState): string {
+        let stateClass: string;
 
-    }
+        switch (gameState) {
+            case GameState.Created: {
+                stateClass = "game-state-component__state--created";
 
-    private readGameStateClass(): string {
-        let gameStateClass: string;
+                break;
+            }
+            case GameState.Started: {
+                stateClass = "game-state-component__state--started";
 
-        switch (this.gameState) {
-            case GameState.Created:
-                gameStateClass = "game-state__created";
                 break;
-            case GameState.Started:
-                gameStateClass = "game-state__started";
+            }
+            case GameState.Ended: {
+                stateClass = "game-state-component__state--ended";
+
                 break;
-            case GameState.Ended:
-                gameStateClass = "game-state__ended";
+            }
+            case GameState.Matched: {
+                stateClass = "game-state-component__state--matched";
+
                 break;
-            case GameState.Matched:
-                gameStateClass = "game-state__matched";
-                break;
-            default:
-                gameStateClass = "game-state__unknown";
-                break;
-                //The issue with throwing an exception is when components are still
-                //loading the game state.
-                //throw new TypeError("No matching game state found");
+            }
+            //default: {
+            //    throw new TypeError(`State not supported with ${gameState}.`);
+            //}
         }
 
-        return gameStateClass;
+        return stateClass;
     }
 
-    private readGameStateTitle(): string {
-        let gameStateName: string;
+    public readStateName(gameState: GameState): string {
+        let stateName: string;
 
-        switch (this.gameState) {
-            case GameState.Created:
-                gameStateName = "Created";
+        switch (gameState) {
+            case GameState.Created: {
+                stateName = "Created";
+
                 break;
-            case GameState.Started:
-                gameStateName = "Started";
+            }
+            case GameState.Started: {
+                stateName = "Started";
+
                 break;
-            case GameState.Ended:
-                gameStateName = "Ended";
+            }
+            case GameState.Ended: {
+                stateName = "Ended";
+
                 break;
-            case GameState.Matched:
-                gameStateName = "Matched";
+            }
+            case GameState.Matched: {
+                stateName = "Matched";
+
                 break;
-            default:
-                gameStateName = "Unknown";
-                break;
-                //The issue with throwing an exception is when components are still
-                //loading the game state.
-                //throw new TypeError("No matching game state found");
+            }
+            //default: {
+            //    throw new TypeError(`State not supported with ${gameState}.`);
+            //}
         }
 
-        return gameStateName;
+        return stateName;
     }
 }
