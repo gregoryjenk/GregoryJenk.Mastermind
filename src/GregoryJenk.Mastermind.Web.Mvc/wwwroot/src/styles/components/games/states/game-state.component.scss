@@ -1,55 +1,25 @@
-﻿.game-state {
-    border: 1px solid #CCCCCC;
-    border-radius: 50%;
-    display: inline-block;
-    height: 30px;
-    margin: 5px;
-    text-align: center;
-    width: 30px;
+﻿@use "../../../../../../node_modules/@gregoryjenk/aesthetic-default/src/styles/variables/variable-core-style.scss" as *;
 
-    i {
-        color: #999999;
-        margin-top: 7px;
-    }
-
-    &.game-state__created {
-        
-    }
-
-    &.game-state__started {
-        animation: glowing 1.5s infinite;
-
-        i {
-            color: #FFFFFF;
+.game-state-component {
+    &__state {
+        &--created {
+            background-color: var(--bs-blue);
+            color: $white-colour;
         }
-    }
 
-    &.game-state__ended {
-        
-    }
+        &--started {
+            background-color: var(--bs-yellow);
+            color: $black-colour;
+        }
 
-    &.game-state__matched {
-        
-    }
+        &--ended {
+            background-color: var(--bs-red);
+            color: $white-colour;
+        }
 
-    &.game-state__unknown {
-        
-    }
-}
-
-@keyframes glowing {
-    0% {
-        background-color: #004A7F;
-        box-shadow: 0 0 3px #004A7F;
-    }
-
-    50% {
-        background-color: #0094FF;
-        box-shadow: 0 0 10px #0094FF;
-    }
-
-    100% {
-        background-color: #004A7F;
-        box-shadow: 0 0 3px #004A7F;
+        &--matched {
+            background-color: var(--bs-green);
+            color: $white-colour;
+        }
     }
 }
