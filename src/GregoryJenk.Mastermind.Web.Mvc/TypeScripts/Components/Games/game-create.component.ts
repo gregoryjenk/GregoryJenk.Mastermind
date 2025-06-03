@@ -29,7 +29,7 @@ export class GameCreateComponent {
                     this.router.navigate(commands, extras);
                 },
                 error: (exception: any) => {
-                    this.notificationService.createMessage(NotificationType.Danger, "Game Create Exception", "Could not complete the request to create a game.")
+                    this.notificationService.createMessage(NotificationType.Danger, "Game Create Exception", "Could not complete the request to create a game.");
                 }
             });
     }
