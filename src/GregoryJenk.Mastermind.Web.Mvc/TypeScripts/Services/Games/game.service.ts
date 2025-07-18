@@ -19,8 +19,8 @@ export class GameService {
         return this.httpClient.post<GameViewModel>("api/game", null);
     }
 
-    public readByDecoderUserId(): Observable<GameViewModel[]> {
-        return this.httpClient.get<GameViewModel[]>("api/game");
+    public readByDecoderUserId(): Observable<Array<GameViewModel>> {
+        return this.httpClient.get<Array<GameViewModel>>("api/game");
     }
 
     public createGuess(gameCreateGuessRequest: GameCreateGuessRequest): Observable<GameViewModel> {

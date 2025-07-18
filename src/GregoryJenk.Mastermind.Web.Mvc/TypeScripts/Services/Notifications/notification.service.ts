@@ -5,9 +5,9 @@ import { NotificationType } from "../../Models/Notifications/notification-type";
 
 @Injectable()
 export class NotificationService {
-    public messages: NotificationMessage[];
+    public messages: Array<NotificationMessage>;
 
-    public actions: NotificationAction[];
+    public actions: Array<NotificationAction>;
 
     public createMessage(type: NotificationType, title: string, message: string): string {
         let id: string;

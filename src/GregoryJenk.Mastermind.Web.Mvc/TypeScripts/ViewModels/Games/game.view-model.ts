@@ -10,7 +10,7 @@ export class GameViewModel extends BaseEntityViewModel<string> {
 
     public decoderUserId: string;
 
-    public answerCodePegs: GameCodePegViewModel[];
+    public answerCodePegs: Array<GameCodePegViewModel>;
 
-    public guesses: GameGuessViewModel[];
+    public guesses: Array<GameGuessViewModel>;
 }
