@@ -39,6 +39,8 @@ jobs:
         name: Test
         needs: build
         runs-on: ubuntu-latest
+        permissions:
+            contents: read
         environment:
             name: Test
             url: https://mastermind.test.gregoryjenk.com
@@ -49,6 +51,8 @@ jobs:
         name: Beta
         needs: test-deploy
         runs-on: ubuntu-latest
+        permissions:
+            contents: read
         environment:
             name: Beta
             url: https://mastermind.beta.gregoryjenk.com
@@ -59,6 +63,8 @@ jobs:
         name: Live
         needs: beta-deploy
         runs-on: ubuntu-latest
+        permissions:
+            contents: read
         environment:
             name: Live
             url: https://mastermind.gregoryjenk.com
@@ -69,7 +75,7 @@ jobs:
                 name: GregoryJenk.Mastermind.Web.Mvc
                 path: ./GregoryJenk.Mastermind.Web.Mvc
             - name: Deploy
-              uses: azure/webapps-deploy@v3
+              uses: azure/webapps-deploy@2fdd5c3ebb4e540834e86ecc1f6fdcd5539023ee
               with:
                 app-name: ${{ secrets.AZURE_APP_NAME }}
                 clean: true
