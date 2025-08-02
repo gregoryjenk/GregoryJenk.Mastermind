@@ -14,9 +14,9 @@ Once the vulnerability is confirmed, an advisory will be published with details 
 
 To report any potential vulnerability, send the information via email to: [gregoryjenk@gmail.com](mailto:gregoryjenk@gmail.com)
 
-Provide as much information as possible. At a minimum, include the following:
+Provide as much information as possible. As a guide, include the following:
 
-1. Type, whether the vulnerability is cross-site scripting, etc.
+1. Type, whether the vulnerability is cross-site scripting (XSS), etc.
 2. File paths, where the vulnerability would be located in source control.
 3. Source code, highlight the code that could be the area of vulnerability.
 4. Conditions, which are required to reproduce the vulnerability.
