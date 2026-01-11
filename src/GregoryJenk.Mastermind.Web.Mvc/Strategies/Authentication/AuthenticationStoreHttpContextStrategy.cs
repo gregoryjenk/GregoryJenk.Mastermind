@@ -66,7 +66,6 @@ namespace GregoryJenk.Mastermind.Web.Mvc.Strategies.Authentication
                 var cookieOptions = new CookieOptions()
                 {
                     Expires = expired,
-                    HttpOnly = false,
                     SameSite = SameSiteMode.Strict,
                     Secure = true
                 };
